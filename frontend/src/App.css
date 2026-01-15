@@ -1,0 +1,409 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Georgia', serif;
+  background-color: #ffffff;
+  color: #000000;
+}
+
+.App {
+  min-height: 100vh;
+}
+
+.App-header {
+  background-color: #000;
+  padding: 20px 40px;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 40px;
+}
+
+.App-header h1 {
+  margin: 0;
+  font-size: 2rem;
+  font-family: Georgia, serif;
+  letter-spacing: 0.3em;
+  font-weight: normal;
+}
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-left: auto;
+}
+
+.welcome-text {
+  color: white;
+  margin-right: 10px;
+}
+
+.subtitle {
+  font-size: 16px;
+  font-style: italic;
+  letter-spacing: 2px;
+  opacity: 0.8;
+  text-align: center;
+  margin: 0;
+}
+
+.auth-section {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.auth-button {
+  background-color: #ffffff;
+  color: #000000;
+  border: 2px solid #ffffff;
+  padding: 10px 25px;
+  font-size: 14px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: 'Georgia', serif;
+}
+
+.auth-button:hover {
+  background-color: #000000;
+  color: #ffffff;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.welcome-text {
+  font-size: 14px;
+  letter-spacing: 1px;
+}
+
+.book-list {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+.auth-prompt {
+  background-color: #f5f5f5;
+  border: 2px solid #000000;
+  padding: 40px;
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.auth-prompt h2 {
+  font-size: 28px;
+  font-weight: 400;
+  margin-bottom: 15px;
+}
+
+.auth-prompt p {
+  font-size: 16px;
+  line-height: 1.6;
+  opacity: 0.8;
+}
+
+.status-message,
+.error-message {
+  text-align: center;
+  font-size: 18px;
+  padding: 40px;
+}
+
+.error-message {
+  color: #666;
+  font-style: italic;
+}
+
+.books-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 30px;
+  margin-top: 30px;
+}
+
+.book-card {
+  background-color: #ffffff;
+  border: 2px solid #000000;
+  padding: 30px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.book-card:hover {
+  background-color: #000000;
+  color: #ffffff;
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+.book-card h2 {
+  font-size: 24px;
+  font-weight: 400;
+  margin-bottom: 10px;
+  line-height: 1.3;
+}
+
+.author {
+  font-style: italic;
+  font-size: 16px;
+  margin-bottom: 8px;
+  opacity: 0.8;
+}
+
+.year {
+  font-size: 14px;
+  margin-bottom: 8px;
+  opacity: 0.7;
+}
+
+.genre {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 15px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid currentColor;
+  opacity: 0.6;
+}
+
+.description {
+  font-size: 14px;
+  line-height: 1.6;
+  opacity: 0.9;
+}
+
+.start-club-button {
+  background-color: #000000;
+  color: #ffffff;
+  border: 2px solid #000000;
+  padding: 12px 24px;
+  font-size: 14px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  cursor: pointer;
+  margin-top: 15px;
+  width: 100%;
+  transition: all 0.3s ease;
+  font-family: 'Georgia', serif;
+}
+
+.start-club-button:hover {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+.book-card:hover .start-club-button {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+.book-card:hover .start-club-button:hover {
+  background-color: #000000;
+  color: #ffffff;
+  border-color: #ffffff;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .books-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .App-header h1 {
+    font-size: 32px;
+  }
+  
+  .header-content {
+    flex-direction: column;
+    gap: 20px;
+  }
+}
+
+.main-content {
+  padding: 40px;
+  margin-top: 0;
+}
+
+/* Clubs Grid */
+.clubs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 30px;
+  margin-top: 30px;
+}
+
+.club-card:hover {
+  box-shadow: 5px 5px 0px #000;
+}
+
+/* Navigation */
+.main-nav {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.nav-link {
+  color: #fff;
+  text-decoration: none;
+  font-size: 1.1rem;
+  padding: 8px 16px;
+  border: 2px solid transparent;
+  transition: all 0.2s;
+}
+
+.nav-link:hover {
+  border: 2px solid #fff;
+}
+
+/* Clubs Grid */
+.clubs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 30px;
+  margin-top: 30px;
+}
+
+.club-card:hover {
+  box-shadow: 5px 5px 0px #000;
+}
+
+/* Join Club Button */
+.join-club-button {
+  padding: 8px 16px;
+  font-size: 1.1rem;
+  background-color: transparent;
+  color: #fff;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-weight: normal;
+  font-family: inherit;
+  text-decoration: none;
+}
+
+.join-club-button:hover {
+  border: 2px solid #fff;
+}
+
+/* Sign In Button - Classic Cinema Style */
+.sign-in-button {
+  background-color: #ffffff;
+  color: #000000;
+  border: 2px solid #ffffff;
+  padding: 10px 25px;
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: 'Georgia', serif;
+  font-weight: 400;
+}
+
+.sign-in-button:hover {
+  background-color: transparent;
+  color: #ffffff;
+}
+
+/* Display Name Modal */
+.display-name-modal {
+  max-width: 400px;
+}
+
+.display-name-modal h2 {
+  margin-bottom: 10px;
+}
+
+.modal-description {
+  font-size: 14px;
+  opacity: 0.7;
+  margin-bottom: 20px;
+}
+
+.modal-input {
+  width: 100%;
+  padding: 12px 15px;
+  font-size: 16px;
+  font-family: 'Georgia', serif;
+  border: 2px solid #000000;
+  background: #ffffff;
+  margin-bottom: 15px;
+}
+
+.modal-input:focus {
+  outline: none;
+  border-color: #333333;
+}
+
+.modal-error {
+  color: #cc0000;
+  font-size: 14px;
+  margin-bottom: 15px;
+}
+
+.modal-buttons {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+}
+
+.modal-button-primary {
+  background-color: #000000;
+  color: #ffffff;
+  border: 2px solid #000000;
+  padding: 10px 25px;
+  font-size: 14px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  cursor: pointer;
+  font-family: 'Georgia', serif;
+}
+
+.modal-button-primary:hover {
+  background-color: #333333;
+}
+
+.modal-button-primary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.modal-button-secondary {
+  background-color: #ffffff;
+  color: #000000;
+  border: 2px solid #000000;
+  padding: 10px 25px;
+  font-size: 14px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  cursor: pointer;
+  font-family: 'Georgia', serif;
+}
+
+.modal-button-secondary:hover {
+  background-color: #f0f0f0;
+}
+
+/* Clickable welcome text */
+.welcome-text.clickable {
+  cursor: pointer;
+  text-decoration: underline;
+  text-decoration-style: dotted;
+  text-underline-offset: 3px;
+}
+
+.welcome-text.clickable:hover {
+  opacity: 0.8;
+}

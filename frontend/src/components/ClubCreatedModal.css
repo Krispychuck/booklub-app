@@ -1,0 +1,86 @@
+.success-modal {
+  text-align: center;
+  max-width: 450px;
+}
+
+.success-icon {
+  width: 80px;
+  height: 80px;
+  background: #000;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 48px;
+  margin: 0 auto 20px;
+  font-weight: bold;
+}
+
+.success-modal h2 {
+  font-family: Georgia, serif;
+  font-size: 28px;
+  margin-bottom: 10px;
+}
+
+.success-message {
+  color: #666;
+  font-size: 16px;
+  margin-bottom: 30px;
+}
+
+.invite-code-section {
+  background: #f5f5f5;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 25px;
+}
+
+.invite-code-section label {
+  display: block;
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 10px;
+}
+
+.invite-code-display {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+}
+
+.invite-code {
+  font-family: 'Courier New', monospace;
+  font-size: 32px;
+  font-weight: bold;
+  letter-spacing: 4px;
+  color: #000;
+}
+
+.copy-button {
+  padding: 8px 16px;
+  background: #000;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: background 0.2s;
+}
+
+.copy-button:hover {
+  background: #333;
+}
+
+.invite-hint {
+  font-size: 12px;
+  color: #999;
+  margin-top: 10px;
+  margin-bottom: 0;
+}
+
+.full-width {
+  width: 100%;
+}
