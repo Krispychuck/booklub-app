@@ -106,6 +106,12 @@ router.post('/testpost', (req, res) => {
   res.json({ message: 'Test POST route works!' });
 });
 
+// Test members route
+router.get('/members-test', (req, res) => {
+  res.json({ message: 'Members test route works!' });
+});
+
+
 // POST /api/clubs/join - Join a club using invite code
 router.post('/join', async (req, res) => {
   console.log('🎯 JOIN endpoint hit!', req.body);
@@ -141,14 +147,14 @@ router.post('/join', async (req, res) => {
       return res.status(400).json({ error: 'You are already a member of this club' });
     }
 
-    // Check if club is full (MVP: max 2 members)
+    // Check if club is full (MVP: max 5 members)
     const memberCount = await pool.query(
       'SELECT COUNT(*) FROM club_members WHERE club_id = $1',
       [club.id]
     );
 
-    if (parseInt(memberCount.rows[0].count) >= 2) {
-      return res.status(400).json({ error: 'This club is full (max 2 members for MVP)' });
+    if (parseInt(memberCount.rows[0].count) >= 5) {
+      return res.status(400).json({ error: 'This club is full (max 5 members for MVP)' });
     }
 
     // Add user as a member
@@ -179,6 +185,32 @@ router.post('/join', async (req, res) => {
   } catch (error) {
     console.error('Error joining club:', error);
     res.status(500).json({ error: 'Failed to join club' });
+  }
+});
+
+// GET /api/clubs/:clubId/members - Get all members of a club
+router.get('/:clubId/members', async (req, res) => {
+  try {
+    const { clubId } = req.params;
+
+const result = await pool.query(
+      `SELECT 
+        u.id,
+        u.name,
+        cm.role,
+        cm.joined_at
+       FROM club_members cm
+       JOIN users u ON cm.user_id = u.clerk_id
+       WHERE cm.club_id = $1::uuid
+       ORDER BY cm.joined_at ASC`,
+      [clubId]
+    );
+
+    res.json(result.rows);
+
+  } catch (error) {
+    console.error('Error fetching club members:', error);
+    res.status(500).json({ error: 'Failed to fetch club members' });
   }
 });
 
