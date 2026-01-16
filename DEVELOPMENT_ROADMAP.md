@@ -51,16 +51,12 @@
 ---
 
 ## Current Sprint 🚧
-
-
+- [ ] **Authors & BookS** *[Added: Jan 15, 2026]*
+  - Adding 15-25 books
+  - Adding commesurate 15-25 author AI personas
 ---
 
 ## Upcoming Features 📋
-
-### Phase 5: Club Membership
-- [ ] **Join club via invite code** - Modal to enter code and join existing clubs
-- [ ] **Member list display** - Show who's in each club
-- [ ] **Leave club functionality** - Allow members to exit clubs
 
 ### Phase 6: Enhanced Discussion Experience
 - [ ] **Mind Map Synthesis** ⭐ *[Added: Jan 9, 2026]*
