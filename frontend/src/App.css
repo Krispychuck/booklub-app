@@ -407,3 +407,69 @@ body {
 .welcome-text.clickable:hover {
   opacity: 0.8;
 }
+
+/* Members Modal */
+.members-modal {
+  max-width: 400px;
+}
+
+.members-modal h2 {
+  margin-bottom: 20px;
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.members-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 20px 0;
+}
+
+.member-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.member-item:last-child {
+  border-bottom: none;
+}
+
+.member-name {
+  font-size: 16px;
+}
+
+.member-role {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  opacity: 0.6;
+}
+
+.modal-close-btn {
+  background-color: #000000;
+  color: #ffffff;
+  border: 2px solid #000000;
+  padding: 10px 25px;
+  font-size: 14px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  cursor: pointer;
+  font-family: 'Georgia', serif;
+  width: 100%;
+}
+
+.modal-close-btn:hover {
+  background-color: #333333;
+}
+
+.loading-text,
+.error-text,
+.empty-text {
+  text-align: center;
+  padding: 20px 0;
+  font-style: italic;
+  opacity: 0.7;
+}

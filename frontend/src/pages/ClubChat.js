@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useUser } from '@clerk/clerk-react';
 import './ClubChat.css';
+import MembersModal from '../components/MembersModal';
 
 function ClubChat({ booklubUser }) {
   const { clubId } = useParams();
@@ -15,7 +16,8 @@ function ClubChat({ booklubUser }) {
   const [loading, setLoading] = useState(true);
   const [sending, setSending] = useState(false);
   const [deleteModalMessage, setDeleteModalMessage] = useState(null);
-  
+  const [showMembersModal, setShowMembersModal] = useState(false);
+
   const messagesEndRef = useRef(null);
 
   // Scroll to bottom when messages change
@@ -142,7 +144,7 @@ function ClubChat({ booklubUser }) {
   return (
     <div className="chat-container">
       {/* Header */}
-      <div className="chat-header">
+     <div className="chat-header">
         <button className="back-button" onClick={() => navigate('/my-clubs')}>
           ← Back
         </button>
@@ -150,6 +152,9 @@ function ClubChat({ booklubUser }) {
           <h1>{club.name}</h1>
           {book && <p className="book-info">{book.title} by {book.author}</p>}
         </div>
+        <button className="members-button" onClick={() => setShowMembersModal(true)}>
+          Members
+        </button>
       </div>
 
       {/* Messages Area */}
@@ -246,6 +251,14 @@ function ClubChat({ booklubUser }) {
             </div>
           </div>
         </div>
+      )}
+      {/* Members Modal */}
+      {showMembersModal && (
+        <MembersModal
+          clubId={clubId}
+          clubName={club.name}
+          onClose={() => setShowMembersModal(false)}
+        />
       )}
     </div>
   );

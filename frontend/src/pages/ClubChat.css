@@ -332,3 +332,22 @@
   opacity: 0.5;
   cursor: not-allowed;
 }
+/* Members Button */
+.members-button {
+  background-color: transparent;
+  color: #ffffff;
+  border: 2px solid #ffffff;
+  padding: 8px 20px;
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  cursor: pointer;
+  font-family: 'Georgia', serif;
+  transition: all 0.3s ease;
+  margin-left: auto;
+}
+
+.members-button:hover {
+  background-color: #ffffff;
+  color: #000000;
+}
