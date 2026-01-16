@@ -1,6 +1,6 @@
 # BooKlub Development Roadmap
 
-**Last Updated:** January 14, 2026  
+**Last Updated:** January 15, 2026  
 **Project Status:** MVP In Progress
 
 ---
@@ -42,14 +42,16 @@
 - [x] **Sign In button styling** - Matches black-and-white cinema aesthetic
 - [x] **Clickable sign-in prompt** - Auth prompt text triggers sign-in modal
 
+### Phase 5: Club Membership (Completed Jan 15, 2026)
+- [x] **Join club via invite code** - Modal to enter code and join existing clubs
+- [x] **Member list display** - Show who's in each club
+- [x] **Leave club functionality** - Allow members to exit clubs
+- [x] **Delete club functionality** - Allow creators to delete clubs
+
 ---
 
 ## Current Sprint 🚧
 
-### Phase 5: Club Membership
-- [ ] **Join club via invite code** - Modal to enter code and join existing clubs
-- [ ] **Member list display** - Show who's in each club
-- [ ] **Leave club functionality** - Allow members to exit clubs
 
 ---
 
