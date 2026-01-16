@@ -260,4 +260,66 @@ router.get('/:id', async (req, res) => {
   }
 });
 
+// DELETE /api/clubs/:clubId/members/:userId - Leave a club
+router.delete('/:clubId/members/:clerkId', async (req, res) => {
+  try {
+    const { clubId, clerkId } = req.params;
+
+    // Check if user is a member
+    const memberCheck = await pool.query(
+      'SELECT * FROM club_members WHERE club_id = $1::uuid AND user_id = $2',
+      [clubId, clerkId]
+    );
+
+    if (memberCheck.rows.length === 0) {
+      return res.status(404).json({ error: 'Not a member of this club' });
+    }
+
+    // Remove the member
+    await pool.query(
+      'DELETE FROM club_members WHERE club_id = $1::uuid AND user_id = $2',
+      [clubId, clerkId]
+    );
+
+    res.json({ success: true, message: 'Successfully left the club' });
+
+  } catch (error) {
+    console.error('Error leaving club:', error);
+    res.status(500).json({ error: 'Failed to leave club' });
+  }
+});
+
+// DELETE /api/clubs/:clubId - Delete a club (creator only)
+router.delete('/:clubId', async (req, res) => {
+  try {
+    const { clubId } = req.params;
+    const { clerkId } = req.body;
+
+    // Check if user is the creator
+    const creatorCheck = await pool.query(
+      'SELECT * FROM club_members WHERE club_id = $1::uuid AND user_id = $2 AND role = $3',
+      [clubId, clerkId, 'creator']
+    );
+
+    if (creatorCheck.rows.length === 0) {
+      return res.status(403).json({ error: 'Only the creator can delete this club' });
+    }
+
+    // Delete all messages in the club first
+    await pool.query('DELETE FROM messages WHERE club_id = $1::uuid', [clubId]);
+
+    // Delete all members
+    await pool.query('DELETE FROM club_members WHERE club_id = $1::uuid', [clubId]);
+
+    // Delete the club
+    await pool.query('DELETE FROM book_clubs WHERE id = $1::uuid', [clubId]);
+
+    res.json({ success: true, message: 'Club deleted successfully' });
+
+  } catch (error) {
+    console.error('Error deleting club:', error);
+    res.status(500).json({ error: 'Failed to delete club' });
+  }
+});
+
 module.exports = router;

@@ -257,6 +257,7 @@ function ClubChat({ booklubUser }) {
         <MembersModal
           clubId={clubId}
           clubName={club.name}
+          booklubUser={booklubUser}
           onClose={() => setShowMembersModal(false)}
         />
       )}
