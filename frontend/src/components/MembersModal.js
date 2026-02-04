@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { API_URL } from '../config';
 
 function MembersModal({ clubId, clubName, booklubUser, onClose }) {
   const [members, setMembers] = useState([]);
@@ -17,7 +18,7 @@ console.log('currentUserClerkId:', booklubUser?.clerk_id);
   useEffect(() => {
     const fetchMembers = async () => {
       try {
-        const response = await fetch(`http://localhost:3001/api/clubs/${clubId}/members`);
+        const response = await fetch(`${API_URL}/api/clubs/${clubId}/members`);
         if (!response.ok) throw new Error('Failed to fetch members');
         const data = await response.json();
         setMembers(data);
@@ -35,7 +36,7 @@ console.log('currentUserClerkId:', booklubUser?.clerk_id);
   const handleLeaveClub = async () => {
     try {
       const response = await fetch(
-        `http://localhost:3001/api/clubs/${clubId}/members/${currentUserClerkId}`,
+        `${API_URL}/api/clubs/${clubId}/members/${currentUserClerkId}`,
         { method: 'DELETE' }
       );
       
@@ -55,7 +56,7 @@ console.log('currentUserClerkId:', booklubUser?.clerk_id);
   const handleDeleteClub = async () => {
     try {
       const response = await fetch(
-        `http://localhost:3001/api/clubs/${clubId}`,
+        `${API_URL}/api/clubs/${clubId}`,
         {
           method: 'DELETE',
           headers: { 'Content-Type': 'application/json' },

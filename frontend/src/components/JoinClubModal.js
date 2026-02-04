@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { API_URL } from '../config';
 
 function JoinClubModal({ userId, onClose, onClubJoined }) {
   const [inviteCode, setInviteCode] = useState('');
@@ -17,7 +18,7 @@ function JoinClubModal({ userId, onClose, onClubJoined }) {
     setError('');
 
     try {
-      const response = await fetch('http://localhost:3001/api/clubs/join', {
+      const response = await fetch(`${API_URL}/api/clubs/join`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

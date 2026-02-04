@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { SignedIn, SignedOut, SignInButton, useUser } from '@clerk/clerk-react';
 import CreateClubModal from '../components/CreateClubModal';
 import ClubCreatedModal from '../components/ClubCreatedModal';
+import { API_URL } from '../config';
 
 function Home() {
   const [books, setBooks] = useState([]);
@@ -22,7 +23,7 @@ function Home() {
   const fetchBooks = async () => {
     setLoading(true);
     try {
-      const response = await fetch('http://localhost:3001/api/books');
+      const response = await fetch(`${API_URL}/api/books`);
       if (!response.ok) {
         throw new Error('Failed to fetch books');
       }

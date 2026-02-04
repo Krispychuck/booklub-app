@@ -8,6 +8,7 @@ import JoinClubModal from './components/JoinClubModal';
 import JoinSuccessModal from './components/JoinSuccessModal';
 import ClubChat from './pages/ClubChat';
 import DisplayNameModal from './components/DisplayNameModal';
+import { API_URL } from './config';
 
 function App() {
   const { user, isLoaded } = useUser();
@@ -30,7 +31,7 @@ function App() {
 
       try {
         // Check if user exists in our database
-        const response = await fetch(`http://localhost:3001/api/users/clerk/${user.id}`);
+        const response = await fetch(`${API_URL}/api/users/clerk/${user.id}`);
         
         if (response.ok) {
           const existingUser = await response.json();
@@ -42,7 +43,7 @@ function App() {
           }
         } else if (response.status === 404) {
           // User doesn't exist, create them
-          const createResponse = await fetch('http://localhost:3001/api/users', {
+          const createResponse = await fetch(`${API_URL}/api/users`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
@@ -71,7 +72,7 @@ function App() {
   const handleSaveDisplayName = async (name) => {
     if (!booklubUser) return;
 
-    const response = await fetch(`http://localhost:3001/api/users/${booklubUser.id}/name`, {
+    const response = await fetch(`${API_URL}/api/users/${booklubUser.id}/name`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ name })

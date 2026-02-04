@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './CreateClubModal.css';
+import { API_URL } from '../config';
 
 function CreateClubModal({ book, onClose, onClubCreated, userId }) {
   const [clubName, setClubName] = useState('');
@@ -18,7 +19,7 @@ function CreateClubModal({ book, onClose, onClubCreated, userId }) {
     setError(null);
 
     try {
-      const response = await fetch('http://localhost:3001/api/clubs', {
+      const response = await fetch(`${API_URL}/api/clubs`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { useUser } from '@clerk/clerk-react';
 import './ClubChat.css';
 import MembersModal from '../components/MembersModal';
+import { API_URL } from '../config';
 
 function ClubChat({ booklubUser }) {
   const { clubId } = useParams();
@@ -36,20 +37,20 @@ function ClubChat({ booklubUser }) {
     const fetchClubData = async () => {
       try {
         // Fetch club details
-        const clubRes = await fetch(`http://localhost:3001/api/clubs/${clubId}?userId=${user?.id}`);
+        const clubRes = await fetch(`${API_URL}/api/clubs/${clubId}?userId=${user?.id}`);
         if (!clubRes.ok) throw new Error('Club not found');
         const clubData = await clubRes.json();
         setClub(clubData);
 
         // Fetch book details
-        const bookRes = await fetch(`http://localhost:3001/api/books/${clubData.book_id}`);
+        const bookRes = await fetch(`${API_URL}/api/books/${clubData.book_id}`);
         if (bookRes.ok) {
           const bookData = await bookRes.json();
           setBook(bookData);
         }
 
         // Fetch messages
-        const messagesRes = await fetch(`http://localhost:3001/api/messages/club/${clubId}`);
+        const messagesRes = await fetch(`${API_URL}/api/messages/club/${clubId}`);
         if (messagesRes.ok) {
           const messagesData = await messagesRes.json();
           setMessages(messagesData);
@@ -67,7 +68,7 @@ function ClubChat({ booklubUser }) {
   // Delete a message
   const handleDeleteMessage = async (messageId) => {
     try {
-      const response = await fetch(`http://localhost:3001/api/messages/${messageId}`, {
+      const response = await fetch(`${API_URL}/api/messages/${messageId}`, {
         method: 'DELETE'
       });
       
@@ -87,7 +88,7 @@ function ClubChat({ booklubUser }) {
 
     setSending(true);
     try {
-      const response = await fetch(`http://localhost:3001/api/messages/club/${clubId}`, {
+      const response = await fetch(`${API_URL}/api/messages/club/${clubId}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -107,7 +108,7 @@ function ClubChat({ booklubUser }) {
         // Only request AI response if askAuthor is true
         if (askAuthor) {
           try {
-            const aiResponse = await fetch(`http://localhost:3001/api/messages/club/${clubId}/ai-response`, {
+            const aiResponse = await fetch(`${API_URL}/api/messages/club/${clubId}/ai-response`, {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' }
             });
