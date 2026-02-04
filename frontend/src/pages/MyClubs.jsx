@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useUser } from '@clerk/clerk-react';
+import { API_URL } from '../config';
 
 function MyClubs() {
   const [clubs, setClubs] = useState([]);
@@ -17,7 +18,7 @@ function MyClubs() {
 
   const fetchMyClubs = async () => {
     try {
-      const response = await fetch(`http://localhost:3001/api/clubs?userId=${user.id}`);
+      const response = await fetch(`${API_URL}/api/clubs?userId=${user.id}`);
 
       if (!response.ok) {
         throw new Error('Failed to fetch clubs');
