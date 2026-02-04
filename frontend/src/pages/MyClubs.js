@@ -10,12 +10,6 @@ function MyClubs() {
   const navigate = useNavigate();
   const { user } = useUser();
 
-  useEffect(() => {
-    if (user) {
-      fetchMyClubs();
-    }
-  }, [user]);
-
   const fetchMyClubs = async () => {
     try {
       const response = await fetch(`${API_URL}/api/clubs?userId=${user.id}`);
@@ -33,6 +27,13 @@ function MyClubs() {
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+    if (user) {
+      fetchMyClubs();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [user]);
 
   if (loading) {
     return (

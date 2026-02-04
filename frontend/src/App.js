@@ -17,7 +17,6 @@ function App() {
   const [joinedClub, setJoinedClub] = useState(null);
   const [booklubUser, setBooklubUser] = useState(null);
   const [showDisplayNameModal, setShowDisplayNameModal] = useState(false);
-  const [checkingUser, setCheckingUser] = useState(false);
 
   // Check/create user in our database when Clerk user signs in
   useEffect(() => {
@@ -26,8 +25,6 @@ function App() {
         setBooklubUser(null);
         return;
       }
-
-      setCheckingUser(true);
 
       try {
         // Check if user exists in our database
@@ -61,8 +58,6 @@ function App() {
         }
       } catch (error) {
         console.error('Error syncing user:', error);
-      } finally {
-        setCheckingUser(false);
       }
     };
 
