@@ -28,10 +28,13 @@ When starting a new session about BooKlub, read this first!
 - **AI:** Anthropic Claude API
 
 ### Key Files to Check
+- `ARCHITECTURE.md` - **READ THIS FIRST** - System architecture, data flows, component responsibilities
 - `CURRENT_STATUS.md` - Full configuration details
 - `TROUBLESHOOTING.md` - Debugging guide
 - `frontend/src/pages/MyClubs.js` - Most recently fixed (NOT .jsx!)
 - `frontend/src/config.js` - API URL configuration
+
+**NOTE:** When making architectural changes (new components, API endpoints, services), update `ARCHITECTURE.md` to keep it current!
 
 ---
 
@@ -195,9 +198,11 @@ When user reports an issue:
 
 ## 📚 Full Documentation
 
-- **`CURRENT_STATUS.md`** - Complete configuration, architecture, all details
+- **`ARCHITECTURE.md`** - **START HERE** - System architecture diagram, data flows, component responsibilities (keep this updated!)
+- **`CURRENT_STATUS.md`** - Complete configuration, environment variables, all details
 - **`TROUBLESHOOTING.md`** - Detailed debugging guide for every issue type
 - **`DEPLOYMENT_CHECKLIST.md`** - Deployment process and verification steps
+- **`DEVELOPMENT_ROADMAP.md`** - Feature tracking and project status
 
 ---
 
@@ -207,6 +212,7 @@ When user reports an issue:
 - **Handle everything:** Commit, push, create PRs, deploy, debug
 - **Explain clearly:** Use step-by-step instructions with URLs
 - **Show, don't tell:** Provide exact commands and URLs to click
+- **Documentation:** User wants ARCHITECTURE.md kept up-to-date as system evolves
 
 ---
 
