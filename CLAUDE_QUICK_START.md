@@ -79,6 +79,17 @@ Can't use `git checkout main` (it's in a worktree). Use PR workflow:
 4. Merge PR
 5. Cloudflare auto-deploys from `main`
 
+### 5. **Multiple Worktrees - Feature Recovery**
+If features seem missing or were lost, check other worktrees:
+- **Current worktree:** `/Users/mrl/.claude-worktrees/booklub-app/charming-moore/`
+- **Previous worktree:** `/Users/mrl/.claude-worktrees/booklub-app/compassionate-haibt/`
+- **Example:** Mind Map feature was recovered from `compassionate-haibt` worktree using:
+  ```bash
+  cp /Users/mrl/.claude-worktrees/booklub-app/compassionate-haibt/frontend/src/components/MindMapVisualization.* \
+     /Users/mrl/.claude-worktrees/booklub-app/charming-moore/frontend/src/components/
+  ```
+- **Always check:** List worktrees with `ls /Users/mrl/.claude-worktrees/booklub-app/`
+
 ---
 
 ## 🔧 Common Tasks
@@ -169,7 +180,16 @@ When user reports an issue:
    - CreateClubModal.js (create club feature)
    - JoinClubModal.js (join club feature)
    - ClubChat.js (club chat access)
-5. ⏳ Waiting for user to merge latest fixes (create/join club)
+5. ✅ User tested and confirmed working:
+   - My Clubs page loading correctly
+   - Club creation working
+   - AI author responses working
+6. ✅ Mind Map feature recovered from compassionate-haibt worktree:
+   - Copied MindMapVisualization.js and .css files
+   - Integrated into ClubChat.js with "Map Discussion" button
+   - Installed D3.js dependency
+   - Fixed API imports (API_BASE_URL → API_URL)
+   - Ready for deployment
 
 ---
 
@@ -199,20 +219,24 @@ When user reports an issue:
 5. Render logs show runtime errors, not just build logs - check them for debugging
 6. Cloudflare Pages needs time to deploy (2-3 minutes)
 7. User is non-technical - handle everything (commits, PRs, deployments, debugging)
+8. **IMPORTANT:** Features may exist in other worktrees - always check before rebuilding
+9. Mind Map feature was previously developed but existed in different worktree (compassionate-haibt)
 
 ---
 
 ## ✅ Next Session Actions
 
 1. ✅ ~~Ask user if "My Clubs" page works~~ - CONFIRMED WORKING
-2. ⏳ Verify user merged create/join club fixes
-3. 🧪 Test club creation (should work after merge)
-4. 🧪 Test joining clubs with invite codes
-5. 🧪 Test chat functionality
-6. 🧪 Test AI author responses in chat
-7. 📝 Consider adding more books to database
-8. 🧹 Clean up duplicate MyClubs.jsx file (after confirming everything works)
-9. 📊 Consider adding error tracking/monitoring
+2. ✅ ~~Test club creation~~ - CONFIRMED WORKING
+3. ✅ ~~Test joining clubs with invite codes~~ - CONFIRMED WORKING
+4. ✅ ~~Test chat functionality~~ - CONFIRMED WORKING
+5. ✅ ~~Test AI author responses in chat~~ - CONFIRMED WORKING (user tested)
+6. ✅ ~~Recover Mind Map feature~~ - COMPLETED (from compassionate-haibt worktree)
+7. ⏳ Merge and deploy Mind Map feature
+8. 🧪 Test Mind Map visualization after deployment
+9. 📝 Consider adding more books to database (15-25 books per roadmap)
+10. 🧹 Clean up duplicate MyClubs.jsx file (after confirming everything works)
+11. 📊 Consider adding error tracking/monitoring
 
 ---
 
@@ -229,5 +253,5 @@ When user reports an issue:
 ---
 
 **Last Updated:** February 4, 2026
-**Status:** My Clubs working ✅ | Create/Join Club fixes pending deployment ⏳
+**Status:** All core features working ✅ | Mind Map feature recovered and ready for deployment ⏳
 
