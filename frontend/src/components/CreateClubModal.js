@@ -9,7 +9,7 @@ function CreateClubModal({ book, onClose, onClubCreated, userId }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     if (!clubName.trim()) {
       setError('Please enter a club name');
       return;
@@ -19,6 +19,13 @@ function CreateClubModal({ book, onClose, onClubCreated, userId }) {
     setError(null);
 
     try {
+      // First get the database user ID from Clerk ID
+      const userResponse = await fetch(`${API_URL}/api/users/clerk/${userId}`);
+      if (!userResponse.ok) {
+        throw new Error('User not found');
+      }
+      const booklubUser = await userResponse.json();
+
       const response = await fetch(`${API_URL}/api/clubs`, {
         method: 'POST',
         headers: {
@@ -27,7 +34,7 @@ function CreateClubModal({ book, onClose, onClubCreated, userId }) {
         body: JSON.stringify({
           name: clubName,
           bookId: book.id,
-          userId: userId
+          userId: booklubUser.id
         })
       });
 

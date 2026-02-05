@@ -32,12 +32,12 @@ function ClubChat({ booklubUser }) {
 
   // Fetch club details and messages
   useEffect(() => {
-    if (!clubId || !user?.id) return;
+    if (!clubId || !booklubUser?.id) return;
 
     const fetchClubData = async () => {
       try {
         // Fetch club details
-        const clubRes = await fetch(`${API_URL}/api/clubs/${clubId}?userId=${user?.id}`);
+        const clubRes = await fetch(`${API_URL}/api/clubs/${clubId}?userId=${booklubUser.id}`);
         if (!clubRes.ok) throw new Error('Club not found');
         const clubData = await clubRes.json();
         setClub(clubData);
@@ -63,7 +63,7 @@ function ClubChat({ booklubUser }) {
     };
 
     fetchClubData();
-  }, [clubId, user?.id]);
+  }, [clubId, booklubUser?.id]);
 
   // Delete a message
   const handleDeleteMessage = async (messageId) => {
