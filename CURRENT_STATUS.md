@@ -386,6 +386,7 @@ App runs on: http://localhost:3000
 
 ## 💡 Tips for Claude in Future Sessions
 
+- **READ ARCHITECTURE.md FIRST** - Comprehensive system diagram and data flows
 - Always check which MyClubs file is being used (.js vs .jsx)
 - **ALL components must convert Clerk ID to Database ID** - this pattern is now implemented in:
   - MyClubs.js
@@ -401,6 +402,7 @@ App runs on: http://localhost:3000
   - Look in `/Users/mrl/.claude-worktrees/booklub-app/` for other worktree directories
   - Previous worktree `compassionate-haibt` contained Mind Map feature
   - Use `cp` to recover files from other worktrees into current one
+- **UPDATE ARCHITECTURE.md** when adding new components, endpoints, or services
 
 ---
 
