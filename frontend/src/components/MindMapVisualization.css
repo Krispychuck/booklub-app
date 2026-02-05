@@ -1,0 +1,380 @@
+/* Full-screen overlay */
+.mind-map-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  animation: mindMapFadeIn 0.3s ease;
+}
+
+@keyframes mindMapFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Modal container */
+.mind-map-modal {
+  width: 94vw;
+  height: 90vh;
+  background: #0a0a0a;
+  border: 2px solid #333;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+/* Header */
+.mind-map-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 24px;
+  border-bottom: 1px solid #222;
+  background: #000;
+  flex-shrink: 0;
+}
+
+.mind-map-title h2 {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: normal;
+  color: #fff;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-family: 'Courier New', monospace;
+}
+
+.mind-map-title p {
+  margin: 4px 0 0;
+  font-size: 0.85rem;
+  color: #888;
+  font-style: italic;
+  font-family: 'Georgia', serif;
+}
+
+.mind-map-close-btn {
+  background: transparent;
+  border: 1px solid #555;
+  color: #aaa;
+  padding: 6px 18px;
+  font-family: 'Courier New', monospace;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.mind-map-close-btn:hover {
+  border-color: #fff;
+  color: #fff;
+}
+
+/* SVG body */
+.mind-map-body {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+  background: radial-gradient(ellipse at center, #111 0%, #0a0a0a 70%);
+}
+
+.mind-map-svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* Links */
+.mind-map-link {
+  opacity: 0.6;
+  transition: opacity 0.2s;
+}
+
+/* Nodes */
+.mind-map-node circle {
+  transition: r 0.2s, filter 0.2s;
+}
+
+.mind-map-node:hover circle {
+  filter: brightness(1.3);
+}
+
+/* Labels */
+.mind-map-label {
+  fill: #e0e0e0;
+  font-family: 'Georgia', serif;
+}
+
+.mind-map-label--central {
+  fill: #000;
+  font-size: 9px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-family: 'Courier New', monospace;
+}
+
+.mind-map-label--branch {
+  font-size: 12px;
+  fill: #d4d4d4;
+  font-weight: bold;
+}
+
+.mind-map-label--leaf {
+  font-size: 10px;
+  fill: #aaa;
+}
+
+.mind-map-participants {
+  font-size: 8px;
+  fill: #777;
+  font-family: 'Courier New', monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Legend */
+.mind-map-legend-text {
+  fill: #888;
+  font-size: 11px;
+  font-family: 'Courier New', monospace;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Loading */
+.mind-map-loading {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+
+.mind-map-loading p {
+  color: #888;
+  font-family: 'Courier New', monospace;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 0.9rem;
+  margin-bottom: 20px;
+}
+
+.mind-map-spinner {
+  width: 32px;
+  height: 32px;
+  border: 2px solid #333;
+  border-top-color: #888;
+  border-radius: 50%;
+  animation: mindMapSpin 0.8s linear infinite;
+}
+
+@keyframes mindMapSpin {
+  to { transform: rotate(360deg); }
+}
+
+/* Error */
+.mind-map-error {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+
+.mind-map-error p {
+  color: #c88;
+  font-family: 'Courier New', monospace;
+  margin-bottom: 20px;
+}
+
+.mind-map-error button {
+  background: transparent;
+  border: 1px solid #555;
+  color: #aaa;
+  padding: 8px 20px;
+  font-family: 'Courier New', monospace;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+}
+
+/* Detail panel */
+.mind-map-detail {
+  position: absolute;
+  bottom: 50px;
+  right: 24px;
+  background: #111;
+  border: 1px solid #333;
+  padding: 16px 20px;
+  max-width: 320px;
+  z-index: 20;
+  animation: mindMapSlideUp 0.2s ease;
+}
+
+@keyframes mindMapSlideUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.mind-map-detail-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.mind-map-detail-header h3 {
+  margin: 0;
+  font-size: 0.95rem;
+  color: #e0e0e0;
+  font-family: 'Georgia', serif;
+}
+
+.mind-map-type-badge {
+  font-size: 0.65rem;
+  padding: 2px 8px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-family: 'Courier New', monospace;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+.mind-map-type-badge--theme {
+  background: rgba(200, 170, 110, 0.2);
+  color: #c8aa6e;
+  border: 1px solid rgba(200, 170, 110, 0.4);
+}
+
+.mind-map-type-badge--argument {
+  background: rgba(140, 180, 140, 0.2);
+  color: #8cb48c;
+  border: 1px solid rgba(140, 180, 140, 0.4);
+}
+
+.mind-map-type-badge--counterpoint {
+  background: rgba(180, 120, 120, 0.2);
+  color: #b47878;
+  border: 1px solid rgba(180, 120, 120, 0.4);
+}
+
+.mind-map-type-badge--revelation {
+  background: rgba(170, 140, 200, 0.2);
+  color: #aa8cc8;
+  border: 1px solid rgba(170, 140, 200, 0.4);
+}
+
+.mind-map-type-badge--question {
+  background: rgba(130, 165, 200, 0.2);
+  color: #82a5c8;
+  border: 1px solid rgba(130, 165, 200, 0.4);
+}
+
+.mind-map-detail-summary {
+  color: #aaa;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  margin: 0 0 8px;
+  font-family: 'Georgia', serif;
+}
+
+.mind-map-detail-participants {
+  color: #666;
+  font-size: 0.75rem;
+  margin: 0 0 12px;
+  font-family: 'Courier New', monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Related messages in detail panel */
+.mind-map-detail-messages {
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px solid #222;
+}
+
+.mind-map-detail-messages h4 {
+  margin: 0 0 8px;
+  font-size: 0.7rem;
+  color: #666;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  font-family: 'Courier New', monospace;
+}
+
+.mind-map-detail-message {
+  margin-bottom: 8px;
+  padding: 6px 8px;
+  background: #0a0a0a;
+  border-left: 2px solid #333;
+  font-size: 0.8rem;
+  line-height: 1.4;
+}
+
+.mind-map-detail-message-sender {
+  color: #c8aa6e;
+  font-weight: bold;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-family: 'Courier New', monospace;
+  display: block;
+  margin-bottom: 2px;
+}
+
+.mind-map-detail-message-content {
+  color: #999;
+  font-family: 'Georgia', serif;
+  font-size: 0.8rem;
+}
+
+.mind-map-detail-no-messages {
+  color: #444;
+  font-size: 0.75rem;
+  font-style: italic;
+  margin: 0;
+}
+
+.mind-map-detail-close {
+  background: transparent;
+  border: 1px solid #333;
+  color: #777;
+  padding: 4px 14px;
+  font-family: 'Courier New', monospace;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.mind-map-detail-close:hover {
+  border-color: #888;
+  color: #ccc;
+}
+
+/* Instructions bar */
+.mind-map-instructions {
+  padding: 8px 24px;
+  background: #000;
+  border-top: 1px solid #222;
+  color: #555;
+  font-size: 0.7rem;
+  font-family: 'Courier New', monospace;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  text-align: center;
+  flex-shrink: 0;
+}

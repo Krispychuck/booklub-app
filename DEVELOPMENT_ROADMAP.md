@@ -1,7 +1,7 @@
 # BooKlub Development Roadmap
 
-**Last Updated:** January 15, 2026  
-**Project Status:** MVP In Progress
+**Last Updated:** February 4, 2026
+**Project Status:** MVP Nearly Complete - Mind Map Feature Restored
 
 ---
 
@@ -48,26 +48,29 @@
 - [x] **Leave club functionality** - Allow members to exit clubs
 - [x] **Delete club functionality** - Allow creators to delete clubs
 
+### Phase 6: Mind Map Visualization (Completed Feb 4, 2026)
+- [x] **Mind Map Synthesis** - Visual mind maps showing discussion connections
+  - Recovered from compassionate-haibt worktree
+  - D3.js radial tree visualization implemented
+  - "Map Discussion" button integrated in ClubChat header
+  - Full-screen overlay with cinema aesthetic
+  - Interactive zoom/pan capabilities
+  - Shows themes, branches, and participant attribution
+  - Makes API call to `/api/messages/club/:clubId/mind-map`
+  - Components: MindMapVisualization.js and MindMapVisualization.css
+  - Status: Code integrated, pending deployment testing
+
 ---
 
 ## Current Sprint 🚧
-- [ ] **Authors & BookS** *[Added: Jan 15, 2026]*
+- [ ] **Authors & Books** *[Added: Jan 15, 2026]*
   - Adding 15-25 books
-  - Adding commesurate 15-25 author AI personas
+  - Adding commensurate 15-25 author AI personas
 ---
 
 ## Upcoming Features 📋
 
-### Phase 6: Enhanced Discussion Experience
-- [ ] **Mind Map Synthesis** ⭐ *[Added: Jan 9, 2026]*
-  - Visual mind maps showing how discussion topics connect
-  - Central themes with branches for supporting discussions, counterpoints, revelations
-  - Each node includes participant attribution
-  - Expandable nodes for details
-  - Interactive diagram with zoom/collapse capabilities
-  - Trigger: "Map our discussion" button + automatic at session end
-  - Display: Full-screen overlay when requested
-
+### Phase 7: Enhanced Discussion Experience
 - [ ] **Generative Typography Book Covers**
   - Unique literary covers generated with CSS
   - Reflects the content/themes of each book
@@ -76,12 +79,12 @@
   - Visual representation of how conversation threads branch
   - Alternative to traditional linear chat
 
-### Phase 7: AI Enhancements
+### Phase 8: AI Enhancements
 - [ ] **Multiple AI personas per discussion** - Add historical figures, experts
 - [ ] **Author personality refinement** - Improve AI prompts for authenticity
 - [ ] **Context-aware responses** - AI references specific passages from books
 
-### Phase 8: User Experience Polish
+### Phase 9: User Experience Polish
 - [ ] **Reading progress tracking** - Track which chapter/page users are on
 - [ ] **Book annotations** - Highlight and comment on specific passages
 - [ ] **Discussion topics/prompts** - Suggested conversation starters
@@ -123,13 +126,17 @@
 | Jan 2026 | Skip "Join Club" feature temporarily | Routing issues; focus on chat interface first | Manual club sharing for now |
 | Jan 2026 | Separate user identity from Clerk | Avoid vendor lock-in, control over display names | Extra sync logic needed |
 | Jan 2026 | Two-button chat (Group/Ask Author) | Users control when AI responds, enables human-to-human chat | Slightly more complex UI |
+| Feb 2026 | Recover Mind Map from other worktree | Feature already built, avoid rebuilding from scratch | Need to check multiple worktrees for lost work |
 ---
 
 ## Technical Debt & Known Issues 🔧
 
-- [ ] Express routing issue with POST /clubs/join endpoint (deferred)
+- [x] ~~Express routing issue with POST /clubs/join endpoint~~ - RESOLVED (Feb 2026)
+- [x] ~~Clerk ID vs Database ID conversion~~ - RESOLVED (Feb 2026, all components updated)
+- [ ] Duplicate MyClubs.jsx file (not used, can be removed)
 - [ ] Need to add error handling for API failures
 - [ ] Add loading states for async operations
+- [ ] Mind Map backend endpoint may need verification after deployment
 
 ---
 

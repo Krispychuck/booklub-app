@@ -138,12 +138,14 @@ booklub-app/
 │   │   │   ├── CreateClubModal.js
 │   │   │   ├── JoinClubModal.js
 │   │   │   ├── MembersModal.js
-│   │   │   └── DisplayNameModal.js
+│   │   │   ├── DisplayNameModal.js
+│   │   │   ├── MindMapVisualization.js (recovered from compassionate-haibt)
+│   │   │   └── MindMapVisualization.css
 │   │   ├── config.js (contains API_URL configuration)
 │   │   ├── App.js (main app with Clerk setup)
 │   │   └── index.js (Clerk provider wrapper)
 │   ├── .env.local (local development)
-│   └── package.json
+│   └── package.json (includes d3 for mind map visualization)
 ├── backend/
 │   ├── routes/
 │   │   ├── books.js
@@ -311,16 +313,30 @@ App runs on: http://localhost:3000
 ### Working Features
 - ✅ User authentication (Clerk) - Verified working
 - ✅ Browse books - Verified working
-- ✅ View "My Clubs" - Verified working (as of latest deployment)
+- ✅ View "My Clubs" - Verified working
 - ✅ Display name setup - Working
+- ✅ Create book clubs - Verified working
+- ✅ Join clubs via invite code - Verified working
+- ✅ Club chat - Verified working
+- ✅ AI author responses (Anthropic Claude) - User tested and working
 
-### Fixed and Ready to Test
-- 🔧 Create book clubs - Fixed (waiting for deployment)
-- 🔧 Join clubs via invite code - Fixed (waiting for deployment)
-- 🔧 Club chat - Fixed (waiting for deployment)
+### Recently Restored Features
+- ✅ Mind Map Visualization - Recovered from compassionate-haibt worktree (waiting for deployment)
+  - **Files recovered:**
+    - `frontend/src/components/MindMapVisualization.js`
+    - `frontend/src/components/MindMapVisualization.css`
+  - **Integration:** Added "Map Discussion" button to ClubChat.js header
+  - **Dependencies:** Installed D3.js library (`npm install d3`)
+  - **Fixed:** Updated API imports from `API_BASE_URL` to `API_URL`
+  - **Features:**
+    - D3.js radial tree visualization
+    - Shows discussion themes, branches, and participant attribution
+    - Interactive zoom/pan capabilities
+    - Full-screen overlay with cinema aesthetic styling
+  - **Status:** Committed to charming-moore branch, ready for merge/deployment
 
-### Not Yet Tested
-- ⏳ AI author responses (Anthropic Claude)
+### Not Yet Tested (Pending Deployment)
+- ⏳ Mind Map feature visualization (code integrated, needs deployment)
 - ⏳ Delete messages in chat
 - ⏳ Leave/Delete club functionality
 
@@ -333,6 +349,9 @@ App runs on: http://localhost:3000
 3. **Development vs Production keys:** Currently using dev key - switch to prod key only when ready for custom domains
 4. **Cloudflare auto-deploys:** Changes to `main` branch automatically deploy
 5. **Worktree setup:** Working in `charming-moore` branch, not directly on `main`
+6. **Multiple worktrees exist:** If features seem missing, check other worktrees:
+   - `charming-moore` - Primary active development worktree
+   - `compassionate-haibt` - Previous worktree (Mind Map feature was recovered from here)
 
 ---
 
@@ -350,16 +369,18 @@ App runs on: http://localhost:3000
 
 1. ✅ ~~Wait for Cloudflare to deploy MyClubs.js fix~~ - DONE
 2. ✅ ~~Test "My Clubs" page~~ - WORKING
-3. ⏳ Merge and deploy create/join club fixes (current PR pending)
-4. 🧪 Test club creation flow
-5. 🧪 Test joining clubs with invite codes
-6. 🧪 Test chat functionality
-7. 🧪 Test AI author responses
-8. 🧪 Test delete messages
-9. 🧪 Test leave/delete club
-10. 📝 Add more books to database
-11. 🎨 Polish UI/UX
-12. 🚀 Consider switching to production Clerk key (requires custom domain)
+3. ✅ ~~Test club creation flow~~ - WORKING
+4. ✅ ~~Test joining clubs with invite codes~~ - WORKING
+5. ✅ ~~Test chat functionality~~ - WORKING
+6. ✅ ~~Test AI author responses~~ - WORKING (user confirmed)
+7. ✅ ~~Recover Mind Map feature~~ - COMPLETED (recovered from compassionate-haibt worktree)
+8. ⏳ Merge and deploy Mind Map feature (current task)
+9. 🧪 Test Mind Map visualization (after deployment)
+10. 🧪 Test delete messages
+11. 🧪 Test leave/delete club
+12. 📝 Add more books to database
+13. 🎨 Polish UI/UX
+14. 🚀 Consider switching to production Clerk key (requires custom domain)
 
 ---
 
@@ -376,6 +397,10 @@ App runs on: http://localhost:3000
 - Local development uses .env.local (not .env) for frontend
 - The worktree is at `/Users/mrl/.claude-worktrees/booklub-app/charming-moore/`
 - When adding new features that use user ID, always fetch booklub user first
+- **If features seem missing:** Check other worktrees for previously developed code:
+  - Look in `/Users/mrl/.claude-worktrees/booklub-app/` for other worktree directories
+  - Previous worktree `compassionate-haibt` contained Mind Map feature
+  - Use `cp` to recover files from other worktrees into current one
 
 ---
 

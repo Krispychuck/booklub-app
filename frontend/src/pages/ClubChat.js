@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import './ClubChat.css';
 import MembersModal from '../components/MembersModal';
+import MindMapVisualization from '../components/MindMapVisualization';
 import { API_URL } from '../config';
 
 function ClubChat({ booklubUser }) {
@@ -16,6 +17,7 @@ function ClubChat({ booklubUser }) {
   const [sending, setSending] = useState(false);
   const [deleteModalMessage, setDeleteModalMessage] = useState(null);
   const [showMembersModal, setShowMembersModal] = useState(false);
+  const [showMindMap, setShowMindMap] = useState(false);
 
   const messagesEndRef = useRef(null);
 
@@ -151,6 +153,13 @@ function ClubChat({ booklubUser }) {
           <h1>{club.name}</h1>
           {book && <p className="book-info">{book.title} by {book.author}</p>}
         </div>
+        <button
+          className="mind-map-button"
+          onClick={() => setShowMindMap(true)}
+          disabled={messages.length === 0}
+        >
+          Map Discussion
+        </button>
         <button className="members-button" onClick={() => setShowMembersModal(true)}>
           Members
         </button>
@@ -258,6 +267,16 @@ function ClubChat({ booklubUser }) {
           clubName={club.name}
           booklubUser={booklubUser}
           onClose={() => setShowMembersModal(false)}
+        />
+      )}
+      {/* Mind Map Modal */}
+      {showMindMap && (
+        <MindMapVisualization
+          clubId={clubId}
+          bookTitle={book?.title}
+          bookAuthor={book?.author}
+          messages={messages}
+          onClose={() => setShowMindMap(false)}
         />
       )}
     </div>
