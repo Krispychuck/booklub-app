@@ -393,6 +393,19 @@ User in club chat → clicks "Map Discussion"
 - Attributes insights to participants
 - Better than rule-based parsing
 
+### 8. **Button Design System - Vintage Gold as Primary**
+**Decision:** Use black/gold/white buttons as primary action style throughout app
+**Rationale:**
+- Gold (`#c8aa6e`) evokes vintage cinema, film reels, and Hollywood's golden age
+- Creates distinctive, sophisticated brand identity
+- Provides clear visual hierarchy: gold = primary action, black/white = secondary
+- Discovered in compassionate-haibt worktree, user loved the aesthetic
+**Implementation:**
+- Primary actions (Ask Author, Create Club, Map Discussion) → Vintage gold accent
+- Secondary actions (Group Comment, Back, Members) → Pure black/white
+- Tertiary actions (Delete, Close) → Minimal border style
+**Reference:** See `DESIGN_SYSTEM.md` for complete button specifications
+
 ---
 
 ## Environment Variables

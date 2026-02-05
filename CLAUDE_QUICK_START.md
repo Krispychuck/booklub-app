@@ -29,6 +29,7 @@ When starting a new session about BooKlub, read this first!
 
 ### Key Files to Check
 - `ARCHITECTURE.md` - **READ THIS FIRST** - System architecture, data flows, component responsibilities
+- `DESIGN_SYSTEM.md` - Button styles, colors, typography (vintage gold as primary!)
 - `CURRENT_STATUS.md` - Full configuration details
 - `TROUBLESHOOTING.md` - Debugging guide
 - `frontend/src/pages/MyClubs.js` - Most recently fixed (NOT .jsx!)
