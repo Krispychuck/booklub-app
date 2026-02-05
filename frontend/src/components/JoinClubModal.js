@@ -8,7 +8,7 @@ function JoinClubModal({ userId, onClose, onClubJoined }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     if (!inviteCode.trim()) {
       setError('Please enter an invite code');
       return;
@@ -18,6 +18,13 @@ function JoinClubModal({ userId, onClose, onClubJoined }) {
     setError('');
 
     try {
+      // First get the database user ID from Clerk ID
+      const userResponse = await fetch(`${API_URL}/api/users/clerk/${userId}`);
+      if (!userResponse.ok) {
+        throw new Error('User not found');
+      }
+      const booklubUser = await userResponse.json();
+
       const response = await fetch(`${API_URL}/api/clubs/join`, {
         method: 'POST',
         headers: {
@@ -25,7 +32,7 @@ function JoinClubModal({ userId, onClose, onClubJoined }) {
         },
         body: JSON.stringify({
           inviteCode: inviteCode.trim().toUpperCase(),
-          userId: userId
+          userId: booklubUser.id
         }),
       });
 
