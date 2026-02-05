@@ -33,10 +33,11 @@ grep CLERK_PUBLISHABLE_KEY frontend/.env.local
 
 ## 🔌 API Connection Issues
 
-### "Failed to fetch clubs" Error
+### "Failed to fetch clubs" / "Failed to create club" / Similar Errors
 
 **Symptoms:**
 - Error message: "Error loading clubs: Failed to fetch clubs"
+- Error message: "Failed to create club. Please try again."
 - 500 error in browser Network tab
 - Render logs show: "invalid input syntax for type integer"
 
@@ -53,17 +54,22 @@ Frontend is sending Clerk user ID (string like `user_37xf2hsa6gyK5ugr7ZTh3nNlQGn
 Update the component to fetch the database user first:
 
 ```javascript
-const fetchMyClubs = async () => {
+const handleSubmit = async () => {
   try {
     // First get the booklub user ID from Clerk ID
-    const userResponse = await fetch(`${API_URL}/api/users/clerk/${user.id}`);
+    const userResponse = await fetch(`${API_URL}/api/users/clerk/${userId}`);
     if (!userResponse.ok) {
       throw new Error('User not found');
     }
     const booklubUser = await userResponse.json();
 
-    // Then use database ID
-    const response = await fetch(`${API_URL}/api/clubs?userId=${booklubUser.id}`);
+    // Then use database ID for API calls
+    const response = await fetch(`${API_URL}/api/clubs`, {
+      method: 'POST',
+      body: JSON.stringify({
+        userId: booklubUser.id  // Use database ID, not Clerk ID
+      })
+    });
     // ... rest of code
   }
 }
@@ -71,6 +77,15 @@ const fetchMyClubs = async () => {
 
 **Prevention:**
 Always use database user ID for backend API calls, never Clerk ID.
+
+**Components Fixed:**
+- ✅ MyClubs.js
+- ✅ CreateClubModal.js
+- ✅ JoinClubModal.js
+- ✅ ClubChat.js
+
+**When Adding New Features:**
+Always follow this pattern when any component needs to send user ID to the backend.
 
 ---
 
