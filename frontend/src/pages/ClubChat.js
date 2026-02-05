@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { useUser } from '@clerk/clerk-react';
 import './ClubChat.css';
 import MembersModal from '../components/MembersModal';
 import { API_URL } from '../config';
@@ -8,7 +7,6 @@ import { API_URL } from '../config';
 function ClubChat({ booklubUser }) {
   const { clubId } = useParams();
   const navigate = useNavigate();
-  const { user } = useUser();
   
   const [club, setClub] = useState(null);
   const [book, setBook] = useState(null);
