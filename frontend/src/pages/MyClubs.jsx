@@ -18,7 +18,14 @@ function MyClubs() {
 
   const fetchMyClubs = async () => {
     try {
-      const response = await fetch(`${API_URL}/api/clubs?userId=${user.id}`);
+      // First get the booklub user ID from Clerk ID
+      const userResponse = await fetch(`${API_URL}/api/users/clerk/${user.id}`);
+      if (!userResponse.ok) {
+        throw new Error('User not found');
+      }
+      const booklubUser = await userResponse.json();
+
+      const response = await fetch(`${API_URL}/api/clubs?userId=${booklubUser.id}`);
 
       if (!response.ok) {
         throw new Error('Failed to fetch clubs');
