@@ -40,7 +40,9 @@ When starting a new session about BooKlub, read this first!
 
 ### Key Code Files
 - `frontend/src/config.js` — API URL configuration
-- `frontend/src/App.js` — Routing, `booklubUser` state (resolves Clerk ID → DB ID)
+- `frontend/src/App.js` — Routing, `booklubUser` state (resolves Clerk ID → DB ID), app loading screen
+- `frontend/src/components/LoadingSpinner.js` — Reusable book-riffling loader (gold animated book)
+- `frontend/src/components/LoadingSpinner.css` — Book animation + button-spinner CSS
 - `backend/server.js` — Express app, route registration
 - `backend/routes/mindmaps.js` — Mind map generation (auto-creates table)
 - `backend/seeds/schema.sql` — Production database column types
@@ -137,8 +139,8 @@ git push origin charming-moore
 1. ~~🐛 Fix "Join Club" bug~~ — **DONE** (commit `eeec1c1`)
 2. ~~🌐 Custom domain~~ — **DONE** (https://booklub.krispychuck.com)
 3. ~~🎨 Logo/wordmark for header + favicon~~ — **DONE** (commit `b2d7550`)
-4. ✨ CSS transitions and fade-in animations
-5. ⏳ Loading states (skeleton screens, spinners)
+4. ~~⏳ Loading states~~ — **DONE** (book-riffling animation across all views)
+5. ✨ CSS transitions and fade-in animations
 6. 📝 Better typography hierarchy
 
 ---

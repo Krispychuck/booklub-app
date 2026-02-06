@@ -4,6 +4,31 @@ Session-by-session history of what was built, fixed, and changed. Newest session
 
 ---
 
+## Session: February 6, 2026 (Loading States — Book-Riffling Animation)
+
+**Branch:** `charming-moore`
+
+### Features
+- **Book-riffling loading animation** — Created reusable `LoadingSpinner` component with a CSS-only animated open book whose pages flip/riffle in gold (`#c8aa6e`). Supports `size` (small/medium/large), `message` (text below animation), and `fullPage` (centers vertically) props.
+- **App startup loading screen** — When Clerk is initializing (and during Render cold starts), users see the marquee logo + book animation + "Warming up..." on a dark background instead of a blank white page. Critical for MVP testers hitting cold starts.
+- **Page-level loading states** — Home (books), My Clubs, and Club Chat now show the gold book-riffling animation while data loads, replacing plain "Loading..." text.
+- **Modal loading state** — Members modal shows a small book animation instead of plain text.
+- **Button inline spinners** — Create Club and Join Club buttons now show a tiny gold spinning circle next to "Creating..."/"Joining..." text (book animation too small at button size).
+
+### Files Changed
+- `frontend/src/components/LoadingSpinner.js` — **NEW** — Reusable book-riffling loader component
+- `frontend/src/components/LoadingSpinner.css` — **NEW** — Book animation CSS + button-spinner CSS
+- `frontend/src/pages/Home.js` — Import + use `<LoadingSpinner>` for loading state
+- `frontend/src/pages/MyClubs.js` — Import + use `<LoadingSpinner>` for loading state
+- `frontend/src/pages/ClubChat.js` — Import + use `<LoadingSpinner>` for loading state
+- `frontend/src/components/MembersModal.js` — Import + use `<LoadingSpinner size="small">` in modal
+- `frontend/src/components/CreateClubModal.js` — Import CSS + add `button-spinner` to Creating button
+- `frontend/src/components/JoinClubModal.js` — Import CSS + add `button-spinner` to Joining button
+- `frontend/src/App.js` — Import `LoadingSpinner`, add branded loading screen for `!isLoaded` state
+- `frontend/src/App.css` — `.app-loading` styles (full-screen dark, centered logo + spinner)
+
+---
+
 ## Session: February 6, 2026 (Join Club Bug Fix + Gold Nav + Documentation System)
 
 **Branch:** `charming-moore`

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { SignedIn, SignedOut, SignInButton, useUser } from '@clerk/clerk-react';
 import CreateClubModal from '../components/CreateClubModal';
 import ClubCreatedModal from '../components/ClubCreatedModal';
+import LoadingSpinner from '../components/LoadingSpinner';
 import { API_URL } from '../config';
 
 function Home() {
@@ -56,9 +57,7 @@ function Home() {
   };
 
   if (loading) {
-    return (
-      <div className="loading">Loading books...</div>
-    );
+    return <LoadingSpinner message="Loading books..." fullPage />;
   }
 
   if (error) {

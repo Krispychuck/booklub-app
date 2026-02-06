@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import LoadingSpinner from './LoadingSpinner';
 import { API_URL } from '../config';
 
 function MembersModal({ clubId, clubName, booklubUser, onClose }) {
@@ -82,7 +83,7 @@ console.log('currentUserClerkId:', booklubUser?.clerk_id);
       <div className="modal-content members-modal" onClick={(e) => e.stopPropagation()}>
         <h2>Members of {clubName}</h2>
         
-        {loading && <p className="loading-text">Loading members...</p>}
+        {loading && <LoadingSpinner message="Loading members..." size="small" />}
         
         {error && <p className="error-text">{error}</p>}
         

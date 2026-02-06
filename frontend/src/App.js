@@ -8,6 +8,7 @@ import JoinClubModal from './components/JoinClubModal';
 import JoinSuccessModal from './components/JoinSuccessModal';
 import ClubChat from './pages/ClubChat';
 import DisplayNameModal from './components/DisplayNameModal';
+import LoadingSpinner from './components/LoadingSpinner';
 import { API_URL } from './config';
 
 function App() {
@@ -92,6 +93,15 @@ function App() {
     setShowJoinSuccessModal(false);
     setJoinedClub(null);
   };
+
+  if (!isLoaded) {
+    return (
+      <div className="app-loading">
+        <img src="/booklub-marquee.png" alt="BooKlub" className="app-loading-logo" />
+        <LoadingSpinner message="Warming up..." />
+      </div>
+    );
+  }
 
   return (
     <Router>

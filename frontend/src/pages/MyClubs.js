@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import LoadingSpinner from '../components/LoadingSpinner';
 import { API_URL } from '../config';
 
 function MyClubs({ booklubUser }) {
@@ -35,13 +36,7 @@ function MyClubs({ booklubUser }) {
   }, [booklubUser]);
 
   if (loading) {
-    return (
-      <div className="container">
-        <div style={{ textAlign: 'center', padding: '40px' }}>
-          Loading your clubs...
-        </div>
-      </div>
-    );
+    return <LoadingSpinner message="Loading your clubs..." fullPage />;
   }
 
   if (error) {

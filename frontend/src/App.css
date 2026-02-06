@@ -577,3 +577,23 @@ body {
 .confirm-action-btn:hover {
   background-color: #333333;
 }
+
+/* App Loading Screen — shown during Clerk/backend cold start */
+.app-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: #000;
+  gap: 30px;
+}
+
+.app-loading-logo {
+  height: 80px;
+  width: auto;
+}
+
+.app-loading .loading-spinner-message {
+  color: #c8aa6e;
+}
