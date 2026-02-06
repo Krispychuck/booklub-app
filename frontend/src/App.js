@@ -97,7 +97,24 @@ function App() {
     <Router>
       <div className="App">
         <header className="App-header">
-          <h1>BooKlub</h1>
+          <Link to="/" className="logo-link">
+            <svg className="logo-icon" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="22" cy="18" r="5" fill="#c8aa6e"/>
+              <ellipse cx="22" cy="28" rx="7" ry="4" fill="#c8aa6e"/>
+              <circle cx="42" cy="18" r="5" fill="#c8aa6e"/>
+              <ellipse cx="42" cy="28" rx="7" ry="4" fill="#c8aa6e"/>
+              <circle cx="32" cy="14" r="5.5" fill="#c8aa6e"/>
+              <ellipse cx="32" cy="24" rx="7.5" ry="4.5" fill="#c8aa6e"/>
+              <path d="M18 34 Q18 32 20 32 L44 32 Q46 32 46 34 L46 50 Q46 52 44 52 L28 52 L22 58 L22 52 L20 52 Q18 52 18 50 Z" fill="#000" stroke="#c8aa6e" strokeWidth="1.5"/>
+              <path d="M26 38 L32 40 L32 49 L26 47 Z" fill="none" stroke="#fff" strokeWidth="1.2" strokeLinejoin="round"/>
+              <path d="M38 38 L32 40 L32 49 L38 47 Z" fill="none" stroke="#fff" strokeWidth="1.2" strokeLinejoin="round"/>
+            </svg>
+            <h1 className="logo-wordmark">
+              <span className="logo-boo">Boo</span>
+              <span className="logo-k">K</span>
+              <span className="logo-lub">lub</span>
+            </h1>
+          </Link>
           
           <nav className="main-nav">
             <Link to="/" className="nav-link">Browse Books</Link>
