@@ -33,13 +33,8 @@ body {
   flex-shrink: 0;
 }
 
-.logo-icon {
-  width: 36px;
-  height: 36px;
-}
-
 .logo-marquee {
-  height: 50px;
+  height: 60px;
   width: auto;
 }
 .header-actions {
@@ -231,12 +226,7 @@ body {
   }
   
   .logo-marquee {
-    height: 35px;
-  }
-
-  .logo-icon {
-    width: 28px;
-    height: 28px;
+    height: 45px;
   }
   
   .header-content {
