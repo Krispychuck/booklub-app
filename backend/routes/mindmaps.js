@@ -20,7 +20,7 @@ async function ensureMindMapsTable() {
         generated_at TIMESTAMP NOT NULL DEFAULT NOW(),
         message_count INTEGER NOT NULL,
         map_data JSONB NOT NULL,
-        created_by UUID NOT NULL REFERENCES users(id)
+        created_by VARCHAR(255) NOT NULL
       )
     `);
     await pool.query('CREATE INDEX IF NOT EXISTS idx_mind_maps_club_id ON mind_maps(club_id)');
