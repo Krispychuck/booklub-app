@@ -9,11 +9,12 @@ Continue BooKlub development from previous session.
 
 ## First Steps
 1. Read CLAUDE_QUICK_START.md - Critical context, known bugs, patterns, AND the mandatory documentation protocol at the bottom
-2. Read KNOWN_BUGS.md - All open bugs with root cause and fix instructions
-3. Read CHANGELOG.md - Session-by-session history of what changed
-4. Read CURRENT_STATUS.md - Full configuration, database schema, deployment
-5. Read ARCHITECTURE.md - System architecture and data flows
-6. Read DESIGN_SYSTEM.md - Button styles and vintage gold aesthetic
+2. Read PRODUCT_VISION.md - North star press release describing full product vision + what's built vs. roadmap
+3. Read KNOWN_BUGS.md - All open bugs with root cause and fix instructions
+4. Read CHANGELOG.md - Session-by-session history of what changed
+5. Read CURRENT_STATUS.md - Full configuration, database schema, deployment
+6. Read ARCHITECTURE.md - System architecture and data flows
+7. Read DESIGN_SYSTEM.md - Button styles and vintage gold aesthetic
 
 ## Priority 1: Mobile Responsiveness (CRITICAL)
 The site currently breaks on mobile phones. This is the #1 priority — most MVP testers will open the link on their phone.

@@ -31,6 +31,7 @@ When starting a new session about BooKlub, read this first!
 
 ### Key Documentation Files
 - `CLAUDE_QUICK_START.md` — **You are here.** Critical context, known bugs, patterns
+- `PRODUCT_VISION.md` — **North star.** Amazon-style press release describing full product vision, what's built vs. roadmap
 - `CHANGELOG.md` — Session-by-session history of all changes (newest first)
 - `KNOWN_BUGS.md` — All bugs with root cause, fix instructions, and open/fixed status
 - `CURRENT_STATUS.md` — Full configuration, database schema, deployment process
