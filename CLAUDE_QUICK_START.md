@@ -84,6 +84,9 @@ Can't use `git checkout main`. Use PR workflow:
 2. Create PR: https://github.com/Krispychuck/booklub-app/compare/main...charming-moore
 3. Merge PR → auto-deploys to Cloudflare Pages + Render
 
+### 7. Documentation Lives on `charming-moore` Only
+All Claude documentation files (`CLAUDE_QUICK_START.md`, `CHANGELOG.md`, `KNOWN_BUGS.md`, `CURRENT_STATUS.md`, `NEXT_SESSION_START.md`, `DESIGN_SYSTEM.md`, etc.) live on the `charming-moore` branch. They will get merged to `main` via PRs but **`charming-moore` is the source of truth** for docs. Do NOT worry about syncing docs back from `main` or resolving doc conflicts on `main`. The `main` branch is for deployment only — docs there may be stale and that's fine.
+
 ### 6. Design System
 - **Primary (gold):** `border: 2px solid #c8aa6e`, transparent bg, fills gold on hover
 - **Secondary (black/white):** `border: 2px solid #000`, white bg
