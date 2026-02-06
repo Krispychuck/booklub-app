@@ -18,13 +18,7 @@ function JoinClubModal({ userId, onClose, onClubJoined }) {
     setError('');
 
     try {
-      // First get the database user ID from Clerk ID
-      const userResponse = await fetch(`${API_URL}/api/users/clerk/${userId}`);
-      if (!userResponse.ok) {
-        throw new Error('User not found');
-      }
-      const booklubUser = await userResponse.json();
-
+      // userId is already the database integer ID (passed from App.js as booklubUser.id)
       const response = await fetch(`${API_URL}/api/clubs/join`, {
         method: 'POST',
         headers: {
@@ -32,7 +26,7 @@ function JoinClubModal({ userId, onClose, onClubJoined }) {
         },
         body: JSON.stringify({
           inviteCode: inviteCode.trim().toUpperCase(),
-          userId: booklubUser.id
+          userId: userId
         }),
       });
 

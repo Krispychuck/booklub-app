@@ -263,18 +263,18 @@ User selects book → clicks "Create Club"
 ### 3. User Joins a Club
 ```
 User clicks "Join Club" → enters invite code
-  → JoinClubModal validates code format
-  → Converts Clerk ID → DB ID:
-      GET /api/users/clerk/{clerkId}
-  → Sends join request:
+  → JoinClubModal receives userId prop (already DB integer ID from App.js)
+  → Sends join request directly:
       POST /api/clubs/join
-      Body: { inviteCode: "ABC123", userId: 123 }
+      Body: { inviteCode: "ABC123", userId: 1 }
   → Backend validates invite code exists
   → Backend checks user not already member
   → Backend adds to club_members table
   → Returns success
-  → Frontend navigates to club chat
+  → Frontend shows success modal, navigates to club chat
 ```
+Note: App.js resolves Clerk ID → DB ID at login. Components receive
+the DB ID via props — no need to re-lookup via /api/users/clerk/.
 
 ### 4. User Chats with AI Author
 ```

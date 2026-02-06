@@ -134,7 +134,7 @@ function App() {
         <main className="main-content">
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/my-clubs" element={<MyClubs />} />
+            <Route path="/my-clubs" element={<MyClubs booklubUser={booklubUser} />} />
             <Route path="/club/:clubId" element={<ClubChat booklubUser={booklubUser} />} />
           </Routes>
         </main>

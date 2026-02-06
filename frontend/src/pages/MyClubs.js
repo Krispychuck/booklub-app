@@ -1,24 +1,16 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useUser } from '@clerk/clerk-react';
 import { API_URL } from '../config';
 
-function MyClubs() {
+function MyClubs({ booklubUser }) {
   const [clubs, setClubs] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
-  const { user } = useUser();
 
   const fetchMyClubs = async () => {
     try {
-      // First get the booklub user ID from Clerk ID
-      const userResponse = await fetch(`${API_URL}/api/users/clerk/${user.id}`);
-      if (!userResponse.ok) {
-        throw new Error('User not found');
-      }
-      const booklubUser = await userResponse.json();
-
+      // booklubUser.id is already the database integer ID (passed from App.js)
       const response = await fetch(`${API_URL}/api/clubs?userId=${booklubUser.id}`);
 
       if (!response.ok) {
@@ -36,11 +28,11 @@ function MyClubs() {
   };
 
   useEffect(() => {
-    if (user) {
+    if (booklubUser) {
       fetchMyClubs();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [user]);
+  }, [booklubUser]);
 
   if (loading) {
     return (
