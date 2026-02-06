@@ -47,6 +47,8 @@ When starting a new session about BooKlub, read this first!
 
 **App.js already resolves this:** `booklubUser` state contains the DB user with `.id` (integer) and `.clerk_id` (string). Components that receive `booklubUser` or `booklubUser.id` already have the correct DB ID — they should NOT re-lookup via `/api/users/clerk/`.
 
+**KNOWN BUG (unfixed):** `JoinClubModal.js` and `MyClubs.js` still do the unnecessary Clerk lookup. `JoinClubModal` receives `userId={booklubUser?.id}` (DB integer) but calls `/api/users/clerk/${userId}` on line 22, causing "User not found". Fix: remove the Clerk lookup, use `userId` directly. `MyClubs.js` should receive `booklubUser` as a prop instead of using `useUser()` + Clerk lookup.
+
 ### 2. Database ID Types (Gotcha!)
 Production Neon DB uses **mixed types**:
 - `users.id` = **integer** (SERIAL)
@@ -120,7 +122,7 @@ git push origin charming-moore
 
 ## Next Steps (Upcoming)
 
-1. 🐛 Fix "Join Club" issues (user reported problems)
+1. 🐛 Fix "Join Club" bug — **Root cause identified:** `JoinClubModal.js` receives `userId` as DB integer ID from App.js but calls `/api/users/clerk/${userId}` treating it as Clerk ID → 404. **Fix:** Remove Clerk lookup (lines 21-26), use `userId` directly. Also fix same pattern in `MyClubs.js` (lines 16-20). Also update `ARCHITECTURE.md` section "3. User Joins a Club".
 2. 🌐 Custom domain: booklub.krispychuck.com (DNS on Cloudflare)
 3. 🎨 Logo/wordmark for header + favicon
 4. ✨ CSS transitions and fade-in animations

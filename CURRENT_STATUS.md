@@ -186,7 +186,11 @@ Note: Production DB uses **UUIDs** for most IDs, though `init.sql` shows SERIAL.
 
 ## Next Steps (Upcoming)
 
-1. 🐛 **Fix "Join Club" issues** — User reported issues (needs investigation)
+1. 🐛 **Fix "Join Club" bug** — "User not found" error when joining a club.
+   - **Root cause:** `JoinClubModal.js` receives `userId={booklubUser?.id}` from App.js (already the DB integer ID, e.g. `1`), but line 22 calls `/api/users/clerk/${userId}` which treats it as a Clerk ID. Looking up `/api/users/clerk/1` returns 404.
+   - **Fix:** Remove the unnecessary Clerk lookup (lines 21-26 of JoinClubModal.js). Use `userId` directly in the join request body since it's already the database ID. Same pattern as how `CreateClubModal.js` works.
+   - **Also update:** `ARCHITECTURE.md` section "3. User Joins a Club" which documents the wrong flow
+   - **Also fix:** `MyClubs.js` has the same unnecessary Clerk lookup pattern (lines 16-20) — it calls `useUser()` from Clerk and then looks up DB user, but could receive `booklubUser` as a prop from App.js instead
 2. 🌐 **Custom domain** — Move to booklub.krispychuck.com (DNS already on Cloudflare)
 3. 🎨 **Logo/wordmark** — Create BooKlub logo for header + favicon
 4. ✨ **CSS transitions** — Add `transition: all 0.3s ease` on all interactive elements; fade-in on page loads
