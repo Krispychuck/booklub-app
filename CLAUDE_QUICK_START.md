@@ -18,7 +18,7 @@ When starting a new session about BooKlub, read this first!
 ## Quick Facts
 
 ### URLs
-- **Production:** https://booklub.pages.dev
+- **Production:** https://booklub.krispychuck.com
 - **Backend:** https://booklub-app.onrender.com
 - **Health Check:** https://booklub-app.onrender.com/api/health
 
@@ -135,8 +135,8 @@ git push origin charming-moore
 ## Next Steps (Upcoming)
 
 1. ~~🐛 Fix "Join Club" bug~~ — **DONE** (commit `eeec1c1`)
-2. 🌐 Custom domain: booklub.krispychuck.com (DNS on Cloudflare)
-3. 🎨 Logo/wordmark for header + favicon
+2. ~~🌐 Custom domain~~ — **DONE** (https://booklub.krispychuck.com)
+3. ~~🎨 Logo/wordmark for header + favicon~~ — **DONE** (commit `b2d7550`)
 4. ✨ CSS transitions and fade-in animations
 5. ⏳ Loading states (skeleton screens, spinners)
 6. 📝 Better typography hierarchy

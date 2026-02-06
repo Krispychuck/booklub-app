@@ -24,6 +24,41 @@ body {
   gap: 40px;
 }
 
+/* Logo */
+.logo-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.logo-icon {
+  width: 36px;
+  height: 36px;
+}
+
+.logo-wordmark {
+  margin: 0;
+  font-size: 2rem;
+  font-family: Georgia, serif;
+  letter-spacing: 0.3em;
+  font-weight: normal;
+}
+
+.logo-boo {
+  color: #fff;
+}
+
+.logo-k {
+  color: #c8aa6e;
+}
+
+.logo-lub {
+  color: #000;
+  text-shadow: -1px -1px 0 #c8aa6e, 1px -1px 0 #c8aa6e, -1px 1px 0 #c8aa6e, 1px 1px 0 #c8aa6e;
+}
+
 .App-header h1 {
   margin: 0;
   font-size: 2rem;
@@ -219,8 +254,14 @@ body {
     grid-template-columns: 1fr;
   }
   
-  .App-header h1 {
-    font-size: 32px;
+  .App-header h1,
+  .logo-wordmark {
+    font-size: 24px;
+  }
+
+  .logo-icon {
+    width: 28px;
+    height: 28px;
   }
   
   .header-content {

@@ -22,7 +22,7 @@ BooKlub is a social book club application that allows users to:
 ### Frontend
 - **Technology:** React (Create React App)
 - **Hosting:** Cloudflare Pages
-- **URL:** https://booklub.pages.dev
+- **URL:** https://booklub.krispychuck.com
 - **Authentication:** Clerk (development mode)
 
 ### Backend
@@ -191,18 +191,23 @@ Note: Production DB uses **UUIDs** for most IDs, though `init.sql` shows SERIAL.
 ### Gold Header Nav (Feb 6, 2026)
 13. **Header nav buttons gold** — Browse Books, My Clubs, Join Club now use gold borders + gold fill hover (`App.css`)
 
+### Branding (Feb 6, 2026)
+14. **Logo wordmark** — White "Boo" + gold "K" + black "lub" (gold outline), SVG icon, favicon
+15. **Page title** — "BooKlub by Krispychuck" (was "React App"), updated manifest + meta description
+16. **Custom domain** — booklub.krispychuck.com on Cloudflare Pages
+
 ### Documentation System (Feb 6, 2026)
-14. **Created `CHANGELOG.md`** — Session-by-session history
-15. **Created `KNOWN_BUGS.md`** — All bugs with root cause, fix instructions, status
-16. **Documentation Update Protocol** — Mandatory 5-doc update after every push
+17. **Created `CHANGELOG.md`** — Session-by-session history
+18. **Created `KNOWN_BUGS.md`** — All bugs with root cause, fix instructions, status
+19. **Documentation Update Protocol** — Mandatory 5-doc update after every push
 
 ---
 
 ## Next Steps (Upcoming)
 
 1. ~~🐛 **Fix "Join Club" bug**~~ — **DONE** (commit `eeec1c1`)
-2. 🌐 **Custom domain** — Move to booklub.krispychuck.com (DNS already on Cloudflare)
-3. 🎨 **Logo/wordmark** — Create BooKlub logo for header + favicon
+2. ~~🌐 **Custom domain**~~ — **DONE** (https://booklub.krispychuck.com)
+3. ~~🎨 **Logo/wordmark**~~ — **DONE** (commit `b2d7550`)
 4. ✨ **CSS transitions** — Add `transition: all 0.3s ease` on all interactive elements; fade-in on page loads
 5. ⏳ **Loading states** — Skeleton screens and spinners for better UX
 6. 📝 **Typography hierarchy** — Improve heading/body/caption sizing and spacing

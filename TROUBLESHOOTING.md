@@ -361,7 +361,7 @@ git push origin main
 ### Check What's Actually Deployed
 ```bash
 # Check deployed code on Cloudflare
-# View source of: https://booklub.pages.dev
+# View source of: https://booklub.krispychuck.com
 # Search for API_URL references to verify correct version
 
 # Check backend version
