@@ -184,9 +184,9 @@ body {
 }
 
 .start-club-button {
-  background-color: #000000;
-  color: #ffffff;
-  border: 2px solid #000000;
+  background-color: transparent;
+  color: #000000;
+  border: 2px solid #c8aa6e;
   padding: 12px 24px;
   font-size: 14px;
   letter-spacing: 2px;
@@ -199,19 +199,18 @@ body {
 }
 
 .start-club-button:hover {
-  background-color: #ffffff;
+  background-color: #c8aa6e;
   color: #000000;
 }
 
 .book-card:hover .start-club-button {
-  background-color: #ffffff;
-  color: #000000;
+  color: #ffffff;
 }
 
 .book-card:hover .start-club-button:hover {
-  background-color: #000000;
-  color: #ffffff;
-  border-color: #ffffff;
+  background-color: #c8aa6e;
+  color: #000000;
+  border-color: #c8aa6e;
 }
 
 /* Responsive */
@@ -360,19 +359,21 @@ body {
 }
 
 .modal-button-primary {
-  background-color: #000000;
-  color: #ffffff;
-  border: 2px solid #000000;
+  background-color: transparent;
+  color: #000000;
+  border: 2px solid #c8aa6e;
   padding: 10px 25px;
   font-size: 14px;
   letter-spacing: 1px;
   text-transform: uppercase;
   cursor: pointer;
   font-family: 'Georgia', serif;
+  transition: all 0.3s ease;
 }
 
 .modal-button-primary:hover {
-  background-color: #333333;
+  background-color: #c8aa6e;
+  color: #000000;
 }
 
 .modal-button-primary:disabled {

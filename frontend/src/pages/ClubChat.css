@@ -318,13 +318,14 @@
 }
 
 .ask-author-btn {
-  background-color: #000000;
+  background-color: transparent;
   color: #ffffff;
-  border: 2px solid #000000;
+  border: 2px solid #c8aa6e;
 }
 
 .ask-author-btn:hover:not(:disabled) {
-  background-color: #333333;
+  background-color: #c8aa6e;
+  color: #000000;
 }
 
 .group-comment-btn:disabled,
@@ -332,6 +333,25 @@
   opacity: 0.5;
   cursor: not-allowed;
 }
+/* Mind Map Button */
+.mind-map-button {
+  background-color: transparent;
+  color: #ffffff;
+  border: 2px solid #c8aa6e;
+  padding: 8px 20px;
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  cursor: pointer;
+  font-family: 'Georgia', serif;
+  transition: all 0.3s ease;
+}
+
+.mind-map-button:hover {
+  background-color: #c8aa6e;
+  color: #000000;
+}
+
 /* Members Button */
 .members-button {
   background-color: transparent;
