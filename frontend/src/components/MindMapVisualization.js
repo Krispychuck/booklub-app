@@ -253,7 +253,7 @@ function MindMapVisualization({ clubId, userId, bookTitle, bookAuthor, messages:
 
         if (!response.ok) {
           const data = await response.json();
-          throw new Error(data.error || 'Failed to generate mind map');
+          throw new Error(data.details || data.error || 'Failed to generate mind map');
         }
 
         const data = await response.json();
