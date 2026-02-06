@@ -140,8 +140,9 @@ git push origin charming-moore
 2. ~~🌐 Custom domain~~ — **DONE** (https://booklub.krispychuck.com)
 3. ~~🎨 Logo/wordmark for header + favicon~~ — **DONE** (commit `b2d7550`)
 4. ~~⏳ Loading states~~ — **DONE** (book-riffling animation across all views)
-5. ✨ CSS transitions and fade-in animations
-6. 📝 Better typography hierarchy
+5. ~~🎨 Logo update~~ — **DONE** (`Booklub-marquee2.png` — Art Nouveau parchment style)
+6. ✨ CSS transitions and fade-in animations
+7. 📝 Better typography hierarchy
 
 ---
 

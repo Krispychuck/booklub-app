@@ -206,6 +206,9 @@ Note: Production DB uses **UUIDs** for most IDs, though `init.sql` shows SERIAL.
 20. **Book-riffling animation** — Created reusable `LoadingSpinner` component with CSS-only animated book (pages riffle in gold `#c8aa6e`). Added to Home, MyClubs, ClubChat (full page), MembersModal (small), and button spinners in CreateClubModal/JoinClubModal.
 21. **App startup screen** — Branded loading screen (marquee logo + book animation + "Warming up...") shown during Clerk init / Render cold starts.
 
+### Logo Update (Feb 6, 2026)
+22. **New marquee logo** — Swapped `booklub-marquee.png` to `Booklub-marquee2.png` (Art Nouveau parchment/scroll style). Applied across header, loading screen, favicon, manifest.
+
 ---
 
 ## Next Steps (Upcoming)
@@ -214,8 +217,9 @@ Note: Production DB uses **UUIDs** for most IDs, though `init.sql` shows SERIAL.
 2. ~~🌐 **Custom domain**~~ — **DONE** (https://booklub.krispychuck.com)
 3. ~~🎨 **Logo/wordmark**~~ — **DONE** (commit `b2d7550`)
 4. ~~⏳ **Loading states**~~ — **DONE** (book-riffling animation)
-5. ✨ **CSS transitions** — Add `transition: all 0.3s ease` on all interactive elements; fade-in on page loads
-6. 📝 **Typography hierarchy** — Improve heading/body/caption sizing and spacing
+5. ~~🎨 **Logo update**~~ — **DONE** (Booklub-marquee2.png — Art Nouveau parchment style)
+6. ✨ **CSS transitions** — Add `transition: all 0.3s ease` on all interactive elements; fade-in on page loads
+7. 📝 **Typography hierarchy** — Improve heading/body/caption sizing and spacing
 
 ---
 

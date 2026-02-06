@@ -4,9 +4,10 @@ Session-by-session history of what was built, fixed, and changed. Newest session
 
 ---
 
-## Session: February 6, 2026 (Loading States — Book-Riffling Animation)
+## Session: February 6, 2026 (Loading States + Logo Update)
 
 **Branch:** `charming-moore`
+**Commits:** `f8e4127` through `0502b3c`
 
 ### Features
 - **Book-riffling loading animation** — Created reusable `LoadingSpinner` component with a CSS-only animated open book whose pages flip/riffle in gold (`#c8aa6e`). Supports `size` (small/medium/large), `message` (text below animation), and `fullPage` (centers vertically) props.
@@ -15,17 +16,23 @@ Session-by-session history of what was built, fixed, and changed. Newest session
 - **Modal loading state** — Members modal shows a small book animation instead of plain text.
 - **Button inline spinners** — Create Club and Join Club buttons now show a tiny gold spinning circle next to "Creating..."/"Joining..." text (book animation too small at button size).
 
+### Branding
+- **New logo: Booklub-marquee2.png** — Replaced `booklub-marquee.png` with `Booklub-marquee2.png` (vintage parchment/scroll with Art Nouveau ornamental corners). Updated all references in `App.js`, `index.html`, and `manifest.json`. Used for header, app loading screen, favicon, and apple-touch-icon.
+
 ### Files Changed
 - `frontend/src/components/LoadingSpinner.js` — **NEW** — Reusable book-riffling loader component
 - `frontend/src/components/LoadingSpinner.css` — **NEW** — Book animation CSS + button-spinner CSS
+- `frontend/public/Booklub-marquee2.png` — **NEW** — Art Nouveau parchment-style logo
 - `frontend/src/pages/Home.js` — Import + use `<LoadingSpinner>` for loading state
 - `frontend/src/pages/MyClubs.js` — Import + use `<LoadingSpinner>` for loading state
 - `frontend/src/pages/ClubChat.js` — Import + use `<LoadingSpinner>` for loading state
 - `frontend/src/components/MembersModal.js` — Import + use `<LoadingSpinner size="small">` in modal
 - `frontend/src/components/CreateClubModal.js` — Import CSS + add `button-spinner` to Creating button
 - `frontend/src/components/JoinClubModal.js` — Import CSS + add `button-spinner` to Joining button
-- `frontend/src/App.js` — Import `LoadingSpinner`, add branded loading screen for `!isLoaded` state
+- `frontend/src/App.js` — Import `LoadingSpinner`, add branded loading screen, swap to `Booklub-marquee2.png`
 - `frontend/src/App.css` — `.app-loading` styles (full-screen dark, centered logo + spinner)
+- `frontend/public/index.html` — Favicon + apple-touch-icon → `Booklub-marquee2.png`
+- `frontend/public/manifest.json` — Icon → `Booklub-marquee2.png`
 
 ---
 

@@ -37,15 +37,14 @@ Continue BooKlub development from previous session.
 
 ## What's Working
 - User authentication (Clerk)
-- Club creation
-- Join Club (fixed Feb 6 — was "User not found", now works)
+- Club creation + Join Club (fixed Feb 6)
 - Chat messaging (group + AI author)
 - Mind Map visualization (D3.js radial tree)
 - Click-to-expand messages in mind map
 - Gold design system on all primary buttons + header nav
 - Header layout with proper flex/ellipsis
 - Custom domain: booklub.krispychuck.com
-- Marquee logo + favicon
+- Logo: Booklub-marquee2.png (Art Nouveau parchment/scroll style) — used for header, loading screen, favicon
 - Loading states: Book-riffling animation (gold pages flip) on all views + branded startup screen
 
 ## What's Broken
@@ -54,6 +53,7 @@ Continue BooKlub development from previous session.
 ## Key Components
 - `LoadingSpinner.js` / `.css` — Reusable book-riffling animation (props: message, size, fullPage)
 - `App.js` — Shows branded loading screen during Clerk init / cold starts
+- Logo image: `frontend/public/Booklub-marquee2.png` (referenced in App.js, index.html, manifest.json)
 
 ## IMPORTANT: Documentation Protocol
 After every git push, you MUST update these 5 docs:
