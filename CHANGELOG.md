@@ -16,8 +16,8 @@ Session-by-session history of what was built, fixed, and changed. Newest session
 - **Gold header nav buttons** — Browse Books, My Clubs, and Join Club buttons in the header now use gold (`#c8aa6e`) borders with gold fill on hover, matching the primary button design system. (`App.css`: `.nav-link`, `.join-club-button`)
 
 ### Branding
-- **Marquee logo** — Replaced CSS wordmark with vintage cinema marquee sign image (`booklub-marquee.png`). Gold SVG icon (silhouettes + book chat bubble) kept alongside it. (`App.js`, `App.css`)
-- **Favicon** — Updated to use marquee image. (`index.html`)
+- **Marquee logo** — Vintage cinema marquee sign image (`booklub-marquee.png`) as sole header logo. Removed SVG silhouettes icon — marquee only, sized at 60px. (`App.js`, `App.css`)
+- **Favicon fixed** — Removed old React `favicon.ico`, `logo192.png`, `logo512.png`. Updated `index.html`, `manifest.json`, and apple-touch-icon to all use `booklub-marquee.png`. (`index.html`, `manifest.json`)
 - **Page title** — Changed from "React App" to "BooKlub by Krispychuck". Updated meta description. (`index.html`)
 - **Manifest** — Updated short_name to "BooKlub", name to "BooKlub by Krispychuck". (`manifest.json`)
 
