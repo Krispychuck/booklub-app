@@ -136,7 +136,7 @@ git push origin charming-moore
 
 1. ~~🐛 Fix "Join Club" bug~~ — **DONE** (commit `eeec1c1`)
 2. ~~🌐 Custom domain~~ — **DONE** (https://booklub.krispychuck.com)
-3. 🎨 Logo/wordmark for header + favicon
+3. ~~🎨 Logo/wordmark for header + favicon~~ — **DONE** (commit `b2d7550`)
 4. ✨ CSS transitions and fade-in animations
 5. ⏳ Loading states (skeleton screens, spinners)
 6. 📝 Better typography hierarchy

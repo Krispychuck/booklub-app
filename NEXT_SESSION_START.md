@@ -15,18 +15,14 @@ Continue BooKlub development from previous session.
 5. Read ARCHITECTURE.md - System architecture and data flows
 6. Read DESIGN_SYSTEM.md - Button styles and vintage gold aesthetic
 
-## Priority 1: Logo/Wordmark
-- Create BooKlub logo for header + favicon
-- Match vintage gold (#c8aa6e) aesthetic
-
-## Priority 2: CSS Transitions & Animations
+## Priority 1: CSS Transitions & Animations
 - Add `transition: all 0.3s ease` on all interactive elements
 - Fade-in animations on page loads
 
-## Priority 3: Loading States
+## Priority 2: Loading States
 - Skeleton screens and spinners for better UX
 
-## Priority 4: Typography Hierarchy
+## Priority 3: Typography Hierarchy
 - Improve heading/body/caption sizing and spacing
 
 ## Key Context
@@ -50,6 +46,7 @@ Continue BooKlub development from previous session.
 - Gold design system on all primary buttons + header nav
 - Header layout with proper flex/ellipsis
 - Custom domain: booklub.krispychuck.com
+- Logo wordmark + SVG favicon
 
 ## What's Broken
 - No known bugs at this time (see KNOWN_BUGS.md for latest)
