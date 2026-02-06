@@ -7,6 +7,28 @@ const anthropic = new Anthropic({
   apiKey: process.env.ANTHROPIC_API_KEY,
 });
 
+// Ensure mind_maps table exists
+async function ensureMindMapsTable() {
+  try {
+    await pool.query(`
+      CREATE TABLE IF NOT EXISTS mind_maps (
+        id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+        club_id UUID NOT NULL REFERENCES book_clubs(id) ON DELETE CASCADE,
+        generated_at TIMESTAMP NOT NULL DEFAULT NOW(),
+        message_count INTEGER NOT NULL,
+        map_data JSONB NOT NULL,
+        created_by UUID NOT NULL REFERENCES users(id)
+      )
+    `);
+    await pool.query('CREATE INDEX IF NOT EXISTS idx_mind_maps_club_id ON mind_maps(club_id)');
+    await pool.query('CREATE INDEX IF NOT EXISTS idx_mind_maps_created_by ON mind_maps(created_by)');
+    console.log('✅ mind_maps table ready');
+  } catch (err) {
+    console.error('Error ensuring mind_maps table:', err.message);
+  }
+}
+ensureMindMapsTable();
+
 // Generate mind map for a club's discussion
 router.post('/:clubId/generate', async (req, res) => {
   const clubId = req.params.clubId;
@@ -118,7 +140,7 @@ Only return valid JSON, no additional text.`;
       `INSERT INTO mind_maps (club_id, message_count, map_data, created_by)
        VALUES ($1, $2, $3, $4)
        RETURNING *`,
-      [clubId, messages.length, mindMapData, userId]
+      [clubId, messages.length, JSON.stringify(mindMapData), userId]
     );
 
     const savedMindMap = insertResult.rows[0];
