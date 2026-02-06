@@ -38,33 +38,9 @@ body {
   height: 36px;
 }
 
-.logo-wordmark {
-  margin: 0;
-  font-size: 2rem;
-  font-family: Georgia, serif;
-  letter-spacing: 0.3em;
-  font-weight: normal;
-}
-
-.logo-boo {
-  color: #fff;
-}
-
-.logo-k {
-  color: #c8aa6e;
-}
-
-.logo-lub {
-  color: #000;
-  text-shadow: -1px -1px 0 #c8aa6e, 1px -1px 0 #c8aa6e, -1px 1px 0 #c8aa6e, 1px 1px 0 #c8aa6e;
-}
-
-.App-header h1 {
-  margin: 0;
-  font-size: 2rem;
-  font-family: Georgia, serif;
-  letter-spacing: 0.3em;
-  font-weight: normal;
+.logo-marquee {
+  height: 50px;
+  width: auto;
 }
 .header-actions {
   display: flex;
@@ -254,9 +230,8 @@ body {
     grid-template-columns: 1fr;
   }
   
-  .App-header h1,
-  .logo-wordmark {
-    font-size: 24px;
+  .logo-marquee {
+    height: 35px;
   }
 
   .logo-icon {
