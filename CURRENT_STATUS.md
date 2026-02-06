@@ -135,10 +135,13 @@ booklub-app/
 ├── database/
 │   └── init.sql
 ├── ARCHITECTURE.md
-├── CLAUDE_QUICK_START.md
-├── CURRENT_STATUS.md
+├── CHANGELOG.md              ← Session-by-session history
+├── CLAUDE_QUICK_START.md     ← Start here (critical context)
+├── CURRENT_STATUS.md         ← This file
 ├── DESIGN_SYSTEM.md
-└── DEPLOYMENT_CHECKLIST.md
+├── DEPLOYMENT_CHECKLIST.md
+├── KNOWN_BUGS.md             ← All bugs with root cause/fix
+└── NEXT_SESSION_START.md     ← Copy/paste for new sessions
 ```
 
 ---
@@ -210,4 +213,6 @@ Note: Production DB uses **UUIDs** for most IDs, though `init.sql` shows SERIAL.
 
 ---
 
-**End of Document**
+## Documentation Protocol
+
+**After every git push, update these 5 docs:** `CLAUDE_QUICK_START.md`, `CHANGELOG.md`, `KNOWN_BUGS.md`, `CURRENT_STATUS.md` (this file), `NEXT_SESSION_START.md`. See `CLAUDE_QUICK_START.md` for full protocol details. This is mandatory — the project owner relies on these docs for continuity between Claude sessions.

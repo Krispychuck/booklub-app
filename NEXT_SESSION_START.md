@@ -8,10 +8,12 @@ Copy/paste this to start your next Claude session:
 Continue BooKlub development from previous session.
 
 ## First Steps
-1. Read CLAUDE_QUICK_START.md - Critical context, known bugs, and patterns
-2. Read CURRENT_STATUS.md - Full session history and configuration
-3. Read ARCHITECTURE.md - System architecture and data flows
-4. Read DESIGN_SYSTEM.md - Button styles and vintage gold aesthetic
+1. Read CLAUDE_QUICK_START.md - Critical context, known bugs, patterns, AND the mandatory documentation protocol at the bottom
+2. Read KNOWN_BUGS.md - All open bugs with root cause and fix instructions
+3. Read CHANGELOG.md - Session-by-session history of what changed
+4. Read CURRENT_STATUS.md - Full configuration, database schema, deployment
+5. Read ARCHITECTURE.md - System architecture and data flows
+6. Read DESIGN_SYSTEM.md - Button styles and vintage gold aesthetic
 
 ## Priority 1: Fix "Join Club" Bug (Root Cause Known)
 
@@ -73,6 +75,17 @@ Continue BooKlub development from previous session.
 ## What's Broken
 - Join Club flow ("User not found" — fix documented above)
 - MyClubs.js has same unnecessary Clerk lookup pattern
+
+## IMPORTANT: Documentation Protocol
+After every git push, you MUST update these 5 docs:
+1. CLAUDE_QUICK_START.md - Quick reference, known bugs, next steps
+2. CHANGELOG.md - Add session entry at top with all changes
+3. KNOWN_BUGS.md - Add new bugs, move fixed bugs to FIXED section
+4. CURRENT_STATUS.md - Session history, next steps, file tree
+5. NEXT_SESSION_START.md - Rewrite with current priorities
+
+This is mandatory. Read CLAUDE_QUICK_START.md for full protocol details.
+The project owner relies on these docs for continuity between sessions.
 
 Start with the Join Club bug fix — the diagnosis is complete,
 just needs the code changes applied.

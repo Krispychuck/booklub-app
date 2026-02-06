@@ -29,12 +29,21 @@ When starting a new session about BooKlub, read this first!
 - **Auth:** Clerk (development mode)
 - **AI:** Anthropic Claude API
 
-### Key Files to Check
+### Key Documentation Files
+- `CLAUDE_QUICK_START.md` — **You are here.** Critical context, known bugs, patterns
+- `CHANGELOG.md` — Session-by-session history of all changes (newest first)
+- `KNOWN_BUGS.md` — All bugs with root cause, fix instructions, and open/fixed status
+- `CURRENT_STATUS.md` — Full configuration, database schema, deployment process
+- `NEXT_SESSION_START.md` — Copy/paste prompt for starting a new Claude session
 - `ARCHITECTURE.md` — System architecture, data flows
 - `DESIGN_SYSTEM.md` — Button styles, colors, typography (vintage gold `#c8aa6e` primary)
-- `CURRENT_STATUS.md` — Full configuration, session history, next steps
+
+### Key Code Files
 - `frontend/src/config.js` — API URL configuration
+- `frontend/src/App.js` — Routing, `booklubUser` state (resolves Clerk ID → DB ID)
+- `backend/server.js` — Express app, route registration
 - `backend/routes/mindmaps.js` — Mind map generation (auto-creates table)
+- `backend/seeds/schema.sql` — Production database column types
 
 ---
 
@@ -148,3 +157,46 @@ git push origin charming-moore
 - **Explain clearly** — step-by-step with URLs to click
 - **Handle PRs** — user creates/merges PRs via GitHub web UI
 - **No gh CLI** — not installed, use GitHub web links instead
+
+---
+
+## MANDATORY: Documentation Update Protocol
+
+**This is critical.** The project owner relies on these docs to maintain continuity between Claude sessions. Without up-to-date docs, every new session wastes time re-discovering what was already known.
+
+### After EVERY push to git, update these 5 files:
+
+1. **`CLAUDE_QUICK_START.md`** (this file)
+   - Update "Last Updated" date
+   - Update "Status" line if features changed
+   - Add/remove known bugs in "Critical Things to Remember"
+   - Update "Next Steps" list
+
+2. **`CHANGELOG.md`**
+   - Add a new session entry at the TOP (newest first)
+   - List every bug fix, feature, and UI change made
+   - Include commit hashes and files changed
+
+3. **`KNOWN_BUGS.md`**
+   - Add any NEW bugs discovered (with root cause and fix instructions)
+   - Move FIXED bugs from "OPEN" to "FIXED" section
+   - Never delete fixed bugs — they're valuable history
+
+4. **`CURRENT_STATUS.md`**
+   - Update session history section
+   - Update next steps list
+   - Update file tree if new files were added
+
+5. **`NEXT_SESSION_START.md`**
+   - Rewrite the copy/paste prompt with current priorities
+   - Include root cause + fix for any open bugs
+   - Update "What's Working" and "What's Broken" sections
+
+### When discovering or fixing a bug:
+- Immediately add it to `KNOWN_BUGS.md` with full root cause
+- Cross-reference in `CLAUDE_QUICK_START.md` if it's a pattern/gotcha
+- Include exact file names, line numbers, and fix instructions
+- A future Claude session should be able to implement the fix without re-investigating
+
+### Why this matters:
+The project owner is non-technical and works with Claude across multiple sessions. Session memory does NOT persist. These docs are the ONLY way to transfer knowledge between sessions. Outdated docs = wasted time re-doing work that was already completed or re-diagnosing bugs that were already understood.
