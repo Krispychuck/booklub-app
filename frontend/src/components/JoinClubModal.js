@@ -134,12 +134,26 @@ function JoinClubModal({ userId, onClose, onClubJoined }) {
               disabled={loading}
               style={{
                 padding: '12px 24px',
-                fontSize: '1rem',
-                backgroundColor: '#000',
-                color: '#fff',
-                border: '2px solid #000',
+                fontSize: '14px',
+                backgroundColor: 'transparent',
+                color: '#000',
+                border: '2px solid #c8aa6e',
                 cursor: loading ? 'not-allowed' : 'pointer',
-                opacity: loading ? 0.6 : 1
+                opacity: loading ? 0.6 : 1,
+                fontFamily: "'Georgia', serif",
+                letterSpacing: '2px',
+                textTransform: 'uppercase',
+                transition: 'all 0.3s ease'
+              }}
+              onMouseEnter={(e) => {
+                if (!loading) {
+                  e.currentTarget.style.backgroundColor = '#c8aa6e';
+                  e.currentTarget.style.color = '#000';
+                }
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundColor = 'transparent';
+                e.currentTarget.style.color = '#000';
               }}
             >
               {loading ? 'Joining...' : 'Join Club'}
