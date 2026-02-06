@@ -127,6 +127,7 @@
 | Jan 2026 | Separate user identity from Clerk | Avoid vendor lock-in, control over display names | Extra sync logic needed |
 | Jan 2026 | Two-button chat (Group/Ask Author) | Users control when AI responds, enables human-to-human chat | Slightly more complex UI |
 | Feb 2026 | Recover Mind Map from other worktree | Feature already built, avoid rebuilding from scratch | Need to check multiple worktrees for lost work |
+| Feb 2026 | Vintage gold as primary button style | Creates signature brand identity, evokes cinema aesthetic | Requires updating all existing primary buttons |
 ---
 
 ## Technical Debt & Known Issues 🔧

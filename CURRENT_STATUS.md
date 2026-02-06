@@ -349,9 +349,10 @@ App runs on: http://localhost:3000
 3. **Development vs Production keys:** Currently using dev key - switch to prod key only when ready for custom domains
 4. **Cloudflare auto-deploys:** Changes to `main` branch automatically deploy
 5. **Worktree setup:** Working in `charming-moore` branch, not directly on `main`
-6. **Multiple worktrees exist:** If features seem missing, check other worktrees:
+6. **Worktree setup (cleaned Feb 5, 2026):** Only essential worktrees remain:
    - `charming-moore` - Primary active development worktree
-   - `compassionate-haibt` - Previous worktree (Mind Map feature was recovered from here)
+   - `compassionate-haibt` - Archive worktree (Mind Map history preserved)
+   - Old worktrees (eager-maxwell, nostalgic-khorana, silly-faraday, youthful-tu) removed
 
 ---
 

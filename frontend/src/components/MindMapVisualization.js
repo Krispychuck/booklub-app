@@ -232,7 +232,7 @@ function renderMindMap(data, svgRef, containerRef, setSelectedNode) {
   });
 }
 
-function MindMapVisualization({ clubId, bookTitle, bookAuthor, messages: chatMessages, onClose }) {
+function MindMapVisualization({ clubId, userId, bookTitle, bookAuthor, messages: chatMessages, onClose }) {
   const svgRef = useRef(null);
   const containerRef = useRef(null);
   const [loading, setLoading] = useState(true);
@@ -243,8 +243,12 @@ function MindMapVisualization({ clubId, bookTitle, bookAuthor, messages: chatMes
     const fetchAndRender = async () => {
       try {
         const response = await fetch(
-          `${API_URL}/api/messages/club/${clubId}/mind-map`,
-          { method: 'POST' }
+          `${API_URL}/api/mindmaps/${clubId}/generate`,
+          {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ userId }),
+          }
         );
 
         if (!response.ok) {
@@ -253,7 +257,7 @@ function MindMapVisualization({ clubId, bookTitle, bookAuthor, messages: chatMes
         }
 
         const data = await response.json();
-        renderMindMap(data, svgRef, containerRef, setSelectedNode);
+        renderMindMap(data.mapData, svgRef, containerRef, setSelectedNode);
       } catch (err) {
         console.error('Mind map error:', err);
         setError(err.message);
@@ -263,7 +267,7 @@ function MindMapVisualization({ clubId, bookTitle, bookAuthor, messages: chatMes
     };
 
     fetchAndRender();
-  }, [clubId]);
+  }, [clubId, userId]);
 
   // Look up related messages for the selected node
   const relatedMessages = selectedNode?.messageIds

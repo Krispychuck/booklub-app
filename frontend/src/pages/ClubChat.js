@@ -273,6 +273,7 @@ function ClubChat({ booklubUser }) {
       {showMindMap && (
         <MindMapVisualization
           clubId={clubId}
+          userId={booklubUser?.id}
           bookTitle={book?.title}
           bookAuthor={book?.author}
           messages={messages}

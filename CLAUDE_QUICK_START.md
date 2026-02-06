@@ -29,6 +29,7 @@ When starting a new session about BooKlub, read this first!
 
 ### Key Files to Check
 - `ARCHITECTURE.md` - **READ THIS FIRST** - System architecture, data flows, component responsibilities
+- `DESIGN_SYSTEM.md` - Button styles, colors, typography (vintage gold as primary!)
 - `CURRENT_STATUS.md` - Full configuration details
 - `TROUBLESHOOTING.md` - Debugging guide
 - `frontend/src/pages/MyClubs.js` - Most recently fixed (NOT .jsx!)
@@ -82,16 +83,20 @@ Can't use `git checkout main` (it's in a worktree). Use PR workflow:
 4. Merge PR
 5. Cloudflare auto-deploys from `main`
 
-### 5. **Multiple Worktrees - Feature Recovery**
-If features seem missing or were lost, check other worktrees:
-- **Current worktree:** `/Users/mrl/.claude-worktrees/booklub-app/charming-moore/`
-- **Previous worktree:** `/Users/mrl/.claude-worktrees/booklub-app/compassionate-haibt/`
-- **Example:** Mind Map feature was recovered from `compassionate-haibt` worktree using:
+### 5. **Worktree Setup (Cleaned Up Feb 5, 2026)**
+The repository uses Git worktrees for parallel development:
+- **Main repo:** `/Users/mrl/booklub-app` (main branch)
+- **Active development:** `/Users/mrl/.claude-worktrees/booklub-app/charming-moore/` ⭐
+- **Archive:** `/Users/mrl/.claude-worktrees/booklub-app/compassionate-haibt/` (Mind Map history)
+
+**Note:** Old worktrees (eager-maxwell, nostalgic-khorana, silly-faraday, youthful-tu) were cleaned up.
+
+**Feature Recovery Pattern:**
+If features seem missing, check the compassionate-haibt archive:
   ```bash
-  cp /Users/mrl/.claude-worktrees/booklub-app/compassionate-haibt/frontend/src/components/MindMapVisualization.* \
+  cp /Users/mrl/.claude-worktrees/booklub-app/compassionate-haibt/frontend/src/components/SomeFeature.* \
      /Users/mrl/.claude-worktrees/booklub-app/charming-moore/frontend/src/components/
   ```
-- **Always check:** List worktrees with `ls /Users/mrl/.claude-worktrees/booklub-app/`
 
 ---
 
@@ -227,6 +232,7 @@ When user reports an issue:
 7. User is non-technical - handle everything (commits, PRs, deployments, debugging)
 8. **IMPORTANT:** Features may exist in other worktrees - always check before rebuilding
 9. Mind Map feature was previously developed but existed in different worktree (compassionate-haibt)
+10. Branch cleanup is safe when working directory is clean and all work is committed
 
 ---
 
