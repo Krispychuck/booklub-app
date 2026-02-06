@@ -97,7 +97,7 @@ function App() {
   if (!isLoaded) {
     return (
       <div className="app-loading">
-        <img src="/booklub-marquee.png" alt="BooKlub" className="app-loading-logo" />
+        <img src="/Booklub-marquee2.png" alt="BooKlub" className="app-loading-logo" />
         <LoadingSpinner message="Warming up..." />
       </div>
     );
@@ -108,7 +108,7 @@ function App() {
       <div className="App">
         <header className="App-header">
           <Link to="/" className="logo-link">
-            <img src="/booklub-marquee.png" alt="BooKlub" className="logo-marquee" />
+            <img src="/Booklub-marquee2.png" alt="BooKlub" className="logo-marquee" />
           </Link>
           
           <nav className="main-nav">
