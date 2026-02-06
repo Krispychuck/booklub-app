@@ -217,7 +217,9 @@
   background: #111;
   border: 1px solid #333;
   padding: 16px 20px;
-  max-width: 320px;
+  max-width: 360px;
+  max-height: 60vh;
+  overflow-y: auto;
   z-index: 20;
   animation: mindMapSlideUp 0.2s ease;
 }
@@ -321,6 +323,20 @@
   border-left: 2px solid #333;
   font-size: 0.8rem;
   line-height: 1.4;
+  transition: border-color 0.2s;
+}
+
+.mind-map-detail-message--expandable {
+  cursor: pointer;
+}
+
+.mind-map-detail-message--expandable:hover {
+  border-left-color: #c8aa6e;
+}
+
+.mind-map-detail-message--expanded {
+  border-left-color: #c8aa6e;
+  background: #111;
 }
 
 .mind-map-detail-message-sender {
@@ -338,6 +354,22 @@
   color: #999;
   font-family: 'Georgia', serif;
   font-size: 0.8rem;
+}
+
+.mind-map-detail-message-toggle {
+  display: block;
+  margin-top: 4px;
+  font-size: 0.65rem;
+  color: #c8aa6e;
+  font-family: 'Courier New', monospace;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+}
+
+.mind-map-detail-message--expandable:hover .mind-map-detail-message-toggle {
+  opacity: 1;
 }
 
 .mind-map-detail-no-messages {
