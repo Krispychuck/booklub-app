@@ -188,10 +188,13 @@ Note: Production DB uses **UUIDs** for most IDs, though `init.sql` shows SERIAL.
 ### Join Club Bug Fix (Feb 6, 2026)
 12. **BUG-001 fixed** — "User not found" error when joining a club. Removed unnecessary Clerk lookup from `JoinClubModal.js` and `MyClubs.js`. Both now use database ID directly. Updated `App.js` to pass `booklubUser` prop to MyClubs.
 
+### Gold Header Nav (Feb 6, 2026)
+13. **Header nav buttons gold** — Browse Books, My Clubs, Join Club now use gold borders + gold fill hover (`App.css`)
+
 ### Documentation System (Feb 6, 2026)
-13. **Created `CHANGELOG.md`** — Session-by-session history
-14. **Created `KNOWN_BUGS.md`** — All bugs with root cause, fix instructions, status
-15. **Documentation Update Protocol** — Mandatory 5-doc update after every push
+14. **Created `CHANGELOG.md`** — Session-by-session history
+15. **Created `KNOWN_BUGS.md`** — All bugs with root cause, fix instructions, status
+16. **Documentation Update Protocol** — Mandatory 5-doc update after every push
 
 ---
 

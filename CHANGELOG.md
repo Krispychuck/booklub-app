@@ -4,13 +4,16 @@ Session-by-session history of what was built, fixed, and changed. Newest session
 
 ---
 
-## Session: February 6, 2026 (Join Club Bug Fix + Documentation System)
+## Session: February 6, 2026 (Join Club Bug Fix + Gold Nav + Documentation System)
 
 **Branch:** `charming-moore`
-**Commits:** `373c466` through `eeec1c1`
+**Commits:** `373c466` through `0bbc925`
 
 ### Bug Fixes
 - **BUG-001: Join Club "User not found"** — `JoinClubModal.js` received `userId` (already DB integer ID from App.js) but called `/api/users/clerk/${userId}` treating it as a Clerk ID. Removed unnecessary Clerk lookup, used `userId` directly. Also fixed same pattern in `MyClubs.js` (removed Clerk `useUser()` + lookup, now receives `booklubUser` as prop from App.js).
+
+### UI/UX
+- **Gold header nav buttons** — Browse Books, My Clubs, and Join Club buttons in the header now use gold (`#c8aa6e`) borders with gold fill on hover, matching the primary button design system. (`App.css`: `.nav-link`, `.join-club-button`)
 
 ### Documentation
 - **Created `CHANGELOG.md`** — Session-by-session history (this file)
@@ -19,6 +22,7 @@ Session-by-session history of what was built, fixed, and changed. Newest session
 - **Updated `ARCHITECTURE.md`** — Fixed "User Joins a Club" flow diagram (no longer shows Clerk lookup)
 
 ### Files Changed
+- `frontend/src/App.css` — Gold styles for `.nav-link` and `.join-club-button`
 - `frontend/src/components/JoinClubModal.js` — Removed Clerk lookup (lines 21-26), use userId directly
 - `frontend/src/pages/MyClubs.js` — Removed Clerk import/lookup, accepts `booklubUser` prop
 - `frontend/src/App.js` — Passes `booklubUser` prop to MyClubs route
