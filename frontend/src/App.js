@@ -109,11 +109,7 @@ function App() {
               <path d="M26 38 L32 40 L32 49 L26 47 Z" fill="none" stroke="#fff" strokeWidth="1.2" strokeLinejoin="round"/>
               <path d="M38 38 L32 40 L32 49 L38 47 Z" fill="none" stroke="#fff" strokeWidth="1.2" strokeLinejoin="round"/>
             </svg>
-            <h1 className="logo-wordmark">
-              <span className="logo-boo">Boo</span>
-              <span className="logo-k">K</span>
-              <span className="logo-lub">lub</span>
-            </h1>
+            <img src="/booklub-marquee.png" alt="BooKlub" className="logo-marquee" />
           </Link>
           
           <nav className="main-nav">
