@@ -218,8 +218,9 @@ Note: Production DB uses **UUIDs** for most IDs, though `init.sql` shows SERIAL.
 3. ~~🎨 **Logo/wordmark**~~ — **DONE** (commit `b2d7550`)
 4. ~~⏳ **Loading states**~~ — **DONE** (book-riffling animation)
 5. ~~🎨 **Logo update**~~ — **DONE** (Booklub-marquee2.png — Art Nouveau parchment style)
-6. ✨ **CSS transitions** — Add `transition: all 0.3s ease` on all interactive elements; fade-in on page loads
-7. 📝 **Typography hierarchy** — Improve heading/body/caption sizing and spacing
+6. 📱 **Mobile responsiveness** — CRITICAL. Site breaks on phones. Header overflow, chat input overflow, 0 media queries in ClubChat.css, touch targets too small, buttons invisible on mobile. See `NEXT_SESSION_START.md` for full 10-point analysis.
+7. ✨ **CSS transitions** — Add `transition: all 0.3s ease` on all interactive elements; fade-in on page loads
+8. 📝 **Typography hierarchy** — Improve heading/body/caption sizing and spacing
 
 ---
 

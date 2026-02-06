@@ -15,14 +15,43 @@ Continue BooKlub development from previous session.
 5. Read ARCHITECTURE.md - System architecture and data flows
 6. Read DESIGN_SYSTEM.md - Button styles and vintage gold aesthetic
 
-## Priority 1: CSS Transitions & Animations
+## Priority 1: Mobile Responsiveness (CRITICAL)
+The site currently breaks on mobile phones. This is the #1 priority — most MVP testers will open the link on their phone.
+
+### What's broken on mobile (375px iPhone):
+1. **Header overflows** — 40px padding + gap + logo + nav items don't fit
+2. **Chat input area breaks** — "Group Comment" + "Ask Author" buttons + text input overflow horizontally
+3. **Chat header overflows** — Back button + title + 2 action buttons don't fit
+4. **Zero media queries in ClubChat.css** — the entire chat page has no mobile optimization
+5. **Only 1 media query in App.css** — grossly insufficient
+6. **Touch targets too small** — most buttons are 34-38px (need 44px minimum)
+7. **Delete message button invisible** — opacity:0, only shows on hover (mobile has no hover)
+8. **Mind map modal** — height:90vh breaks with mobile address bar, detail panel overlaps content
+9. **Font sizes too large** — 2-2.5rem headings waste space on mobile
+10. **Excessive padding** — 30-40px padding on modals, 60px on empty states
+
+### Recommended approach:
+- Add responsive breakpoints: 375px, 480px, 768px, 1024px
+- **Header:** Stack logo above nav on mobile, hamburger menu or condensed nav
+- **Chat:** Stack send buttons vertically, full-width input, increase touch targets
+- **Modals:** Reduce padding, full-width on mobile, larger buttons
+- **Mind map:** Use dvh instead of vh, reposition detail panel
+- **Global:** Increase all button padding to 44px minimum touch target
+
+### Files to modify (in priority order):
+1. `frontend/src/pages/ClubChat.css` — Most critical, 0 media queries
+2. `frontend/src/App.css` — Header, nav, buttons, book grid
+3. `frontend/src/components/CreateClubModal.css` — Modal sizing
+4. `frontend/src/components/MindMapVisualization.css` — Height, detail panel
+5. `frontend/src/pages/MyClubs.js` — Inline styles need responsive adjustments
+6. `frontend/src/components/JoinClubModal.js` — Inline styles
+
+## Priority 2: CSS Transitions & Animations
 - Add `transition: all 0.3s ease` on all interactive elements
 - Fade-in animations on page loads
-- Smooth modal open/close transitions
 
-## Priority 2: Typography Hierarchy
+## Priority 3: Typography Hierarchy
 - Improve heading/body/caption sizing and spacing
-- Consistent font sizes across pages
 
 ## Key Context
 - **Project:** BooKlub - Social book club app with AI author chat
@@ -37,23 +66,17 @@ Continue BooKlub development from previous session.
 
 ## What's Working
 - User authentication (Clerk)
-- Club creation + Join Club (fixed Feb 6)
+- Club creation + Join Club
 - Chat messaging (group + AI author)
 - Mind Map visualization (D3.js radial tree)
-- Click-to-expand messages in mind map
 - Gold design system on all primary buttons + header nav
-- Header layout with proper flex/ellipsis
 - Custom domain: booklub.krispychuck.com
-- Logo: Booklub-marquee2.png (Art Nouveau parchment/scroll style) — used for header, loading screen, favicon
-- Loading states: Book-riffling animation (gold pages flip) on all views + branded startup screen
+- Logo: Booklub-marquee2.png (Art Nouveau parchment style)
+- Loading states: Book-riffling animation on all views + branded startup screen
 
 ## What's Broken
-- No known bugs at this time (see KNOWN_BUGS.md for latest)
-
-## Key Components
-- `LoadingSpinner.js` / `.css` — Reusable book-riffling animation (props: message, size, fullPage)
-- `App.js` — Shows branded loading screen during Clerk init / cold starts
-- Logo image: `frontend/public/Booklub-marquee2.png` (referenced in App.js, index.html, manifest.json)
+- No known functional bugs (see KNOWN_BUGS.md)
+- **Mobile responsiveness is severely broken** — see Priority 1 above
 
 ## IMPORTANT: Documentation Protocol
 After every git push, you MUST update these 5 docs:

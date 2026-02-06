@@ -141,8 +141,9 @@ git push origin charming-moore
 3. ~~🎨 Logo/wordmark for header + favicon~~ — **DONE** (commit `b2d7550`)
 4. ~~⏳ Loading states~~ — **DONE** (book-riffling animation across all views)
 5. ~~🎨 Logo update~~ — **DONE** (`Booklub-marquee2.png` — Art Nouveau parchment style)
-6. ✨ CSS transitions and fade-in animations
-7. 📝 Better typography hierarchy
+6. 📱 **Mobile responsiveness** — CRITICAL. Site breaks on phones. See `NEXT_SESSION_START.md` for full analysis of 10 specific issues, recommended approach, and files to modify in priority order.
+7. ✨ CSS transitions and fade-in animations
+8. 📝 Better typography hierarchy
 
 ---
 
