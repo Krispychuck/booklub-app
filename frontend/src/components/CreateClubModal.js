@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './CreateClubModal.css';
+import './LoadingSpinner.css';
 import { API_URL } from '../config';
 
 function CreateClubModal({ book, onClose, onClubCreated, userId }) {
@@ -95,7 +96,7 @@ function CreateClubModal({ book, onClose, onClubCreated, userId }) {
               className="button-primary"
               disabled={isCreating}
             >
-              {isCreating ? 'Creating...' : 'Create Club'}
+              {isCreating ? <><span className="button-spinner"></span> Creating...</> : 'Create Club'}
             </button>
           </div>
         </form>

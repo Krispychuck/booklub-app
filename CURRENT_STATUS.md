@@ -116,6 +116,7 @@ booklub-app/
 │   │   │   ├── JoinClubModal.js
 │   │   │   ├── MembersModal.js
 │   │   │   ├── DisplayNameModal.js
+│   │   │   ├── LoadingSpinner.js / .css    ← Book-riffling animation
 │   │   │   ├── MindMapVisualization.js
 │   │   │   └── MindMapVisualization.css
 │   │   ├── config.js
@@ -201,6 +202,10 @@ Note: Production DB uses **UUIDs** for most IDs, though `init.sql` shows SERIAL.
 18. **Created `KNOWN_BUGS.md`** — All bugs with root cause, fix instructions, status
 19. **Documentation Update Protocol** — Mandatory 5-doc update after every push
 
+### Loading States (Feb 6, 2026)
+20. **Book-riffling animation** — Created reusable `LoadingSpinner` component with CSS-only animated book (pages riffle in gold `#c8aa6e`). Added to Home, MyClubs, ClubChat (full page), MembersModal (small), and button spinners in CreateClubModal/JoinClubModal.
+21. **App startup screen** — Branded loading screen (marquee logo + book animation + "Warming up...") shown during Clerk init / Render cold starts.
+
 ---
 
 ## Next Steps (Upcoming)
@@ -208,8 +213,8 @@ Note: Production DB uses **UUIDs** for most IDs, though `init.sql` shows SERIAL.
 1. ~~🐛 **Fix "Join Club" bug**~~ — **DONE** (commit `eeec1c1`)
 2. ~~🌐 **Custom domain**~~ — **DONE** (https://booklub.krispychuck.com)
 3. ~~🎨 **Logo/wordmark**~~ — **DONE** (commit `b2d7550`)
-4. ✨ **CSS transitions** — Add `transition: all 0.3s ease` on all interactive elements; fade-in on page loads
-5. ⏳ **Loading states** — Skeleton screens and spinners for better UX
+4. ~~⏳ **Loading states**~~ — **DONE** (book-riffling animation)
+5. ✨ **CSS transitions** — Add `transition: all 0.3s ease` on all interactive elements; fade-in on page loads
 6. 📝 **Typography hierarchy** — Improve heading/body/caption sizing and spacing
 
 ---

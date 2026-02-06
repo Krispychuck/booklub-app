@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './LoadingSpinner.css';
 import { API_URL } from '../config';
 
 function JoinClubModal({ userId, onClose, onClubJoined }) {
@@ -150,7 +151,7 @@ function JoinClubModal({ userId, onClose, onClubJoined }) {
                 e.currentTarget.style.color = '#000';
               }}
             >
-              {loading ? 'Joining...' : 'Join Club'}
+              {loading ? <><span className="button-spinner"></span> Joining...</> : 'Join Club'}
             </button>
           </div>
         </form>

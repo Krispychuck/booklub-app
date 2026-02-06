@@ -18,12 +18,11 @@ Continue BooKlub development from previous session.
 ## Priority 1: CSS Transitions & Animations
 - Add `transition: all 0.3s ease` on all interactive elements
 - Fade-in animations on page loads
+- Smooth modal open/close transitions
 
-## Priority 2: Loading States
-- Skeleton screens and spinners for better UX
-
-## Priority 3: Typography Hierarchy
+## Priority 2: Typography Hierarchy
 - Improve heading/body/caption sizing and spacing
+- Consistent font sizes across pages
 
 ## Key Context
 - **Project:** BooKlub - Social book club app with AI author chat
@@ -46,10 +45,15 @@ Continue BooKlub development from previous session.
 - Gold design system on all primary buttons + header nav
 - Header layout with proper flex/ellipsis
 - Custom domain: booklub.krispychuck.com
-- Logo wordmark + SVG favicon
+- Marquee logo + favicon
+- Loading states: Book-riffling animation (gold pages flip) on all views + branded startup screen
 
 ## What's Broken
 - No known bugs at this time (see KNOWN_BUGS.md for latest)
+
+## Key Components
+- `LoadingSpinner.js` / `.css` — Reusable book-riffling animation (props: message, size, fullPage)
+- `App.js` — Shows branded loading screen during Clerk init / cold starts
 
 ## IMPORTANT: Documentation Protocol
 After every git push, you MUST update these 5 docs:

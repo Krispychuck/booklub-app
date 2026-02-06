@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import './ClubChat.css';
 import MembersModal from '../components/MembersModal';
 import MindMapVisualization from '../components/MindMapVisualization';
+import LoadingSpinner from '../components/LoadingSpinner';
 import { API_URL } from '../config';
 
 function ClubChat({ booklubUser }) {
@@ -130,7 +131,7 @@ function ClubChat({ booklubUser }) {
   };
 
   if (loading) {
-    return <div className="chat-loading">Loading conversation...</div>;
+    return <LoadingSpinner message="Loading conversation..." fullPage />;
   }
 
   if (!club) {
