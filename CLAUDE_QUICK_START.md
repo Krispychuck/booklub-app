@@ -90,7 +90,7 @@ All Claude documentation files (`CLAUDE_QUICK_START.md`, `CHANGELOG.md`, `KNOWN_
 ### 6. Design System
 - **Primary (gold):** `border: 2px solid #c8aa6e`, transparent bg, fills gold on hover
 - **Secondary (black/white):** `border: 2px solid #000`, white bg
-- Applied across: ClubChat.css, App.css, CreateClubModal.css, JoinClubModal.js (inline), MyClubs.js (inline)
+- Applied across: App.css (nav-link, join-club-button, start-club-button, modal-button-primary), ClubChat.css, CreateClubModal.css, JoinClubModal.js (inline), MyClubs.js (inline)
 
 ---
 

@@ -258,12 +258,14 @@ body {
   text-decoration: none;
   font-size: 1.1rem;
   padding: 8px 16px;
-  border: 2px solid transparent;
+  border: 2px solid #c8aa6e;
   transition: all 0.2s;
 }
 
 .nav-link:hover {
-  border: 2px solid #fff;
+  background: #c8aa6e;
+  color: #000;
+  border: 2px solid #c8aa6e;
 }
 
 /* Clubs Grid */
@@ -284,7 +286,7 @@ body {
   font-size: 1.1rem;
   background-color: transparent;
   color: #fff;
-  border: 2px solid transparent;
+  border: 2px solid #c8aa6e;
   cursor: pointer;
   transition: all 0.2s;
   font-weight: normal;
@@ -293,7 +295,9 @@ body {
 }
 
 .join-club-button:hover {
-  border: 2px solid #fff;
+  background: #c8aa6e;
+  color: #000;
+  border: 2px solid #c8aa6e;
 }
 
 /* Sign In Button - Classic Cinema Style */
