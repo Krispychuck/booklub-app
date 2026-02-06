@@ -6,22 +6,20 @@ Tracked bugs with root cause analysis, fix instructions, and status. This preven
 
 ## OPEN Bugs
 
-### BUG-001: Join Club "User not found" error
-- **Status:** OPEN
-- **Severity:** High (core feature broken)
-- **Reported:** February 6, 2026
-- **Symptom:** Clicking "Join Club" and entering a valid invite code shows "User not found" error.
-- **Root Cause:** `JoinClubModal.js` receives `userId={booklubUser?.id}` from App.js — this is already the database integer ID (e.g. `1`). But line 22 calls `/api/users/clerk/${userId}`, treating it as a Clerk ID. Looking up `/api/users/clerk/1` returns 404 because `1` is not a Clerk ID string.
-- **Fix:**
-  1. In `frontend/src/components/JoinClubModal.js`: Remove lines 21-26 (the Clerk lookup). Use `userId` directly in the join request body since it's already the database ID. Reference `CreateClubModal.js` for the correct pattern.
-  2. In `frontend/src/pages/MyClubs.js`: Same pattern — remove lines 16-20 (Clerk lookup via `useUser()` + fetch). Instead, receive `booklubUser` as a prop from App.js and use `booklubUser.id` directly. Update the route in `App.js` to pass the prop.
-  3. In `ARCHITECTURE.md`: Update section "3. User Joins a Club" which documents the wrong flow (says it converts Clerk ID → DB ID, but the ID is already converted by App.js).
-- **Files to change:** `JoinClubModal.js`, `MyClubs.js`, `App.js` (routing), `ARCHITECTURE.md`
-- **Pattern:** This is the #1 recurring bug pattern in BooKlub — Clerk ID vs Database ID confusion. See `CLAUDE_QUICK_START.md` section "1. Clerk ID vs Database ID".
+No open bugs at this time.
 
 ---
 
 ## FIXED Bugs
+
+### BUG-F006: Join Club "User not found" error
+- **Status:** FIXED (Feb 6, 2026) — Commit `eeec1c1`
+- **Severity:** High (core feature was broken)
+- **Reported:** February 6, 2026
+- **Symptom:** Clicking "Join Club" and entering a valid invite code showed "User not found" error.
+- **Root Cause:** `JoinClubModal.js` received `userId={booklubUser?.id}` from App.js (already DB integer ID) but called `/api/users/clerk/${userId}`, treating it as a Clerk ID. `/api/users/clerk/1` returned 404. `MyClubs.js` had the same unnecessary Clerk lookup pattern.
+- **Fix:** Removed Clerk lookup from `JoinClubModal.js` (used `userId` directly). Removed Clerk `useUser()` + lookup from `MyClubs.js` (now receives `booklubUser` as prop from App.js). Updated `App.js` routing to pass prop. Updated `ARCHITECTURE.md` flow diagram.
+- **Pattern:** Clerk ID vs Database ID confusion — see `CLAUDE_QUICK_START.md` section "1. Clerk ID vs Database ID".
 
 ### BUG-F001: Mind Map "Unexpected token '<'" JSON parse error
 - **Status:** FIXED (Feb 5, 2026)

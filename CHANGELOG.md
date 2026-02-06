@@ -4,6 +4,33 @@ Session-by-session history of what was built, fixed, and changed. Newest session
 
 ---
 
+## Session: February 6, 2026 (Join Club Bug Fix + Documentation System)
+
+**Branch:** `charming-moore`
+**Commits:** `373c466` through `eeec1c1`
+
+### Bug Fixes
+- **BUG-001: Join Club "User not found"** — `JoinClubModal.js` received `userId` (already DB integer ID from App.js) but called `/api/users/clerk/${userId}` treating it as a Clerk ID. Removed unnecessary Clerk lookup, used `userId` directly. Also fixed same pattern in `MyClubs.js` (removed Clerk `useUser()` + lookup, now receives `booklubUser` as prop from App.js).
+
+### Documentation
+- **Created `CHANGELOG.md`** — Session-by-session history (this file)
+- **Created `KNOWN_BUGS.md`** — All bugs with root cause, fix instructions, and status
+- **Documentation Update Protocol** — Added mandatory instructions to all 5 docs requiring updates after every git push
+- **Updated `ARCHITECTURE.md`** — Fixed "User Joins a Club" flow diagram (no longer shows Clerk lookup)
+
+### Files Changed
+- `frontend/src/components/JoinClubModal.js` — Removed Clerk lookup (lines 21-26), use userId directly
+- `frontend/src/pages/MyClubs.js` — Removed Clerk import/lookup, accepts `booklubUser` prop
+- `frontend/src/App.js` — Passes `booklubUser` prop to MyClubs route
+- `ARCHITECTURE.md` — Updated Join Club flow diagram
+- `CHANGELOG.md` — New file
+- `KNOWN_BUGS.md` — New file
+- `CLAUDE_QUICK_START.md` — Added doc protocol, key files list, branch note
+- `CURRENT_STATUS.md` — Updated file tree, added protocol reminder
+- `NEXT_SESSION_START.md` — Updated with current priorities and protocol
+
+---
+
 ## Session: February 5-6, 2026 (Mind Map + Design System)
 
 **Branch:** `charming-moore`
