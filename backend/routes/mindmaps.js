@@ -8,8 +8,11 @@ const anthropic = new Anthropic({
 });
 
 // Ensure mind_maps table exists
+let tableReady = false;
 async function ensureMindMapsTable() {
+  if (tableReady) return;
   try {
+    await pool.query('CREATE EXTENSION IF NOT EXISTS "pgcrypto"');
     await pool.query(`
       CREATE TABLE IF NOT EXISTS mind_maps (
         id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
@@ -22,12 +25,13 @@ async function ensureMindMapsTable() {
     `);
     await pool.query('CREATE INDEX IF NOT EXISTS idx_mind_maps_club_id ON mind_maps(club_id)');
     await pool.query('CREATE INDEX IF NOT EXISTS idx_mind_maps_created_by ON mind_maps(created_by)');
+    tableReady = true;
     console.log('✅ mind_maps table ready');
   } catch (err) {
-    console.error('Error ensuring mind_maps table:', err.message);
+    console.error('❌ Error ensuring mind_maps table:', err.message);
+    throw err;
   }
 }
-ensureMindMapsTable();
 
 // Generate mind map for a club's discussion
 router.post('/:clubId/generate', async (req, res) => {
@@ -39,6 +43,8 @@ router.post('/:clubId/generate', async (req, res) => {
   console.log('User ID:', userId);
 
   try {
+    // Ensure table exists before any DB operations
+    await ensureMindMapsTable();
     // 1. Fetch all messages for this club
     const messagesResult = await pool.query(
       `SELECT 
