@@ -192,7 +192,7 @@ Note: Production DB uses **UUIDs** for most IDs, though `init.sql` shows SERIAL.
 13. **Header nav buttons gold** — Browse Books, My Clubs, Join Club now use gold borders + gold fill hover (`App.css`)
 
 ### Branding (Feb 6, 2026)
-14. **Marquee logo** — Vintage cinema marquee sign image + gold SVG icon in header, marquee as favicon
+14. **Marquee logo** — Vintage cinema marquee sign as sole header logo (60px), marquee as favicon. Removed React default icons.
 15. **Page title** — "BooKlub by Krispychuck" (was "React App"), updated manifest + meta description
 16. **Custom domain** — booklub.krispychuck.com on Cloudflare Pages
 
