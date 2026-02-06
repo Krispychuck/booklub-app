@@ -238,6 +238,16 @@ function MindMapVisualization({ clubId, userId, bookTitle, bookAuthor, messages:
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [selectedNode, setSelectedNode] = useState(null);
+  const [expandedMessages, setExpandedMessages] = useState({});
+
+  // Reset expanded messages when a different node is selected
+  useEffect(() => {
+    setExpandedMessages({});
+  }, [selectedNode]);
+
+  const toggleMessage = (msgId) => {
+    setExpandedMessages(prev => ({ ...prev, [msgId]: !prev[msgId] }));
+  };
 
   useEffect(() => {
     const fetchAndRender = async () => {
@@ -331,18 +341,31 @@ function MindMapVisualization({ clubId, userId, bookTitle, bookAuthor, messages:
             <div className="mind-map-detail-messages">
               <h4>Related Messages:</h4>
               {relatedMessages.length > 0 ? (
-                relatedMessages.map(msg => (
-                  <div key={msg.id} className="mind-map-detail-message">
-                    <span className="mind-map-detail-message-sender">
-                      {msg.sender_type === 'ai' ? msg.sender_ai_name : (msg.sender_name || 'User')}:
-                    </span>
-                    <span className="mind-map-detail-message-content">
-                      {msg.content.length > 120
-                        ? msg.content.substring(0, 120) + '...'
-                        : msg.content}
-                    </span>
-                  </div>
-                ))
+                relatedMessages.map(msg => {
+                  const isLong = msg.content.length > 120;
+                  const isExpanded = expandedMessages[msg.id];
+                  return (
+                    <div
+                      key={msg.id}
+                      className={`mind-map-detail-message${isLong ? ' mind-map-detail-message--expandable' : ''}${isExpanded ? ' mind-map-detail-message--expanded' : ''}`}
+                      onClick={isLong ? () => toggleMessage(msg.id) : undefined}
+                    >
+                      <span className="mind-map-detail-message-sender">
+                        {msg.sender_type === 'ai' ? msg.sender_ai_name : (msg.sender_name || 'User')}:
+                      </span>
+                      <span className="mind-map-detail-message-content">
+                        {isLong && !isExpanded
+                          ? msg.content.substring(0, 120) + '...'
+                          : msg.content}
+                      </span>
+                      {isLong && (
+                        <span className="mind-map-detail-message-toggle">
+                          {isExpanded ? 'show less' : 'show more'}
+                        </span>
+                      )}
+                    </div>
+                  );
+                })
               ) : (
                 <p className="mind-map-detail-no-messages">No linked messages</p>
               )}
