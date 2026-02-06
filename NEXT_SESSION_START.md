@@ -15,23 +15,18 @@ Continue BooKlub development from previous session.
 5. Read ARCHITECTURE.md - System architecture and data flows
 6. Read DESIGN_SYSTEM.md - Button styles and vintage gold aesthetic
 
-## Priority 1: Custom Domain
-- Move to booklub.krispychuck.com
-- DNS is already on Cloudflare
-- Configure in Cloudflare Pages dashboard
-
-## Priority 2: Logo/Wordmark
+## Priority 1: Logo/Wordmark
 - Create BooKlub logo for header + favicon
 - Match vintage gold (#c8aa6e) aesthetic
 
-## Priority 3: CSS Transitions & Animations
+## Priority 2: CSS Transitions & Animations
 - Add `transition: all 0.3s ease` on all interactive elements
 - Fade-in animations on page loads
 
-## Priority 4: Loading States
+## Priority 3: Loading States
 - Skeleton screens and spinners for better UX
 
-## Priority 5: Typography Hierarchy
+## Priority 4: Typography Hierarchy
 - Improve heading/body/caption sizing and spacing
 
 ## Key Context
@@ -42,7 +37,7 @@ Continue BooKlub development from previous session.
 - **No gh CLI** — use GitHub web links for PRs
 
 ## Production URLs
-- Frontend: https://booklub.pages.dev
+- Frontend: https://booklub.krispychuck.com
 - Backend: https://booklub-app.onrender.com
 
 ## What's Working
@@ -52,8 +47,9 @@ Continue BooKlub development from previous session.
 - Chat messaging (group + AI author)
 - Mind Map visualization (D3.js radial tree)
 - Click-to-expand messages in mind map
-- Gold design system on all primary buttons
+- Gold design system on all primary buttons + header nav
 - Header layout with proper flex/ellipsis
+- Custom domain: booklub.krispychuck.com
 
 ## What's Broken
 - No known bugs at this time (see KNOWN_BUGS.md for latest)

@@ -13,7 +13,7 @@
 │  ┌────────────────────────────────────────────────────────────────────────┐ │
 │  │                    REACT FRONTEND APPLICATION                          │ │
 │  │                   (Hosted on Cloudflare Pages)                         │ │
-│  │                   https://booklub.pages.dev                            │ │
+│  │                   https://booklub.krispychuck.com                            │ │
 │  │                                                                        │ │
 │  │  Components:                                                           │ │
 │  │  ┌─────────────┐  ┌──────────────┐  ┌─────────────────────────┐      │ │

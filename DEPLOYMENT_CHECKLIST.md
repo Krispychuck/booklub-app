@@ -74,7 +74,7 @@ Use this checklist to track your deployment progress.
 
 ### Verification
 - [ ] Build completed successfully
-- [ ] Saved Cloudflare Pages URL (e.g., `https://booklub.pages.dev`)
+- [ ] Saved Cloudflare Pages URL (e.g., `https://booklub.krispychuck.com`)
 - [ ] Site loads in browser
 
 ---

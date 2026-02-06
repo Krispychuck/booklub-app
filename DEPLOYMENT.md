@@ -106,7 +106,7 @@ You should see 5 books.
 After deploying, you'll need to add your Cloudflare Pages URL:
 
 1. Clerk Dashboard → "Domains"
-2. Add your production domain (e.g., `booklub.pages.dev`)
+2. Add your production domain (e.g., `booklub.krispychuck.com`)
 
 ---
 
@@ -197,7 +197,7 @@ REACT_APP_API_URL=https://your-app.railway.app
 
 1. Click "Save and Deploy"
 2. Wait for build to complete (3-5 minutes)
-3. Once deployed, you'll get a URL like `https://booklub.pages.dev`
+3. Once deployed, you'll get a URL like `https://booklub.krispychuck.com`
 4. Click the URL to test your app!
 
 ### 4.4 Custom Domain (Optional)
@@ -221,7 +221,7 @@ After deploying the frontend, update your backend to allow requests from Cloudfl
 2. Add or update:
 
 ```
-CORS_ORIGIN=https://booklub.pages.dev
+CORS_ORIGIN=https://booklub.krispychuck.com
 ```
 
 (Use your actual Cloudflare Pages URL)
@@ -249,7 +249,7 @@ Now that both frontend and backend are deployed:
 
 1. Go to Clerk Dashboard → "Domains"
 2. Add your Cloudflare Pages domain:
-   - Production: `https://booklub.pages.dev`
+   - Production: `https://booklub.krispychuck.com`
    - Custom domain (if using): `https://yourdomain.com`
 
 ---
@@ -298,7 +298,7 @@ Look for:
 DATABASE_URL=postgresql://username:password@host/dbname?sslmode=require
 ANTHROPIC_API_KEY=sk-ant-xxxxx
 PORT=3001
-CORS_ORIGIN=https://booklub.pages.dev
+CORS_ORIGIN=https://booklub.krispychuck.com
 ```
 
 ### Frontend (.env.local)

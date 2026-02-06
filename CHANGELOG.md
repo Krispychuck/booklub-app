@@ -15,6 +15,9 @@ Session-by-session history of what was built, fixed, and changed. Newest session
 ### UI/UX
 - **Gold header nav buttons** — Browse Books, My Clubs, and Join Club buttons in the header now use gold (`#c8aa6e`) borders with gold fill on hover, matching the primary button design system. (`App.css`: `.nav-link`, `.join-club-button`)
 
+### Infrastructure
+- **Custom domain** — Set up `booklub.krispychuck.com` on Cloudflare Pages. Updated all documentation references from `booklub.pages.dev` to the new domain.
+
 ### Documentation
 - **Created `CHANGELOG.md`** — Session-by-session history (this file)
 - **Created `KNOWN_BUGS.md`** — All bugs with root cause, fix instructions, and status
