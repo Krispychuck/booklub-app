@@ -16,29 +16,32 @@ Continue BooKlub development from previous session.
 6. Read ARCHITECTURE.md - System architecture and data flows
 7. Read DESIGN_SYSTEM.md - Button styles and vintage gold aesthetic
 
-## Priority 1: Deploy Mobile Changes
-The mobile responsiveness work is complete on the `charming-moore` branch but hasn't been deployed yet. Help the user merge the PR.
+## Priority 1: Deploy PostHog Analytics
+PostHog analytics was added on charming-moore but hasn't been deployed yet.
 
 1. Go to: https://github.com/Krispychuck/booklub-app/compare/main...charming-moore
-2. Create a PR with title: "Add mobile responsiveness + doc cleanup"
+2. Create a PR with title: "Add PostHog analytics for MVP tester tracking"
 3. Merge the PR to deploy
+4. Verify events appear at https://us.posthog.com
 
 ## Priority 2: CSS Transitions & Animations
 - Add `transition: all 0.3s ease` on all interactive elements that don't already have it
 - Fade-in animations on page loads (route transitions)
 - Subtle hover lift effects on cards
+- Smooth modal open/close transitions
 
 ## Priority 3: Typography Hierarchy
 - Improve heading/body/caption sizing and spacing
 - Ensure consistent type scale across all pages
 
-## Priority 4: Test Mobile on Real Device
-After deploying, test https://booklub.krispychuck.com on an actual phone:
-- Header layout and nav
-- Chat page: input area, send buttons, messages
-- Create/Join club modals
-- Mind map modal
-- Touch targets (all buttons should be easy to tap)
+## Priority 4: Real-World Testing with MVP Testers
+- Share the link with testers
+- Monitor PostHog dashboard for usage patterns and drop-off points
+- Fix any issues testers encounter
+
+## Priority 5: Reading Progress & Engagement Features
+- Chapter/page tracking so club members can see where everyone is in the book
+- This is a key feature from PRODUCT_VISION.md that hasn't been built yet
 
 ## Key Context
 - **Project:** BooKlub - Social book club app with AI author chat
@@ -47,6 +50,7 @@ After deploying, test https://booklub.krispychuck.com on an actual phone:
 - **Branch:** charming-moore (use PR workflow to deploy to main)
 - **User:** Non-technical, handle all git operations
 - **No gh CLI** — use GitHub web links for PRs
+- **Analytics:** PostHog (https://us.posthog.com) — page views + user identification
 
 ## Production URLs
 - Frontend: https://booklub.krispychuck.com
@@ -61,12 +65,11 @@ After deploying, test https://booklub.krispychuck.com on an actual phone:
 - Custom domain: booklub.krispychuck.com
 - Logo: Booklub-marquee2.png (Art Nouveau parchment style)
 - Loading states: Book-riffling animation on all views + branded startup screen
-- **Mobile responsive** (3 breakpoints: 768px, 480px, 375px) — deployed
-- **PostHog analytics** — page views + user identification. Dashboard: https://us.posthog.com
+- Mobile responsive (3 breakpoints: 768px, 480px, 375px) — deployed and confirmed
+- PostHog analytics (on charming-moore, pending deploy)
 
 ## What's Broken
 - No known functional bugs (see KNOWN_BUGS.md)
-- PostHog + mobile changes on charming-moore — need PR merge to deploy
 
 ## IMPORTANT: Documentation Protocol
 After every git push, you MUST update these 5 docs:

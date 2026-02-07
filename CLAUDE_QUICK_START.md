@@ -93,7 +93,7 @@ All Claude documentation files (`CLAUDE_QUICK_START.md`, `CHANGELOG.md`, `KNOWN_
 ### 6. Design System
 - **Primary (gold):** `border: 2px solid #c8aa6e`, transparent bg, fills gold on hover
 - **Secondary (black/white):** `border: 2px solid #000`, white bg
-- Applied across: App.css (nav-link, join-club-button, start-club-button, modal-button-primary), ClubChat.css, CreateClubModal.css, JoinClubModal.js (inline), MyClubs.js (inline)
+- Applied across: App.css (nav-link, join-club-button, start-club-button, modal-button-primary, my-clubs-browse-btn), ClubChat.css, CreateClubModal.css (shared by JoinClubModal)
 
 ---
 
@@ -142,10 +142,11 @@ git push origin charming-moore
 3. ~~🎨 Logo/wordmark for header + favicon~~ — **DONE** (commit `b2d7550`)
 4. ~~⏳ Loading states~~ — **DONE** (book-riffling animation across all views)
 5. ~~🎨 Logo update~~ — **DONE** (`Booklub-marquee2.png` — Art Nouveau parchment style)
-6. ~~📱 Mobile responsiveness~~ — **DONE** (commit `9bfd16b`). All 10 issues addressed: header wrap, chat input stack, touch targets, delete button visibility, dvh for mind map, reduced padding/fonts.
-7. ✨ **CSS transitions and fade-in animations** — Add `transition: all 0.3s ease` on all interactive elements; fade-in on page loads
-8. 📝 **Better typography hierarchy** — Improve heading/body/caption sizing and spacing
-9. 🔧 **Deploy mobile changes** — Merge PR from `charming-moore` → `main`
+6. ~~📱 Mobile responsiveness~~ — **DONE** (commit `9bfd16b`). Deployed and confirmed working on phones.
+7. ~~📊 PostHog analytics~~ — **DONE** (commit `0b643c4`). On charming-moore, pending deploy.
+8. 🔧 **Deploy PostHog** — Merge PR from `charming-moore` → `main`
+9. ✨ **CSS transitions and fade-in animations** — Add `transition: all 0.3s ease` on all interactive elements; fade-in on page loads
+10. 📝 **Better typography hierarchy** — Improve heading/body/caption sizing and spacing
 
 ---
 
@@ -157,6 +158,7 @@ git push origin charming-moore
 - **Clerk:** https://dashboard.clerk.com/
 - **Neon:** https://console.neon.tech/
 - **Anthropic:** https://console.anthropic.com/
+- **PostHog:** https://us.posthog.com (MVP tester analytics)
 
 ---
 

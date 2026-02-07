@@ -236,9 +236,10 @@ Note: Production DB uses **UUIDs** for most IDs, though `init.sql` shows SERIAL.
 5. ~~🎨 **Logo update**~~ — **DONE** (Booklub-marquee2.png — Art Nouveau parchment style)
 6. ~~📱 **Mobile responsiveness**~~ — **DONE** (commit `9bfd16b`). All 10 issues addressed across 6 files with 3 breakpoints.
 7. ~~📊 **PostHog analytics**~~ — **DONE** (commit `0b643c4`). Lightweight page views + user identification.
-8. ✨ **CSS transitions** — Add `transition: all 0.3s ease` on all interactive elements; fade-in on page loads
-9. 📝 **Typography hierarchy** — Improve heading/body/caption sizing and spacing
-10. 🔧 **Deploy** — Merge PR from `charming-moore` → `main`
+8. ~~🔧 **Deploy mobile**~~ — **DONE** (user merged PR mid-session)
+9. ✨ **CSS transitions** — Add `transition: all 0.3s ease` on all interactive elements; fade-in on page loads
+10. 📝 **Typography hierarchy** — Improve heading/body/caption sizing and spacing
+11. 🔧 **Deploy PostHog** — Merge PR from `charming-moore` → `main`
 
 ---
 
@@ -249,6 +250,7 @@ Note: Production DB uses **UUIDs** for most IDs, though `init.sql` shows SERIAL.
 - **Cloudflare:** https://dash.cloudflare.com/
 - **Neon:** https://console.neon.tech/
 - **Anthropic:** https://console.anthropic.com/
+- **PostHog:** https://us.posthog.com (MVP tester analytics)
 - **GitHub:** https://github.com/Krispychuck/booklub-app
 
 ---
