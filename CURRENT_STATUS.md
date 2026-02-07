@@ -1,7 +1,7 @@
 # BooKlub App - Current Status & Configuration
 
 **Last Updated:** February 6, 2026
-**Status:** Production — Core features + Mind Map live
+**Status:** Production — Core features + Mind Map + Mobile responsive
 
 ---
 
@@ -135,14 +135,14 @@ booklub-app/
 │   └── package.json
 ├── database/
 │   └── init.sql
-├── ARCHITECTURE.md
-├── CHANGELOG.md              ← Session-by-session history
-├── CLAUDE_QUICK_START.md     ← Start here (critical context)
-├── CURRENT_STATUS.md         ← This file
-├── DESIGN_SYSTEM.md
-├── DEPLOYMENT_CHECKLIST.md
-├── KNOWN_BUGS.md             ← All bugs with root cause/fix
-└── NEXT_SESSION_START.md     ← Copy/paste for new sessions
+├── ARCHITECTURE.md              ← System architecture
+├── CHANGELOG.md                 ← Session-by-session history
+├── CLAUDE_QUICK_START.md        ← Start here (critical context)
+├── CURRENT_STATUS.md            ← This file
+├── DESIGN_SYSTEM.md             ← Button styles, colors, typography
+├── KNOWN_BUGS.md                ← All bugs with root cause/fix
+├── NEXT_SESSION_START.md        ← Copy/paste for new sessions
+└── PRODUCT_VISION.md            ← North star press release
 ```
 
 ---
@@ -209,6 +209,19 @@ Note: Production DB uses **UUIDs** for most IDs, though `init.sql` shows SERIAL.
 ### Logo Update (Feb 6, 2026)
 22. **New marquee logo** — Swapped `booklub-marquee.png` to `Booklub-marquee2.png` (Art Nouveau parchment/scroll style). Applied across header, loading screen, favicon, manifest.
 
+### Housekeeping (Feb 6, 2026)
+23. **Removed dead worktree** — `compassionate-haibt` deleted
+24. **Deleted 9 redundant docs** — All superseded by active 7-doc system
+25. **Created symlink** — `~/Desktop/booklub-dev` → charming-moore
+
+### Mobile Responsiveness (Feb 6, 2026)
+26. **ClubChat.css** — 3 breakpoints (768/480/375px): header wrap, stacked send buttons, full-width input, visible delete button, 44px touch targets
+27. **App.css** — Header nav wraps to second row, flex-fill nav buttons, truncated welcome text, reduced padding
+28. **CreateClubModal.css** — Full-screen on phones, stacked buttons, 44px targets, iOS zoom prevention
+29. **MindMapVisualization.css** — 100dvh height, bottom-sheet detail panel on mobile
+30. **MyClubs.js** — Inline styles → CSS classes for responsive control
+31. **JoinClubModal.js** — Inline styles → shared CreateClubModal.css classes
+
 ---
 
 ## Next Steps (Upcoming)
@@ -218,9 +231,10 @@ Note: Production DB uses **UUIDs** for most IDs, though `init.sql` shows SERIAL.
 3. ~~🎨 **Logo/wordmark**~~ — **DONE** (commit `b2d7550`)
 4. ~~⏳ **Loading states**~~ — **DONE** (book-riffling animation)
 5. ~~🎨 **Logo update**~~ — **DONE** (Booklub-marquee2.png — Art Nouveau parchment style)
-6. 📱 **Mobile responsiveness** — CRITICAL. Site breaks on phones. Header overflow, chat input overflow, 0 media queries in ClubChat.css, touch targets too small, buttons invisible on mobile. See `NEXT_SESSION_START.md` for full 10-point analysis.
+6. ~~📱 **Mobile responsiveness**~~ — **DONE** (commit `9bfd16b`). All 10 issues addressed across 6 files with 3 breakpoints.
 7. ✨ **CSS transitions** — Add `transition: all 0.3s ease` on all interactive elements; fade-in on page loads
 8. 📝 **Typography hierarchy** — Improve heading/body/caption sizing and spacing
+9. 🔧 **Deploy mobile changes** — Merge PR from `charming-moore` → `main`
 
 ---
 

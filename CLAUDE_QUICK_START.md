@@ -11,7 +11,7 @@ When starting a new session about BooKlub, read this first!
 **Location:** `/Users/mrl/.claude-worktrees/booklub-app/charming-moore/`
 **Branch:** `charming-moore` (worktree — merge to `main` to deploy)
 **Last Updated:** February 6, 2026
-**Status:** Production — All core features + Mind Map live
+**Status:** Production — All core features + Mind Map + Mobile responsive
 
 ---
 
@@ -142,9 +142,10 @@ git push origin charming-moore
 3. ~~🎨 Logo/wordmark for header + favicon~~ — **DONE** (commit `b2d7550`)
 4. ~~⏳ Loading states~~ — **DONE** (book-riffling animation across all views)
 5. ~~🎨 Logo update~~ — **DONE** (`Booklub-marquee2.png` — Art Nouveau parchment style)
-6. 📱 **Mobile responsiveness** — CRITICAL. Site breaks on phones. See `NEXT_SESSION_START.md` for full analysis of 10 specific issues, recommended approach, and files to modify in priority order.
-7. ✨ CSS transitions and fade-in animations
-8. 📝 Better typography hierarchy
+6. ~~📱 Mobile responsiveness~~ — **DONE** (commit `9bfd16b`). All 10 issues addressed: header wrap, chat input stack, touch targets, delete button visibility, dvh for mind map, reduced padding/fonts.
+7. ✨ **CSS transitions and fade-in animations** — Add `transition: all 0.3s ease` on all interactive elements; fade-in on page loads
+8. 📝 **Better typography hierarchy** — Improve heading/body/caption sizing and spacing
+9. 🔧 **Deploy mobile changes** — Merge PR from `charming-moore` → `main`
 
 ---
 
