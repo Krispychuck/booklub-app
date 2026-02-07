@@ -51,47 +51,18 @@ function MyClubs({ booklubUser }) {
 
   return (
     <div className="container">
-      <h1 style={{ 
-        fontSize: '2.5rem', 
-        marginBottom: '40px',
-        fontFamily: 'Georgia, serif',
-        fontWeight: 'normal'
-      }}>
+      <h1 className="my-clubs-heading">
         My Book Clubs
       </h1>
 
       {clubs.length === 0 ? (
-        <div style={{ 
-          textAlign: 'center', 
-          padding: '60px 20px',
-          border: '2px solid #000',
-          marginTop: '40px'
-        }}>
-          <p style={{ fontSize: '1.2rem', marginBottom: '20px' }}>
+        <div className="my-clubs-empty">
+          <p className="my-clubs-empty-text">
             You haven't joined any book clubs yet.
           </p>
           <button
             onClick={() => navigate('/')}
-            style={{
-              padding: '12px 24px',
-              fontSize: '14px',
-              backgroundColor: 'transparent',
-              color: '#000',
-              border: '2px solid #c8aa6e',
-              cursor: 'pointer',
-              fontFamily: "'Georgia', serif",
-              letterSpacing: '2px',
-              textTransform: 'uppercase',
-              transition: 'all 0.3s ease'
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.backgroundColor = '#c8aa6e';
-              e.currentTarget.style.color = '#000';
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.backgroundColor = 'transparent';
-              e.currentTarget.style.color = '#000';
-            }}
+            className="my-clubs-browse-btn"
           >
             Browse Books
           </button>
@@ -99,50 +70,24 @@ function MyClubs({ booklubUser }) {
       ) : (
         <div className="clubs-grid">
           {clubs.map(club => (
-            <div 
+            <div
               key={club.id}
               className="club-card"
               onClick={() => navigate(`/club/${club.id}`)}
-              style={{
-                border: '2px solid #000',
-                padding: '20px',
-                cursor: 'pointer',
-                transition: 'transform 0.2s',
-              }}
-              onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.02)'}
-              onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
             >
-              <h2 style={{ 
-                fontSize: '1.5rem', 
-                marginBottom: '10px',
-                fontFamily: 'Georgia, serif'
-              }}>
+              <h2 className="club-card-title">
                 {club.name}
               </h2>
-              
-              <p style={{ 
-                fontSize: '1.1rem', 
-                marginBottom: '5px',
-                fontStyle: 'italic'
-              }}>
+
+              <p className="club-card-book">
                 {club.book_title}
               </p>
-              
-              <p style={{ 
-                fontSize: '0.9rem', 
-                color: '#666',
-                marginBottom: '15px'
-              }}>
+
+              <p className="club-card-author">
                 by {club.book_author}
               </p>
 
-              <div style={{
-                fontSize: '0.85rem',
-                color: '#666',
-                borderTop: '1px solid #ccc',
-                paddingTop: '10px',
-                marginTop: '15px'
-              }}>
+              <div className="club-card-footer">
                 <p>Invite Code: <strong>{club.invite_code}</strong></p>
               </div>
             </div>

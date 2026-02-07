@@ -410,3 +410,94 @@
   text-align: center;
   flex-shrink: 0;
 }
+
+/* ==================== MOBILE RESPONSIVE ==================== */
+
+@media (max-width: 768px) {
+  .mind-map-modal {
+    width: 100vw;
+    height: 100vh;
+    height: 100dvh;
+    border: none;
+  }
+
+  .mind-map-header {
+    padding: 12px 15px;
+  }
+
+  .mind-map-title h2 {
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+  }
+
+  .mind-map-title p {
+    font-size: 0.75rem;
+  }
+
+  .mind-map-close-btn {
+    padding: 10px 16px;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+  }
+
+  /* Detail panel: bottom sheet on mobile */
+  .mind-map-detail {
+    position: absolute;
+    bottom: 40px;
+    right: 10px;
+    left: 10px;
+    max-width: none;
+    max-height: 50vh;
+    max-height: 50dvh;
+    padding: 14px 16px;
+  }
+
+  .mind-map-detail-close {
+    padding: 10px 16px;
+    min-height: 44px;
+  }
+
+  .mind-map-instructions {
+    padding: 6px 12px;
+    font-size: 0.6rem;
+    letter-spacing: 1px;
+  }
+
+  .mind-map-error button {
+    padding: 12px 24px;
+    min-height: 44px;
+  }
+}
+
+@media (max-width: 480px) {
+  .mind-map-header {
+    padding: 10px 12px;
+    gap: 8px;
+  }
+
+  .mind-map-title h2 {
+    font-size: 0.8rem;
+  }
+
+  .mind-map-title p {
+    display: none;
+  }
+
+  .mind-map-detail {
+    bottom: 35px;
+    right: 5px;
+    left: 5px;
+    padding: 12px;
+    max-height: 45dvh;
+  }
+
+  .mind-map-detail-header h3 {
+    font-size: 0.85rem;
+  }
+
+  .mind-map-instructions {
+    padding: 5px 10px;
+    font-size: 0.55rem;
+  }
+}
