@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom';
 import './App.css';
 import { SignedIn, SignedOut, SignInButton, UserButton, useUser } from '@clerk/clerk-react';
+import posthog from 'posthog-js';
 import Home from './pages/Home';
 import MyClubs from './pages/MyClubs';
 import JoinClubModal from './components/JoinClubModal';
@@ -10,6 +11,24 @@ import ClubChat from './pages/ClubChat';
 import DisplayNameModal from './components/DisplayNameModal';
 import LoadingSpinner from './components/LoadingSpinner';
 import { API_URL } from './config';
+
+// Initialize PostHog analytics (lightweight — page views + user identification)
+posthog.init('phc_kj1RoyLjSUfHnA6AGrjcgYZZmnhd6RiuAD5XmfyEomO', {
+  api_host: 'https://us.i.posthog.com',
+  capture_pageview: false,        // We capture manually via useLocation for SPA routing
+  capture_pageleave: true,
+  autocapture: false,             // Keep it lightweight — no auto-click tracking
+  persistence: 'localStorage',
+});
+
+// Track SPA page views on route change
+function PageViewTracker() {
+  const location = useLocation();
+  useEffect(() => {
+    posthog.capture('$pageview', { $current_url: window.location.href });
+  }, [location]);
+  return null;
+}
 
 function App() {
   const { user, isLoaded } = useUser();
@@ -65,6 +84,18 @@ function App() {
     syncUser();
   }, [isLoaded, user]);
 
+  // Identify user in PostHog when they sign in (so you see names, not anonymous IDs)
+  useEffect(() => {
+    if (booklubUser) {
+      posthog.identify(String(booklubUser.id), {
+        name: booklubUser.name,
+        email: booklubUser.email,
+      });
+    } else {
+      posthog.reset(); // Clear identity on sign out
+    }
+  }, [booklubUser]);
+
   const handleSaveDisplayName = async (name) => {
     if (!booklubUser) return;
 
@@ -105,6 +136,7 @@ function App() {
 
   return (
     <Router>
+      <PageViewTracker />
       <div className="App">
         <header className="App-header">
           <Link to="/" className="logo-link">

@@ -11,7 +11,7 @@ When starting a new session about BooKlub, read this first!
 **Location:** `/Users/mrl/.claude-worktrees/booklub-app/charming-moore/`
 **Branch:** `charming-moore` (worktree — merge to `main` to deploy)
 **Last Updated:** February 6, 2026
-**Status:** Production — All core features + Mind Map + Mobile responsive
+**Status:** Production — All core features + Mind Map + Mobile responsive + PostHog analytics
 
 ---
 

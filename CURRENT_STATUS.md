@@ -1,7 +1,7 @@
 # BooKlub App - Current Status & Configuration
 
 **Last Updated:** February 6, 2026
-**Status:** Production — Core features + Mind Map + Mobile responsive
+**Status:** Production — Core features + Mind Map + Mobile responsive + PostHog analytics
 
 ---
 
@@ -222,6 +222,9 @@ Note: Production DB uses **UUIDs** for most IDs, though `init.sql` shows SERIAL.
 30. **MyClubs.js** — Inline styles → CSS classes for responsive control
 31. **JoinClubModal.js** — Inline styles → shared CreateClubModal.css classes
 
+### PostHog Analytics (Feb 6, 2026)
+32. **PostHog integration** — Lightweight page view tracking + user identification. Dashboard: https://us.posthog.com. Autocapture off, manual pageview per route change, users identified by BooKlub name/email on sign-in.
+
 ---
 
 ## Next Steps (Upcoming)
@@ -232,9 +235,10 @@ Note: Production DB uses **UUIDs** for most IDs, though `init.sql` shows SERIAL.
 4. ~~⏳ **Loading states**~~ — **DONE** (book-riffling animation)
 5. ~~🎨 **Logo update**~~ — **DONE** (Booklub-marquee2.png — Art Nouveau parchment style)
 6. ~~📱 **Mobile responsiveness**~~ — **DONE** (commit `9bfd16b`). All 10 issues addressed across 6 files with 3 breakpoints.
-7. ✨ **CSS transitions** — Add `transition: all 0.3s ease` on all interactive elements; fade-in on page loads
-8. 📝 **Typography hierarchy** — Improve heading/body/caption sizing and spacing
-9. 🔧 **Deploy mobile changes** — Merge PR from `charming-moore` → `main`
+7. ~~📊 **PostHog analytics**~~ — **DONE** (commit `0b643c4`). Lightweight page views + user identification.
+8. ✨ **CSS transitions** — Add `transition: all 0.3s ease` on all interactive elements; fade-in on page loads
+9. 📝 **Typography hierarchy** — Improve heading/body/caption sizing and spacing
+10. 🔧 **Deploy** — Merge PR from `charming-moore` → `main`
 
 ---
 

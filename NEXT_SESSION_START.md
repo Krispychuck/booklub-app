@@ -61,11 +61,12 @@ After deploying, test https://booklub.krispychuck.com on an actual phone:
 - Custom domain: booklub.krispychuck.com
 - Logo: Booklub-marquee2.png (Art Nouveau parchment style)
 - Loading states: Book-riffling animation on all views + branded startup screen
-- **Mobile responsive** (3 breakpoints: 768px, 480px, 375px) — on charming-moore, pending deploy
+- **Mobile responsive** (3 breakpoints: 768px, 480px, 375px) — deployed
+- **PostHog analytics** — page views + user identification. Dashboard: https://us.posthog.com
 
 ## What's Broken
 - No known functional bugs (see KNOWN_BUGS.md)
-- Mobile changes are on charming-moore branch but not yet deployed to production
+- PostHog + mobile changes on charming-moore — need PR merge to deploy
 
 ## IMPORTANT: Documentation Protocol
 After every git push, you MUST update these 5 docs:

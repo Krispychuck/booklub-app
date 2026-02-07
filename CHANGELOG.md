@@ -4,6 +4,20 @@ Session-by-session history of what was built, fixed, and changed. Newest session
 
 ---
 
+## Session: February 6, 2026 (PostHog Analytics)
+
+**Branch:** `charming-moore`
+**Commit:** `0b643c4`
+
+### Features
+- **PostHog analytics integration** — Lightweight MVP tester tracking. Tracks page views per route change and identifies signed-in users by their BooKlub display name + email. Autocapture disabled (no click tracking) to keep it minimal. Dashboard at https://us.posthog.com.
+
+### Files Changed
+- `frontend/src/App.js` — Added PostHog init, `PageViewTracker` component (fires on route change), user identification via `posthog.identify()` when `booklubUser` is set, `posthog.reset()` on sign out
+- `frontend/package.json` — Added `posthog-js` dependency
+
+---
+
 ## Session: February 6, 2026 (Mobile Responsiveness + Doc Cleanup)
 
 **Branch:** `charming-moore`
