@@ -385,3 +385,207 @@
   background-color: #ffffff;
   color: #000000;
 }
+
+/* ==================== MOBILE RESPONSIVE ==================== */
+
+/* Tablet and small desktop */
+@media (max-width: 768px) {
+  .chat-header {
+    padding: 12px 15px;
+    gap: 10px;
+  }
+
+  .chat-header-info h1 {
+    font-size: 1.1rem;
+  }
+
+  .book-info {
+    font-size: 0.8rem;
+  }
+
+  .mind-map-button,
+  .members-button {
+    padding: 8px 14px;
+    font-size: 10px;
+    letter-spacing: 1px;
+  }
+
+  .back-button {
+    padding: 8px 12px;
+    font-size: 0.85rem;
+  }
+
+  .message-input-area {
+    flex-wrap: wrap;
+    padding: 10px 12px;
+    gap: 8px;
+  }
+
+  .message-input-area input {
+    width: 100%;
+    flex: 1 1 100%;
+  }
+
+  .send-buttons {
+    width: 100%;
+    justify-content: stretch;
+  }
+
+  .group-comment-btn,
+  .ask-author-btn {
+    flex: 1;
+    padding: 12px 10px;
+    font-size: 12px;
+    text-align: center;
+  }
+
+  .message {
+    max-width: 90%;
+    padding: 12px;
+  }
+
+  .messages-area {
+    padding: 15px;
+  }
+
+  .no-messages {
+    padding: 40px 15px;
+  }
+
+  .delete-modal {
+    padding: 20px 25px;
+    margin: 0 15px;
+  }
+
+  /* Make delete button visible on mobile (no hover) */
+  .delete-message-btn {
+    opacity: 0.4;
+    padding: 6px 12px;
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
+
+/* Small phones (375px iPhone) */
+@media (max-width: 480px) {
+  .chat-container {
+    border-left: none;
+    border-right: none;
+  }
+
+  .chat-header {
+    padding: 10px 12px;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .back-button {
+    padding: 10px 12px;
+    min-height: 44px;
+    font-size: 0.8rem;
+  }
+
+  .chat-header-info {
+    order: 3;
+    flex: 1 1 100%;
+    margin-top: 4px;
+  }
+
+  .chat-header-info h1 {
+    font-size: 1rem;
+  }
+
+  .book-info {
+    font-size: 0.75rem;
+  }
+
+  .mind-map-button,
+  .members-button {
+    padding: 10px 12px;
+    font-size: 9px;
+    letter-spacing: 1px;
+    min-height: 44px;
+  }
+
+  .message-input-area {
+    padding: 8px 10px;
+    gap: 6px;
+  }
+
+  .message-input-area input {
+    padding: 12px;
+    font-size: 16px; /* Prevents iOS zoom on focus */
+  }
+
+  .send-buttons {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .group-comment-btn,
+  .ask-author-btn {
+    width: 100%;
+    padding: 14px 10px;
+    font-size: 13px;
+    min-height: 44px;
+  }
+
+  .message {
+    max-width: 95%;
+    padding: 10px;
+    margin-bottom: 12px;
+  }
+
+  .message-header {
+    font-size: 0.75rem;
+  }
+
+  .message-content {
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+
+  .messages-area {
+    padding: 10px;
+  }
+
+  .no-messages {
+    padding: 30px 10px;
+  }
+
+  .conversation-prompt {
+    font-size: 0.95rem;
+  }
+
+  /* Delete modal full-width on small phones */
+  .delete-modal {
+    padding: 20px;
+    margin: 0 10px;
+    max-width: none;
+    width: calc(100% - 20px);
+  }
+
+  .delete-modal-buttons button {
+    padding: 12px 20px;
+    min-height: 44px;
+  }
+}
+
+/* Extra small phones (320px) */
+@media (max-width: 375px) {
+  .chat-header-info h1 {
+    font-size: 0.9rem;
+  }
+
+  .mind-map-button,
+  .members-button {
+    padding: 10px 10px;
+    font-size: 8px;
+  }
+
+  .group-comment-btn,
+  .ask-author-btn {
+    font-size: 12px;
+    letter-spacing: 0.5px;
+  }
+}

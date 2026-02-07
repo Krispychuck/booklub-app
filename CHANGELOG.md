@@ -4,9 +4,54 @@ Session-by-session history of what was built, fixed, and changed. Newest session
 
 ---
 
-## Session: February 6, 2026 (Loading States — Book-Riffling Animation)
+## Session: February 6, 2026 (Mobile Responsiveness + Doc Cleanup)
 
 **Branch:** `charming-moore`
+**Commits:** `fac7d04` (doc cleanup), `9bfd16b` (mobile CSS)
+
+### Housekeeping
+- **Removed dead worktree** — `compassionate-haibt` worktree deleted via `git worktree remove --force`
+- **Deleted 9 redundant docs** — DEPLOYMENT.md, DEPLOYMENT_CHANGES.md, DEPLOYMENT_CHECKLIST.md, DEPLOYMENT_NOTES.md, QUICK_DEPLOY.md, README_DEPLOYMENT.md, DEVELOPMENT_ROADMAP.md, TROUBLESHOOTING.md, README.md — all superseded by the 7 active docs
+- **Created symlink** — `~/Desktop/booklub-dev` → charming-moore worktree for easy access
+
+### Mobile Responsiveness (Priority 1 — COMPLETE)
+All 10 mobile issues identified in the previous session analysis have been addressed:
+
+1. **ClubChat.css** — Added 3 breakpoints (768px, 480px, 375px). Chat header wraps on mobile (back + buttons on first row, title/book on second). Send buttons stack vertically on small phones. Input goes full-width. Delete button always visible (opacity: 0.4 instead of hover-only). All buttons meet 44px minimum touch target. iOS zoom prevented with 16px font on input.
+
+2. **App.css** — Header wraps nav to second row on mobile. Nav buttons flex to fill available width. Welcome text truncates with ellipsis. Reduced padding on all containers (40px→15px on small phones). Modals get stacked buttons. Members/Leave/Delete buttons get 44px touch targets.
+
+3. **CreateClubModal.css** — Full-screen modal on phones (100vh, no border-radius). Stacked buttons. 44px minimum touch targets. Close button enlarged to 44x44. iOS zoom prevention.
+
+4. **MindMapVisualization.css** — Uses `100dvh` instead of `90vh` (fixes mobile address bar overlap). Full-width modal on mobile. Detail panel becomes bottom sheet (centered, stretches full width). Subtitle hidden on small phones to save space.
+
+5. **MyClubs.js** — Replaced all inline styles with CSS classes (`my-clubs-heading`, `my-clubs-empty`, `my-clubs-browse-btn`, `club-card-title`, etc.) so media queries can control sizing. Heading shrinks from 2.5rem → 1.5rem on small phones. Empty state padding reduced from 60px → 30px.
+
+6. **JoinClubModal.js** — Replaced inline styles with shared `CreateClubModal.css` classes (`button-primary`, `button-secondary`, `form-group`, `modal-buttons`). Now gets all the same responsive behavior as CreateClubModal.
+
+### Files Changed
+- `DEPLOYMENT.md` — **DELETED**
+- `DEPLOYMENT_CHANGES.md` — **DELETED**
+- `DEPLOYMENT_CHECKLIST.md` — **DELETED**
+- `DEPLOYMENT_NOTES.md` — **DELETED**
+- `QUICK_DEPLOY.md` — **DELETED**
+- `README_DEPLOYMENT.md` — **DELETED**
+- `DEVELOPMENT_ROADMAP.md` — **DELETED**
+- `TROUBLESHOOTING.md` — **DELETED**
+- `README.md` — **DELETED**
+- `frontend/src/pages/ClubChat.css` — +204 lines (3 media query blocks)
+- `frontend/src/App.css` — +344 lines (MyClubs classes + 3 media query blocks)
+- `frontend/src/components/CreateClubModal.css` — +65 lines (2 media query blocks)
+- `frontend/src/components/MindMapVisualization.css` — +91 lines (2 media query blocks)
+- `frontend/src/pages/MyClubs.js` — Inline styles → CSS classes
+- `frontend/src/components/JoinClubModal.js` — Inline styles → shared CSS classes
+
+---
+
+## Session: February 6, 2026 (Loading States + Logo Update)
+
+**Branch:** `charming-moore`
+**Commits:** `f8e4127` through `0502b3c`
 
 ### Features
 - **Book-riffling loading animation** — Created reusable `LoadingSpinner` component with a CSS-only animated open book whose pages flip/riffle in gold (`#c8aa6e`). Supports `size` (small/medium/large), `message` (text below animation), and `fullPage` (centers vertically) props.
@@ -15,17 +60,23 @@ Session-by-session history of what was built, fixed, and changed. Newest session
 - **Modal loading state** — Members modal shows a small book animation instead of plain text.
 - **Button inline spinners** — Create Club and Join Club buttons now show a tiny gold spinning circle next to "Creating..."/"Joining..." text (book animation too small at button size).
 
+### Branding
+- **New logo: Booklub-marquee2.png** — Replaced `booklub-marquee.png` with `Booklub-marquee2.png` (vintage parchment/scroll with Art Nouveau ornamental corners). Updated all references in `App.js`, `index.html`, and `manifest.json`. Used for header, app loading screen, favicon, and apple-touch-icon.
+
 ### Files Changed
 - `frontend/src/components/LoadingSpinner.js` — **NEW** — Reusable book-riffling loader component
 - `frontend/src/components/LoadingSpinner.css` — **NEW** — Book animation CSS + button-spinner CSS
+- `frontend/public/Booklub-marquee2.png` — **NEW** — Art Nouveau parchment-style logo
 - `frontend/src/pages/Home.js` — Import + use `<LoadingSpinner>` for loading state
 - `frontend/src/pages/MyClubs.js` — Import + use `<LoadingSpinner>` for loading state
 - `frontend/src/pages/ClubChat.js` — Import + use `<LoadingSpinner>` for loading state
 - `frontend/src/components/MembersModal.js` — Import + use `<LoadingSpinner size="small">` in modal
 - `frontend/src/components/CreateClubModal.js` — Import CSS + add `button-spinner` to Creating button
 - `frontend/src/components/JoinClubModal.js` — Import CSS + add `button-spinner` to Joining button
-- `frontend/src/App.js` — Import `LoadingSpinner`, add branded loading screen for `!isLoaded` state
+- `frontend/src/App.js` — Import `LoadingSpinner`, add branded loading screen, swap to `Booklub-marquee2.png`
 - `frontend/src/App.css` — `.app-loading` styles (full-screen dark, centered logo + spinner)
+- `frontend/public/index.html` — Favicon + apple-touch-icon → `Booklub-marquee2.png`
+- `frontend/public/manifest.json` — Icon → `Booklub-marquee2.png`
 
 ---
 

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './CreateClubModal.css';
 import './LoadingSpinner.css';
 import { API_URL } from '../config';
 
@@ -39,7 +40,7 @@ function JoinClubModal({ userId, onClose, onClubJoined }) {
 
       // Success!
       onClubJoined(data.club);
-      
+
     } catch (err) {
       console.error('Error joining club:', err);
       setError(err.message);
@@ -51,28 +52,15 @@ function JoinClubModal({ userId, onClose, onClubJoined }) {
   return (
     <div className="modal-overlay" onClick={onClose}>
       <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-        <h2 style={{ 
-          fontFamily: 'Georgia, serif',
-          fontSize: '2rem',
-          marginBottom: '20px',
-          fontWeight: 'normal'
-        }}>
-          Join a Book Club
-        </h2>
+        <h2>Join a Book Club</h2>
 
-        <p style={{ marginBottom: '20px', color: '#666' }}>
+        <p className="modal-book-info" style={{ background: 'transparent', padding: 0 }}>
           Enter the invite code shared with you to join an existing book club.
         </p>
 
         <form onSubmit={handleSubmit}>
-          <div style={{ marginBottom: '20px' }}>
-            <label style={{ 
-              display: 'block', 
-              marginBottom: '8px',
-              fontWeight: 'bold'
-            }}>
-              Invite Code
-            </label>
+          <div className="form-group">
+            <label>Invite Code</label>
             <input
               type="text"
               value={inviteCode}
@@ -80,76 +68,34 @@ function JoinClubModal({ userId, onClose, onClubJoined }) {
               placeholder="e.g., 8KVVZA"
               maxLength={6}
               style={{
-                width: '100%',
-                padding: '12px',
-                fontSize: '1.2rem',
-                border: '2px solid #000',
                 textTransform: 'uppercase',
                 letterSpacing: '0.1em',
-                fontFamily: 'monospace'
+                fontFamily: 'monospace',
+                fontSize: '1.2rem'
               }}
               disabled={loading}
             />
           </div>
 
           {error && (
-            <div style={{ 
-              padding: '12px', 
-              backgroundColor: '#ffe6e6',
-              border: '2px solid #ff0000',
-              marginBottom: '20px',
-              color: '#cc0000'
-            }}>
+            <div className="error-message">
               {error}
             </div>
           )}
 
-          <div style={{ 
-            display: 'flex', 
-            gap: '10px', 
-            justifyContent: 'flex-end' 
-          }}>
+          <div className="modal-buttons">
             <button
               type="button"
               onClick={onClose}
               disabled={loading}
-              style={{
-                padding: '12px 24px',
-                fontSize: '1rem',
-                backgroundColor: '#fff',
-                color: '#000',
-                border: '2px solid #000',
-                cursor: 'pointer',
-              }}
+              className="button-secondary"
             >
               Cancel
             </button>
             <button
               type="submit"
               disabled={loading}
-              style={{
-                padding: '12px 24px',
-                fontSize: '14px',
-                backgroundColor: 'transparent',
-                color: '#000',
-                border: '2px solid #c8aa6e',
-                cursor: loading ? 'not-allowed' : 'pointer',
-                opacity: loading ? 0.6 : 1,
-                fontFamily: "'Georgia', serif",
-                letterSpacing: '2px',
-                textTransform: 'uppercase',
-                transition: 'all 0.3s ease'
-              }}
-              onMouseEnter={(e) => {
-                if (!loading) {
-                  e.currentTarget.style.backgroundColor = '#c8aa6e';
-                  e.currentTarget.style.color = '#000';
-                }
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.backgroundColor = 'transparent';
-                e.currentTarget.style.color = '#000';
-              }}
+              className="button-primary"
             >
               {loading ? <><span className="button-spinner"></span> Joining...</> : 'Join Club'}
             </button>

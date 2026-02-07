@@ -9,24 +9,41 @@ Continue BooKlub development from previous session.
 
 ## First Steps
 1. Read CLAUDE_QUICK_START.md - Critical context, known bugs, patterns, AND the mandatory documentation protocol at the bottom
-2. Read KNOWN_BUGS.md - All open bugs with root cause and fix instructions
-3. Read CHANGELOG.md - Session-by-session history of what changed
-4. Read CURRENT_STATUS.md - Full configuration, database schema, deployment
-5. Read ARCHITECTURE.md - System architecture and data flows
-6. Read DESIGN_SYSTEM.md - Button styles and vintage gold aesthetic
+2. Read PRODUCT_VISION.md - North star press release describing full product vision + what's built vs. roadmap
+3. Read KNOWN_BUGS.md - All open bugs with root cause and fix instructions
+4. Read CHANGELOG.md - Session-by-session history of what changed
+5. Read CURRENT_STATUS.md - Full configuration, database schema, deployment
+6. Read ARCHITECTURE.md - System architecture and data flows
+7. Read DESIGN_SYSTEM.md - Button styles and vintage gold aesthetic
 
-## Priority 1: CSS Transitions & Animations
-- Add `transition: all 0.3s ease` on all interactive elements
-- Fade-in animations on page loads
-- Smooth modal open/close transitions
+## Priority 1: Deploy Mobile Changes
+The mobile responsiveness work is complete on the `charming-moore` branch but hasn't been deployed yet. Help the user merge the PR.
 
-## Priority 2: Typography Hierarchy
+1. Go to: https://github.com/Krispychuck/booklub-app/compare/main...charming-moore
+2. Create a PR with title: "Add mobile responsiveness + doc cleanup"
+3. Merge the PR to deploy
+
+## Priority 2: CSS Transitions & Animations
+- Add `transition: all 0.3s ease` on all interactive elements that don't already have it
+- Fade-in animations on page loads (route transitions)
+- Subtle hover lift effects on cards
+
+## Priority 3: Typography Hierarchy
 - Improve heading/body/caption sizing and spacing
-- Consistent font sizes across pages
+- Ensure consistent type scale across all pages
+
+## Priority 4: Test Mobile on Real Device
+After deploying, test https://booklub.krispychuck.com on an actual phone:
+- Header layout and nav
+- Chat page: input area, send buttons, messages
+- Create/Join club modals
+- Mind map modal
+- Touch targets (all buttons should be easy to tap)
 
 ## Key Context
 - **Project:** BooKlub - Social book club app with AI author chat
 - **Working Directory:** /Users/mrl/.claude-worktrees/booklub-app/charming-moore/
+- **Desktop shortcut:** ~/Desktop/booklub-dev (symlink to working directory)
 - **Branch:** charming-moore (use PR workflow to deploy to main)
 - **User:** Non-technical, handle all git operations
 - **No gh CLI** — use GitHub web links for PRs
@@ -37,23 +54,18 @@ Continue BooKlub development from previous session.
 
 ## What's Working
 - User authentication (Clerk)
-- Club creation
-- Join Club (fixed Feb 6 — was "User not found", now works)
+- Club creation + Join Club
 - Chat messaging (group + AI author)
 - Mind Map visualization (D3.js radial tree)
-- Click-to-expand messages in mind map
 - Gold design system on all primary buttons + header nav
-- Header layout with proper flex/ellipsis
 - Custom domain: booklub.krispychuck.com
-- Marquee logo + favicon
-- Loading states: Book-riffling animation (gold pages flip) on all views + branded startup screen
+- Logo: Booklub-marquee2.png (Art Nouveau parchment style)
+- Loading states: Book-riffling animation on all views + branded startup screen
+- **Mobile responsive** (3 breakpoints: 768px, 480px, 375px) — on charming-moore, pending deploy
 
 ## What's Broken
-- No known bugs at this time (see KNOWN_BUGS.md for latest)
-
-## Key Components
-- `LoadingSpinner.js` / `.css` — Reusable book-riffling animation (props: message, size, fullPage)
-- `App.js` — Shows branded loading screen during Clerk init / cold starts
+- No known functional bugs (see KNOWN_BUGS.md)
+- Mobile changes are on charming-moore branch but not yet deployed to production
 
 ## IMPORTANT: Documentation Protocol
 After every git push, you MUST update these 5 docs:
