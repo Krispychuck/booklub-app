@@ -4,9 +4,22 @@ Session-by-session history of what was built, fixed, and changed. Newest session
 
 ---
 
-## Session: February 14, 2026 (UI Polish — Transitions, Typography, Rounded Corners)
+## Session: February 14, 2026 (UI Polish — Transitions, Typography, Rounded Corners, Logo, Members Bug Fix)
 
 **Branch:** `claude/vigorous-lalande`
+
+### UI/UX — Logo Sophistication (MVP Feedback)
+- **Rounded corners** — `border-radius: 6px` on logo image, gentle enough to preserve Art Nouveau corner flourishes.
+- **Edge blending** — CSS `mask-image` radial gradient creates a soft vignette, feathering logo edges into the black header instead of hard cutoff.
+- **Gold glow** — Subtle warm `box-shadow` halo on the logo link, intensifies on hover with smooth 0.3s transition.
+- **Loading screen** — Matching treatment applied to the loading screen logo for consistency.
+
+### Bug Fix — "Could not load members" (MVP Feedback)
+- **Root cause** — Members query joined `club_members.user_id` (integer) to `users.clerk_id` (string) — always returned zero rows.
+- **Fix** — Changed JOIN to `users.id` (integer), added `clerk_id` to SELECT for frontend current-user detection.
+- **Leave club fix** — Endpoint passed Clerk ID directly as `user_id`. Now looks up internal ID first.
+- **Delete club fix** — Same Clerk ID → internal ID lookup added.
+- **Cleanup** — Removed debug `console.log` statements from MembersModal.
 
 ### UI/UX — CSS Transitions & Animations
 - **Standardized transitions** — Every button, link, and input now uses `transition: all 0.3s ease`. Consistent timing throughout.
