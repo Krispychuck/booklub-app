@@ -14,40 +14,26 @@ Continue BooKlub development from previous session.
 4. Read CHANGELOG.md - Session-by-session history of what changed
 5. Read CURRENT_STATUS.md - Full configuration, database schema, deployment
 6. Read ARCHITECTURE.md - System architecture and data flows
-7. Read DESIGN_SYSTEM.md - Button styles and vintage gold aesthetic
+7. Read DESIGN_SYSTEM.md - Button styles, typography, border-radius, and vintage gold aesthetic
 
-## Priority 1: Deploy PostHog Analytics
-PostHog analytics was added on charming-moore but hasn't been deployed yet.
-
-1. Go to: https://github.com/Krispychuck/booklub-app/compare/main...charming-moore
-2. Create a PR with title: "Add PostHog analytics for MVP tester tracking"
-3. Merge the PR to deploy
-4. Verify events appear at https://us.posthog.com
-
-## Priority 2: CSS Transitions & Animations
-- Add `transition: all 0.3s ease` on all interactive elements that don't already have it
-- Fade-in animations on page loads (route transitions)
-- Subtle hover lift effects on cards
-- Smooth modal open/close transitions
-
-## Priority 3: Typography Hierarchy
-- Improve heading/body/caption sizing and spacing
-- Ensure consistent type scale across all pages
-
-## Priority 4: Real-World Testing with MVP Testers
-- Share the link with testers
-- Monitor PostHog dashboard for usage patterns and drop-off points
+## Priority 1: Real-World Testing with MVP Testers
+- Share the link with testers and collect feedback
+- Monitor PostHog dashboard (https://us.posthog.com) for usage patterns and drop-off points
 - Fix any issues testers encounter
 
-## Priority 5: Reading Progress & Engagement Features
+## Priority 2: Reading Progress & Engagement Features
 - Chapter/page tracking so club members can see where everyone is in the book
 - This is a key feature from PRODUCT_VISION.md that hasn't been built yet
 
+## Priority 3: Additional PRODUCT_VISION.md Roadmap Items
+- Review PRODUCT_VISION.md for next features to implement
+- Consider: reading streaks, club activity feed, book recommendations
+
 ## Key Context
 - **Project:** BooKlub - Social book club app with AI author chat
-- **Working Directory:** /Users/mrl/.claude-worktrees/booklub-app/charming-moore/
-- **Desktop shortcut:** ~/Desktop/booklub-dev (symlink to working directory)
-- **Branch:** charming-moore (use PR workflow to deploy to main)
+- **Working Directory:** /Users/mrl/booklub-app/.claude/worktrees/vigorous-lalande
+- **Branch Strategy:** Two branches only — `main` (production) and `preview` (development/testing)
+- **Branch:** `preview` (use PR workflow to deploy to main)
 - **User:** Non-technical, handle all git operations
 - **No gh CLI** — use GitHub web links for PRs
 - **Analytics:** PostHog (https://us.posthog.com) — page views + user identification
@@ -61,12 +47,16 @@ PostHog analytics was added on charming-moore but hasn't been deployed yet.
 - Club creation + Join Club
 - Chat messaging (group + AI author)
 - Mind Map visualization (D3.js radial tree)
+- Members modal (view members, leave club, delete club)
 - Gold design system on all primary buttons + header nav
 - Custom domain: booklub.krispychuck.com
-- Logo: Booklub-marquee2.png (Art Nouveau parchment style)
+- Logo: Booklub-marquee2.png (Art Nouveau parchment style, CSS vignette + gold glow)
 - Loading states: Book-riffling animation on all views + branded startup screen
-- Mobile responsive (3 breakpoints: 768px, 480px, 375px) — deployed and confirmed
-- PostHog analytics (on charming-moore, pending deploy)
+- Mobile responsive (3 breakpoints: 768px, 480px, 375px)
+- PostHog analytics (deployed and tracking)
+- CSS transitions (0.3s ease on all interactive elements)
+- Typography hierarchy (type scale from Display 2rem to Micro 0.75rem)
+- Rounded corners (iOS/macOS-style: 16px modals, 12px cards, 8px buttons)
 
 ## What's Broken
 - No known functional bugs (see KNOWN_BUGS.md)
@@ -85,4 +75,4 @@ The project owner relies on these docs for continuity between sessions.
 
 ---
 
-**Last Updated:** February 6, 2026
+**Last Updated:** February 15, 2026

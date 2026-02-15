@@ -149,9 +149,9 @@ booklub-app/
 
 ## Deployment Process
 
-1. Make changes in worktree: `/Users/mrl/.claude-worktrees/booklub-app/charming-moore/`
-2. Commit and push to `charming-moore` branch
-3. Create PR: https://github.com/Krispychuck/booklub-app/compare/main...charming-moore
+1. Make changes in worktree: `/Users/mrl/booklub-app/.claude/worktrees/vigorous-lalande`
+2. Commit and push to `preview` branch
+3. Create PR: https://github.com/Krispychuck/booklub-app/compare/main...preview
 4. Merge PR → auto-deploys to Cloudflare Pages + Render
 
 ---
@@ -169,7 +169,7 @@ Note: Production DB uses **UUIDs** for most IDs, though `init.sql` shows SERIAL.
 
 ---
 
-## Session History (Feb 5-6, 2026)
+## Session History (Feb 5-6, Feb 14, 2026)
 
 ### Mind Map Bugs Fixed
 1. **Backend route not registered** — `mindmaps.js` existed but wasn't wired in `server.js`
@@ -225,6 +225,13 @@ Note: Production DB uses **UUIDs** for most IDs, though `init.sql` shows SERIAL.
 ### PostHog Analytics (Feb 6, 2026)
 32. **PostHog integration** — Lightweight page view tracking + user identification. Dashboard: https://us.posthog.com. Autocapture off, manual pageview per route change, users identified by BooKlub name/email on sign-in.
 
+### UI Polish (Feb 14, 2026)
+33. **CSS transitions** — Standardized `all 0.3s ease` on every interactive element. Page fade-in, modal open animations, card hover lifts, gold input focus.
+34. **Typography hierarchy** — Type scale (2rem → 0.75rem), Courier New for metadata, responsive scaling across 3 breakpoints.
+35. **Rounded corners** — iOS/macOS-style border-radius: 16px modals, 12px cards, 10px containers, 8px buttons, 6px small. Softened shadows.
+36. **Logo sophistication** — CSS mask vignette feathers edges into black header, gold glow hover effect, 6px border-radius.
+37. **BUG-F007 fixed** — Members modal "Could not load members". Fixed JOIN on `users.clerk_id` → `users.id`. Added Clerk→DB ID lookup to leave/delete endpoints. Removed debug console.logs.
+
 ---
 
 ## Next Steps (Upcoming)
@@ -234,13 +241,18 @@ Note: Production DB uses **UUIDs** for most IDs, though `init.sql` shows SERIAL.
 3. ~~🎨 **Logo/wordmark**~~ — **DONE** (commit `b2d7550`)
 4. ~~⏳ **Loading states**~~ — **DONE** (book-riffling animation)
 5. ~~🎨 **Logo update**~~ — **DONE** (Booklub-marquee2.png — Art Nouveau parchment style)
-6. ~~📱 **Mobile responsiveness**~~ — **DONE** (commit `9bfd16b`). All 10 issues addressed across 6 files with 3 breakpoints.
-7. ~~📊 **PostHog analytics**~~ — **DONE** (commit `0b643c4`). Lightweight page views + user identification.
-8. ~~🔧 **Deploy mobile**~~ — **DONE** (user merged PR mid-session)
-9. ~~✨ **CSS transitions**~~ — **DONE** (Feb 14). Standardized transitions, page fade-in, modal animations, hover lifts.
-10. ~~📝 **Typography hierarchy**~~ — **DONE** (Feb 14). Established type scale, responsive sizing.
-11. ~~🔧 **Deploy PostHog**~~ — **DONE** (already merged to main).
-12. ~~🔲 **Rounded corners**~~ — **DONE** (Feb 14, MVP feedback). iOS/macOS-style border-radius: 12px cards, 8px buttons, 16px modals.
+6. ~~📱 **Mobile responsiveness**~~ — **DONE** (commit `9bfd16b`)
+7. ~~📊 **PostHog analytics**~~ — **DONE** (commit `0b643c4`, deployed)
+8. ~~🔧 **Deploy mobile**~~ — **DONE** (merged to main)
+9. ~~✨ **CSS transitions**~~ — **DONE** (Feb 14)
+10. ~~📝 **Typography hierarchy**~~ — **DONE** (Feb 14)
+11. ~~🔧 **Deploy PostHog**~~ — **DONE** (merged to main)
+12. ~~🔲 **Rounded corners**~~ — **DONE** (Feb 14, MVP feedback)
+13. ~~🎬 **Logo sophistication**~~ — **DONE** (Feb 14, MVP feedback)
+14. ~~🐛 **Members bug**~~ — **DONE** (Feb 14, BUG-F007)
+15. 🧪 **Real-world testing** — Share with MVP testers, monitor PostHog, fix issues
+16. 📖 **Reading progress** — Chapter/page tracking (key PRODUCT_VISION.md feature)
+17. 🗺️ **Additional roadmap items** — Review PRODUCT_VISION.md for next features
 
 ---
 
