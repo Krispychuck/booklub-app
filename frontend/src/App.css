@@ -81,11 +81,31 @@ body {
   gap: 10px;
   text-decoration: none;
   flex-shrink: 0;
+  border-radius: 6px;
+  box-shadow: 0 0 12px rgba(200, 170, 110, 0.15);
+  transition: all 0.3s ease;
+}
+
+.logo-link:hover {
+  box-shadow: 0 0 18px rgba(200, 170, 110, 0.3);
 }
 
 .logo-marquee {
   height: 60px;
   width: auto;
+  display: block;
+  border-radius: 6px;
+  -webkit-mask-image: radial-gradient(
+    ellipse 95% 90% at center,
+    black 70%,
+    transparent 100%
+  );
+  mask-image: radial-gradient(
+    ellipse 95% 90% at center,
+    black 70%,
+    transparent 100%
+  );
+  transition: all 0.3s ease;
 }
 .header-actions {
   display: flex;
@@ -1011,6 +1031,17 @@ body {
 .app-loading-logo {
   height: 80px;
   width: auto;
+  border-radius: 6px;
+  -webkit-mask-image: radial-gradient(
+    ellipse 95% 90% at center,
+    black 70%,
+    transparent 100%
+  );
+  mask-image: radial-gradient(
+    ellipse 95% 90% at center,
+    black 70%,
+    transparent 100%
+  );
 }
 
 .app-loading .loading-spinner-message {

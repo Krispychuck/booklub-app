@@ -193,14 +193,15 @@ router.get('/:clubId/members', async (req, res) => {
   try {
     const { clubId } = req.params;
 
-const result = await pool.query(
-      `SELECT 
+    const result = await pool.query(
+      `SELECT
         u.id,
+        u.clerk_id,
         u.name,
         cm.role,
         cm.joined_at
        FROM club_members cm
-       JOIN users u ON cm.user_id = u.clerk_id
+       JOIN users u ON cm.user_id = u.id
        WHERE cm.club_id = $1::uuid
        ORDER BY cm.joined_at ASC`,
       [clubId]
@@ -260,15 +261,27 @@ router.get('/:id', async (req, res) => {
   }
 });
 
-// DELETE /api/clubs/:clubId/members/:userId - Leave a club
+// DELETE /api/clubs/:clubId/members/:clerkId - Leave a club
 router.delete('/:clubId/members/:clerkId', async (req, res) => {
   try {
     const { clubId, clerkId } = req.params;
 
+    // Look up internal user ID from Clerk ID
+    const userResult = await pool.query(
+      'SELECT id FROM users WHERE clerk_id = $1',
+      [clerkId]
+    );
+
+    if (userResult.rows.length === 0) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+
+    const userId = userResult.rows[0].id;
+
     // Check if user is a member
     const memberCheck = await pool.query(
       'SELECT * FROM club_members WHERE club_id = $1::uuid AND user_id = $2',
-      [clubId, clerkId]
+      [clubId, userId]
     );
 
     if (memberCheck.rows.length === 0) {
@@ -278,7 +291,7 @@ router.delete('/:clubId/members/:clerkId', async (req, res) => {
     // Remove the member
     await pool.query(
       'DELETE FROM club_members WHERE club_id = $1::uuid AND user_id = $2',
-      [clubId, clerkId]
+      [clubId, userId]
     );
 
     res.json({ success: true, message: 'Successfully left the club' });
@@ -295,10 +308,22 @@ router.delete('/:clubId', async (req, res) => {
     const { clubId } = req.params;
     const { clerkId } = req.body;
 
+    // Look up internal user ID from Clerk ID
+    const userResult = await pool.query(
+      'SELECT id FROM users WHERE clerk_id = $1',
+      [clerkId]
+    );
+
+    if (userResult.rows.length === 0) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+
+    const userId = userResult.rows[0].id;
+
     // Check if user is the creator
     const creatorCheck = await pool.query(
       'SELECT * FROM club_members WHERE club_id = $1::uuid AND user_id = $2 AND role = $3',
-      [clubId, clerkId, 'creator']
+      [clubId, userId, 'creator']
     );
 
     if (creatorCheck.rows.length === 0) {

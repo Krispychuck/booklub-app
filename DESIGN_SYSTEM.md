@@ -318,6 +318,13 @@ Use consistent spacing throughout:
 **Subtle Dividers:** 1px solid #222 (on dark) or #ddd (on light)
 **Focus States:** 2px solid #c8aa6e
 
+### Logo Treatment
+
+The logo uses three CSS techniques for a sophisticated, blended appearance:
+- **Border radius:** `6px` — softens edges without clipping ornate corner flourishes
+- **Mask vignette:** `mask-image: radial-gradient(ellipse 95% 90% at center, black 70%, transparent 100%)` — feathers edges into the black header
+- **Gold glow:** `box-shadow: 0 0 12px rgba(200, 170, 110, 0.15)` on wrapper — warm halo, intensifies on hover
+
 ### Border Radius (iOS/macOS-inspired)
 
 | Element     | Radius | Examples                                      |
