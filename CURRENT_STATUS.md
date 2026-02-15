@@ -1,7 +1,7 @@
 # BooKlub App - Current Status & Configuration
 
-**Last Updated:** February 6, 2026
-**Status:** Production — Core features + Mind Map + Mobile responsive + PostHog analytics
+**Last Updated:** February 14, 2026
+**Status:** Production — Core features + Mind Map + Mobile responsive + PostHog analytics + UI polish (transitions, typography, rounded corners)
 
 ---
 
@@ -237,9 +237,10 @@ Note: Production DB uses **UUIDs** for most IDs, though `init.sql` shows SERIAL.
 6. ~~📱 **Mobile responsiveness**~~ — **DONE** (commit `9bfd16b`). All 10 issues addressed across 6 files with 3 breakpoints.
 7. ~~📊 **PostHog analytics**~~ — **DONE** (commit `0b643c4`). Lightweight page views + user identification.
 8. ~~🔧 **Deploy mobile**~~ — **DONE** (user merged PR mid-session)
-9. ✨ **CSS transitions** — Add `transition: all 0.3s ease` on all interactive elements; fade-in on page loads
-10. 📝 **Typography hierarchy** — Improve heading/body/caption sizing and spacing
-11. 🔧 **Deploy PostHog** — Merge PR from `charming-moore` → `main`
+9. ~~✨ **CSS transitions**~~ — **DONE** (Feb 14). Standardized transitions, page fade-in, modal animations, hover lifts.
+10. ~~📝 **Typography hierarchy**~~ — **DONE** (Feb 14). Established type scale, responsive sizing.
+11. ~~🔧 **Deploy PostHog**~~ — **DONE** (already merged to main).
+12. ~~🔲 **Rounded corners**~~ — **DONE** (Feb 14, MVP feedback). iOS/macOS-style border-radius: 12px cards, 8px buttons, 16px modals.
 
 ---
 

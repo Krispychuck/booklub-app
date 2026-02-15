@@ -144,7 +144,7 @@ function ClubChat({ booklubUser }) {
   }
 
   return (
-    <div className="chat-container">
+    <div className="chat-container page-transition">
       {/* Header */}
      <div className="chat-header">
         <button className="back-button" onClick={() => navigate('/my-clubs')}>

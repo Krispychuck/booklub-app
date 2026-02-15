@@ -8,10 +8,60 @@ body {
   font-family: 'Georgia', serif;
   background-color: #ffffff;
   color: #000000;
+  line-height: 1.6;
+}
+
+/* ==================== TYPOGRAPHY SCALE ==================== */
+/* Display:  2rem   (32px) — page titles like "My Book Clubs"      */
+/* Heading:  1.5rem (24px) — card titles, modal headers             */
+/* Subhead:  1.15rem(18px) — book titles in cards                   */
+/* Body:     1rem   (16px) — default text                           */
+/* Caption:  0.85rem(14px) — labels, metadata, timestamps           */
+/* Micro:    0.75rem(12px) — badges, button labels                  */
+
+.section-title {
+  font-size: 2rem;
+  font-weight: 400;
+  letter-spacing: 1px;
+  margin-bottom: 30px;
+  font-family: 'Georgia', serif;
 }
 
 .App {
   min-height: 100vh;
+}
+
+/* ==================== PAGE TRANSITIONS ==================== */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.page-transition {
+  animation: fadeInUp 0.4s ease-out;
+}
+
+/* ==================== MODAL TRANSITIONS ==================== */
+@keyframes modalOverlayIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes modalSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
 
 .App-header {
@@ -68,6 +118,7 @@ body {
   background-color: #ffffff;
   color: #000000;
   border: 2px solid #ffffff;
+  border-radius: 8px;
   padding: 10px 25px;
   font-size: 14px;
   letter-spacing: 2px;
@@ -102,19 +153,21 @@ body {
 .auth-prompt {
   background-color: #f5f5f5;
   border: 2px solid #000000;
+  border-radius: 12px;
   padding: 40px;
   text-align: center;
   margin-bottom: 40px;
 }
 
 .auth-prompt h2 {
-  font-size: 28px;
+  font-size: 1.5rem;
   font-weight: 400;
-  margin-bottom: 15px;
+  margin-bottom: 12px;
+  letter-spacing: 1px;
 }
 
 .auth-prompt p {
-  font-size: 16px;
+  font-size: 0.95rem;
   line-height: 1.6;
   opacity: 0.8;
 }
@@ -141,6 +194,7 @@ body {
 .book-card {
   background-color: #ffffff;
   border: 2px solid #000000;
+  border-radius: 12px;
   padding: 30px;
   transition: all 0.3s ease;
   cursor: pointer;
@@ -150,41 +204,44 @@ body {
   background-color: #000000;
   color: #ffffff;
   transform: translateY(-5px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.2);
 }
 
 .book-card h2 {
-  font-size: 24px;
+  font-size: 1.35rem;
   font-weight: 400;
   margin-bottom: 10px;
-  line-height: 1.3;
+  line-height: 1.35;
 }
 
 .author {
   font-style: italic;
-  font-size: 16px;
-  margin-bottom: 8px;
+  font-size: 0.95rem;
+  margin-bottom: 6px;
   opacity: 0.8;
 }
 
 .year {
-  font-size: 14px;
-  margin-bottom: 8px;
+  font-size: 0.85rem;
+  margin-bottom: 6px;
   opacity: 0.7;
+  font-family: 'Courier New', monospace;
+  letter-spacing: 0.5px;
 }
 
 .genre {
-  font-size: 12px;
+  font-size: 0.7rem;
   text-transform: uppercase;
   letter-spacing: 2px;
   margin-bottom: 15px;
   padding-bottom: 15px;
   border-bottom: 1px solid currentColor;
   opacity: 0.6;
+  font-family: 'Courier New', monospace;
 }
 
 .description {
-  font-size: 14px;
+  font-size: 0.9rem;
   line-height: 1.6;
   opacity: 0.9;
 }
@@ -193,6 +250,7 @@ body {
   background-color: transparent;
   color: #000000;
   border: 2px solid #c8aa6e;
+  border-radius: 8px;
   padding: 12px 24px;
   font-size: 14px;
   letter-spacing: 2px;
@@ -221,22 +279,25 @@ body {
 
 /* MyClubs Page Styles */
 .my-clubs-heading {
-  font-size: 2.5rem;
-  margin-bottom: 40px;
-  font-family: Georgia, serif;
-  font-weight: normal;
+  font-size: 2rem;
+  margin-bottom: 30px;
+  font-family: 'Georgia', serif;
+  font-weight: 400;
+  letter-spacing: 1px;
 }
 
 .my-clubs-empty {
   text-align: center;
   padding: 60px 20px;
   border: 2px solid #000;
+  border-radius: 12px;
   margin-top: 40px;
 }
 
 .my-clubs-empty-text {
-  font-size: 1.2rem;
+  font-size: 1.05rem;
   margin-bottom: 20px;
+  line-height: 1.5;
 }
 
 .my-clubs-browse-btn {
@@ -245,6 +306,7 @@ body {
   background-color: transparent;
   color: #000;
   border: 2px solid #c8aa6e;
+  border-radius: 8px;
   cursor: pointer;
   font-family: 'Georgia', serif;
   letter-spacing: 2px;
@@ -261,35 +323,39 @@ body {
 /* Club Card Styles */
 .club-card {
   border: 2px solid #000;
+  border-radius: 12px;
   padding: 20px;
   cursor: pointer;
-  transition: transform 0.2s, box-shadow 0.2s;
+  transition: all 0.3s ease;
 }
 
 .club-card-title {
-  font-size: 1.5rem;
-  margin-bottom: 10px;
-  font-family: Georgia, serif;
+  font-size: 1.35rem;
+  margin-bottom: 8px;
+  font-family: 'Georgia', serif;
+  font-weight: 400;
 }
 
 .club-card-book {
-  font-size: 1.1rem;
-  margin-bottom: 5px;
+  font-size: 1rem;
+  margin-bottom: 4px;
   font-style: italic;
 }
 
 .club-card-author {
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   color: #666;
   margin-bottom: 15px;
 }
 
 .club-card-footer {
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   color: #666;
   border-top: 1px solid #ccc;
   padding-top: 10px;
   margin-top: 15px;
+  font-family: 'Courier New', monospace;
+  letter-spacing: 0.5px;
 }
 
 /* ==================== MOBILE RESPONSIVE ==================== */
@@ -376,7 +442,7 @@ body {
   }
 
   .book-card h2 {
-    font-size: 20px;
+    font-size: 1.2rem;
   }
 
   .auth-prompt {
@@ -384,7 +450,7 @@ body {
   }
 
   .auth-prompt h2 {
-    font-size: 22px;
+    font-size: 1.3rem;
   }
 
   /* Modal sizing on tablets */
@@ -429,7 +495,7 @@ body {
 
   /* MyClubs responsive */
   .my-clubs-heading {
-    font-size: 1.8rem;
+    font-size: 1.6rem;
     margin-bottom: 25px;
   }
 
@@ -439,7 +505,7 @@ body {
   }
 
   .club-card-title {
-    font-size: 1.3rem;
+    font-size: 1.2rem;
   }
 }
 
@@ -505,7 +571,7 @@ body {
   }
 
   .book-card h2 {
-    font-size: 18px;
+    font-size: 1.1rem;
   }
 
   .start-club-button {
@@ -519,11 +585,11 @@ body {
   }
 
   .auth-prompt h2 {
-    font-size: 18px;
+    font-size: 1.15rem;
   }
 
   .auth-prompt p {
-    font-size: 14px;
+    font-size: 0.85rem;
   }
 
   .auth-button {
@@ -539,7 +605,7 @@ body {
 
   /* MyClubs responsive - small phones */
   .my-clubs-heading {
-    font-size: 1.5rem;
+    font-size: 1.35rem;
     margin-bottom: 20px;
   }
 
@@ -549,7 +615,7 @@ body {
   }
 
   .my-clubs-empty-text {
-    font-size: 1rem;
+    font-size: 0.95rem;
   }
 
   .club-card {
@@ -557,11 +623,11 @@ body {
   }
 
   .club-card-title {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
   }
 
   .club-card-book {
-    font-size: 1rem;
+    font-size: 0.9rem;
   }
 }
 
@@ -579,7 +645,8 @@ body {
 }
 
 .club-card:hover {
-  box-shadow: 5px 5px 0px #000;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  transform: translateY(-3px);
 }
 
 /* Navigation */
@@ -595,7 +662,8 @@ body {
   font-size: 1.1rem;
   padding: 8px 16px;
   border: 2px solid #c8aa6e;
-  transition: all 0.2s;
+  border-radius: 8px;
+  transition: all 0.3s ease;
 }
 
 .nav-link:hover {
@@ -613,7 +681,8 @@ body {
 }
 
 .club-card:hover {
-  box-shadow: 5px 5px 0px #000;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  transform: translateY(-3px);
 }
 
 /* Join Club Button */
@@ -623,8 +692,9 @@ body {
   background-color: transparent;
   color: #fff;
   border: 2px solid #c8aa6e;
+  border-radius: 8px;
   cursor: pointer;
-  transition: all 0.2s;
+  transition: all 0.3s ease;
   font-weight: normal;
   font-family: inherit;
   text-decoration: none;
@@ -641,6 +711,7 @@ body {
   background-color: #ffffff;
   color: #000000;
   border: 2px solid #ffffff;
+  border-radius: 8px;
   padding: 10px 25px;
   font-size: 12px;
   letter-spacing: 2px;
@@ -677,13 +748,15 @@ body {
   font-size: 16px;
   font-family: 'Georgia', serif;
   border: 2px solid #000000;
+  border-radius: 8px;
   background: #ffffff;
   margin-bottom: 15px;
+  transition: border-color 0.3s ease;
 }
 
 .modal-input:focus {
   outline: none;
-  border-color: #333333;
+  border-color: #c8aa6e;
 }
 
 .modal-error {
@@ -702,6 +775,7 @@ body {
   background-color: transparent;
   color: #000000;
   border: 2px solid #c8aa6e;
+  border-radius: 8px;
   padding: 10px 25px;
   font-size: 14px;
   letter-spacing: 1px;
@@ -725,12 +799,14 @@ body {
   background-color: #ffffff;
   color: #000000;
   border: 2px solid #000000;
+  border-radius: 8px;
   padding: 10px 25px;
   font-size: 14px;
   letter-spacing: 1px;
   text-transform: uppercase;
   cursor: pointer;
   font-family: 'Georgia', serif;
+  transition: all 0.3s ease;
 }
 
 .modal-button-secondary:hover {
@@ -756,8 +832,9 @@ body {
 
 .members-modal h2 {
   margin-bottom: 20px;
-  font-size: 20px;
+  font-size: 1.25rem;
   font-weight: 400;
+  letter-spacing: 1px;
 }
 
 .members-list {
@@ -779,20 +856,22 @@ body {
 }
 
 .member-name {
-  font-size: 16px;
+  font-size: 1rem;
 }
 
 .member-role {
-  font-size: 12px;
+  font-size: 0.7rem;
   text-transform: uppercase;
-  letter-spacing: 1px;
+  letter-spacing: 1.5px;
   opacity: 0.6;
+  font-family: 'Courier New', monospace;
 }
 
 .modal-close-btn {
   background-color: #000000;
   color: #ffffff;
   border: 2px solid #000000;
+  border-radius: 8px;
   padding: 10px 25px;
   font-size: 14px;
   letter-spacing: 1px;
@@ -800,6 +879,7 @@ body {
   cursor: pointer;
   font-family: 'Georgia', serif;
   width: 100%;
+  transition: all 0.3s ease;
 }
 
 .modal-close-btn:hover {
@@ -827,12 +907,14 @@ body {
   background-color: #ffffff;
   color: #000000;
   border: 2px solid #000000;
+  border-radius: 8px;
   padding: 10px 20px;
   font-size: 12px;
   letter-spacing: 1px;
   text-transform: uppercase;
   cursor: pointer;
   font-family: 'Georgia', serif;
+  transition: all 0.3s ease;
 }
 
 .leave-btn:hover {
@@ -844,12 +926,14 @@ body {
   background-color: #000000;
   color: #ffffff;
   border: 2px solid #000000;
+  border-radius: 8px;
   padding: 10px 20px;
   font-size: 12px;
   letter-spacing: 1px;
   text-transform: uppercase;
   cursor: pointer;
   font-family: 'Georgia', serif;
+  transition: all 0.3s ease;
 }
 
 .delete-btn:hover {
@@ -860,6 +944,7 @@ body {
 .confirm-dialog {
   background-color: #f5f5f5;
   border: 2px solid #000000;
+  border-radius: 10px;
   padding: 20px;
   margin-bottom: 15px;
 }
@@ -879,12 +964,14 @@ body {
   background-color: #ffffff;
   color: #000000;
   border: 2px solid #000000;
+  border-radius: 8px;
   padding: 10px 15px;
   font-size: 12px;
   letter-spacing: 1px;
   text-transform: uppercase;
   cursor: pointer;
   font-family: 'Georgia', serif;
+  transition: all 0.3s ease;
 }
 
 .confirm-cancel-btn:hover {
@@ -896,12 +983,14 @@ body {
   background-color: #000000;
   color: #ffffff;
   border: 2px solid #000000;
+  border-radius: 8px;
   padding: 10px 15px;
   font-size: 12px;
   letter-spacing: 1px;
   text-transform: uppercase;
   cursor: pointer;
   font-family: 'Georgia', serif;
+  transition: all 0.3s ease;
 }
 
 .confirm-action-btn:hover {
