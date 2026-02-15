@@ -4,6 +4,38 @@ Session-by-session history of what was built, fixed, and changed. Newest session
 
 ---
 
+## Session: February 14, 2026 (UI Polish — Transitions, Typography, Rounded Corners)
+
+**Branch:** `claude/vigorous-lalande`
+
+### UI/UX — CSS Transitions & Animations
+- **Standardized transitions** — Every button, link, and input now uses `transition: all 0.3s ease`. Consistent timing throughout.
+- **Page fade-in** — All three pages animate in with `fadeInUp` (12px translate + opacity, 0.4s) on route navigation.
+- **Modal open animations** — All modals animate with overlay fade (0.2s) and content slide-up + scale (0.3s).
+- **Card hover lift** — Book cards (-5px) and club cards (-3px) lift on hover with soft box shadows.
+- **Input focus gold** — All text inputs highlight with gold (`#c8aa6e`) border on focus.
+
+### UI/UX — Typography Hierarchy
+- **Type scale** — Display (2rem), Heading (1.5rem), Subhead (1.15rem), Body (1rem), Caption (0.85rem), Micro (0.75rem).
+- **Metadata** — Year, genre, invite codes, member roles now use Courier New monospace.
+- **Responsive type scaling** — All headings scale proportionally across 3 breakpoints.
+
+### UI/UX — Rounded Corners (MVP Feedback)
+- **Cards:** `border-radius: 12px`, **Buttons:** `8px`, **Inputs:** `8px`, **Modals:** `16px`.
+- **Softened shadows** — Hard offset (`5px 5px 0px`) → soft blur (`0 8px 20px rgba(0,0,0,0.15)`).
+
+### Files Changed
+- `frontend/src/App.css` — Transitions, animations, typography, rounded corners
+- `frontend/src/pages/ClubChat.css` — Transitions, rounded corners on messages/buttons/modals/inputs
+- `frontend/src/components/CreateClubModal.css` — Modal animation, rounded corners
+- `frontend/src/components/MindMapVisualization.css` — Rounded corners on modal, detail panel, buttons
+- `frontend/src/components/ClubCreatedModal.css` — Rounded corners
+- `frontend/src/pages/Home.js` — Added `page-transition` wrapper
+- `frontend/src/pages/MyClubs.js` — Added `page-transition` class
+- `frontend/src/pages/ClubChat.js` — Added `page-transition` class
+
+---
+
 ## Session: February 6, 2026 (PostHog Analytics)
 
 **Branch:** `charming-moore`

@@ -24,12 +24,13 @@
 .back-button {
   background: transparent;
   border: 1px solid #fff;
+  border-radius: 8px;
   color: #fff;
   padding: 8px 16px;
   cursor: pointer;
   font-family: 'Courier New', monospace;
   flex-shrink: 0;
-  transition: all 0.2s ease;
+  transition: all 0.3s ease;
 }
 
 .back-button:hover {
@@ -92,6 +93,7 @@
   margin-bottom: 20px;
   padding: 15px;
   border: 1px solid #000;
+  border-radius: 12px;
   max-width: 80%;
 }
 
@@ -141,13 +143,16 @@
   flex: 1;
   padding: 12px 15px;
   border: 2px solid #000;
+  border-radius: 8px;
   font-size: 1rem;
   font-family: 'Courier New', monospace;
+  transition: all 0.3s ease;
 }
 
 .message-input-area input:focus {
   outline: none;
   background-color: #f5f5f5;
+  border-color: #c8aa6e;
 }
 
 .message-input-area button {
@@ -155,12 +160,13 @@
   background-color: #000;
   color: #fff;
   border: 2px solid #000;
+  border-radius: 8px;
   cursor: pointer;
   font-family: 'Courier New', monospace;
   text-transform: uppercase;
   letter-spacing: 1px;
   margin-left: 10px;
-  transition: all 0.2s ease;
+  transition: all 0.3s ease;
 }
 
 .message-input-area button:hover:not(:disabled) {
@@ -193,6 +199,7 @@
   background-color: #000;
   color: #fff;
   border: none;
+  border-radius: 8px;
   cursor: pointer;
   font-family: 'Courier New', monospace;
 }
@@ -205,6 +212,7 @@
 .delete-message-btn {
   background: transparent;
   border: 1px solid currentColor;
+  border-radius: 6px;
   cursor: pointer;
   font-size: 11px;
   opacity: 0;
@@ -244,14 +252,33 @@
   align-items: center;
   justify-content: center;
   z-index: 1000;
+  animation: modalOverlayIn 0.2s ease-out;
+}
+
+@keyframes modalOverlayIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 .delete-modal {
   background: #fff;
   border: 3px solid #000;
+  border-radius: 16px;
   padding: 30px 40px;
   max-width: 400px;
   text-align: center;
+  animation: modalSlideIn 0.3s ease-out;
+}
+
+@keyframes modalSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
 
 .delete-modal h3 {
@@ -279,12 +306,13 @@
   text-transform: uppercase;
   letter-spacing: 1px;
   cursor: pointer;
-  transition: all 0.2s;
+  transition: all 0.3s ease;
 }
 
 .delete-cancel-btn {
   background: #fff;
   border: 2px solid #000;
+  border-radius: 8px;
   color: #000;
 }
 
@@ -295,6 +323,7 @@
 .delete-confirm-btn {
   background: #000;
   border: 2px solid #000;
+  border-radius: 8px;
   color: #fff;
 }
 
@@ -318,6 +347,7 @@
   cursor: pointer;
   transition: all 0.3s ease;
   white-space: nowrap;
+  border-radius: 8px;
 }
 
 .group-comment-btn {
@@ -351,6 +381,7 @@
   background-color: transparent;
   color: #ffffff;
   border: 2px solid #c8aa6e;
+  border-radius: 8px;
   padding: 8px 20px;
   font-size: 11px;
   letter-spacing: 2px;
@@ -371,6 +402,7 @@
   background-color: transparent;
   color: #ffffff;
   border: 2px solid #ffffff;
+  border-radius: 8px;
   padding: 8px 20px;
   font-size: 11px;
   letter-spacing: 2px;
