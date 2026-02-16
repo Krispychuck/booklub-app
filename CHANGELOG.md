@@ -4,6 +4,26 @@ Session-by-session history of what was built, fixed, and changed. Newest session
 
 ---
 
+## Session: February 16, 2026 (Usage Page Polish)
+
+**Branch:** `preview`
+
+### UI Fix — Hide Usage Nav Link
+- **Change** — Removed "Usage" nav link from header so MVP testers don't see it. Page still accessible via direct URL `/admin/usage`.
+- **Cleanup** — Removed unused `.nav-link-subtle` CSS from `App.css`.
+
+### UI Fix — Dashboard Text Readability
+- **Total card** — Bumped label and metadata text from `0.75rem` to `0.85rem`, lightened metadata from `#888` to `#bbb` for better contrast on black.
+- **Feature cards** — Darkened label from `#666` to `#444`, darkened metadata from `#888` to `#555`, bumped sizes from `0.7-0.75rem` to `0.8-0.85rem`.
+- **Daily chart** — Darkened dates from `#666` to `#444`, added `font-weight: 600` to cost values, bumped all text sizes, darkened call counts from `#888` to `#555`.
+
+### Files Modified
+- `frontend/src/App.js` — Removed Usage nav link
+- `frontend/src/App.css` — Removed `.nav-link-subtle` styles
+- `frontend/src/pages/AdminUsage.css` — Readability improvements across all sections
+
+---
+
 ## Session: February 15, 2026 (API Cost Tracking)
 
 **Branch:** `preview`

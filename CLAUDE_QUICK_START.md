@@ -11,7 +11,7 @@ When starting a new session about BooKlub, read this first!
 **Location:** `/Users/mrl/booklub-app/.claude/worktrees/vigorous-lalande`
 **Branch:** `preview` (merge to `main` to deploy)
 **Branch Strategy:** Two branches only — `main` (production) and `preview` (development/testing)
-**Last Updated:** February 15, 2026
+**Last Updated:** February 16, 2026
 **Status:** Production — All core features + Mind Map + Mobile responsive + PostHog analytics + UI polish (transitions, typography, rounded corners, logo sophistication) + Members bug fix + API cost tracking
 
 ---

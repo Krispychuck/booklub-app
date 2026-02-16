@@ -36,7 +36,7 @@
 .usage-total-label {
   display: block;
   font-family: 'Courier New', monospace;
-  font-size: 0.75rem;
+  font-size: 0.85rem;
   text-transform: uppercase;
   letter-spacing: 2px;
   color: #c8aa6e;
@@ -61,8 +61,8 @@
 
 .usage-total-details span {
   font-family: 'Courier New', monospace;
-  font-size: 0.75rem;
-  color: #888;
+  font-size: 0.85rem;
+  color: #bbb;
   letter-spacing: 1px;
 }
 
@@ -104,11 +104,11 @@
 .feature-name {
   display: block;
   font-family: 'Courier New', monospace;
-  font-size: 0.75rem;
+  font-size: 0.85rem;
   text-transform: uppercase;
   letter-spacing: 1.5px;
   margin-bottom: 8px;
-  color: #666;
+  color: #444;
 }
 
 .feature-cost {
@@ -122,8 +122,8 @@
 .feature-meta {
   display: block;
   font-family: 'Courier New', monospace;
-  font-size: 0.7rem;
-  color: #888;
+  font-size: 0.8rem;
+  color: #555;
   letter-spacing: 0.5px;
 }
 
@@ -142,8 +142,8 @@
 
 .daily-date {
   font-family: 'Courier New', monospace;
-  font-size: 0.75rem;
-  color: #666;
+  font-size: 0.85rem;
+  color: #444;
   width: 55px;
   flex-shrink: 0;
   text-align: right;
@@ -166,7 +166,8 @@
 
 .daily-cost {
   font-family: 'Courier New', monospace;
-  font-size: 0.75rem;
+  font-size: 0.85rem;
+  font-weight: 600;
   width: 65px;
   flex-shrink: 0;
   text-align: right;
@@ -174,8 +175,8 @@
 
 .daily-calls {
   font-family: 'Courier New', monospace;
-  font-size: 0.7rem;
-  color: #888;
+  font-size: 0.8rem;
+  color: #555;
   width: 55px;
   flex-shrink: 0;
 }

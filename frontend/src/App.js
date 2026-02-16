@@ -154,7 +154,6 @@ function App() {
               >
                 Join Club
               </button>
-              <Link to="/admin/usage" className="nav-link nav-link-subtle">Usage</Link>
             </SignedIn>
           </nav>
 
