@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const pool = require('../db');
 const Anthropic = require('@anthropic-ai/sdk');
+const logApiUsage = require('../utils/logApiUsage');
 
 const anthropic = new Anthropic({
   apiKey: process.env.ANTHROPIC_API_KEY,
@@ -131,6 +132,15 @@ Only return valid JSON, no additional text.`;
     });
 
     console.log('Received Claude response');
+
+    // Log API usage for cost tracking
+    await logApiUsage({
+      feature: 'mind_map',
+      clubId,
+      model: 'claude-sonnet-4-20250514',
+      inputTokens: claudeResponse.usage?.input_tokens || 0,
+      outputTokens: claudeResponse.usage?.output_tokens || 0,
+    });
 
 // 5. Parse Claude's response (strip markdown code fences if present)
     let responseText = claudeResponse.content[0].text;

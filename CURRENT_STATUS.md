@@ -1,7 +1,7 @@
 # BooKlub App - Current Status & Configuration
 
-**Last Updated:** February 14, 2026
-**Status:** Production — Core features + Mind Map + Mobile responsive + PostHog analytics + UI polish (transitions, typography, rounded corners, logo sophistication)
+**Last Updated:** February 15, 2026
+**Status:** Production — Core features + Mind Map + Mobile responsive + PostHog analytics + UI polish + API cost tracking
 
 ---
 
@@ -110,7 +110,9 @@ booklub-app/
 │   │   │   ├── Home.js
 │   │   │   ├── MyClubs.js (ACTIVE - not .jsx)
 │   │   │   ├── ClubChat.js
-│   │   │   └── ClubChat.css
+│   │   │   ├── ClubChat.css
+│   │   │   ├── AdminUsage.js           ← API cost dashboard
+│   │   │   └── AdminUsage.css
 │   │   ├── components/
 │   │   │   ├── CreateClubModal.js / .css
 │   │   │   ├── JoinClubModal.js
@@ -124,7 +126,12 @@ booklub-app/
 │   │   └── index.js
 │   └── package.json (includes d3)
 ├── backend/
+│   ├── config/
+│   │   └── pricing.js                  ← API pricing constants
+│   ├── utils/
+│   │   └── logApiUsage.js              ← Cost tracking logger
 │   ├── routes/
+│   │   ├── admin.js                    ← Usage dashboard API
 │   │   ├── books.js
 │   │   ├── clubs.js
 │   │   ├── messages.js
@@ -232,6 +239,11 @@ Note: Production DB uses **UUIDs** for most IDs, though `init.sql` shows SERIAL.
 36. **Logo sophistication** — CSS mask vignette feathers edges into black header, gold glow hover effect, 6px border-radius.
 37. **BUG-F007 fixed** — Members modal "Could not load members". Fixed JOIN on `users.clerk_id` → `users.id`. Added Clerk→DB ID lookup to leave/delete endpoints. Removed debug console.logs.
 
+### API Cost Tracking (Feb 15, 2026)
+38. **Cost tracking system** — Created `api_usage` table, pricing module, and fire-and-forget logger. Every Claude API call now records input/output tokens and pre-calculated cost.
+39. **Admin dashboard** — `/admin/usage` page with total cost headline, feature breakdown, daily bar chart, recent calls table. Design system styling.
+40. **Instrumented API calls** — Author responses and mind map generation both log to `api_usage`. Messages metadata now includes `input_tokens`.
+
 ---
 
 ## Next Steps (Upcoming)
@@ -250,7 +262,8 @@ Note: Production DB uses **UUIDs** for most IDs, though `init.sql` shows SERIAL.
 12. ~~🔲 **Rounded corners**~~ — **DONE** (Feb 14, MVP feedback)
 13. ~~🎬 **Logo sophistication**~~ — **DONE** (Feb 14, MVP feedback)
 14. ~~🐛 **Members bug**~~ — **DONE** (Feb 14, BUG-F007)
-15. 🧪 **Real-world testing** — Share with MVP testers, monitor PostHog, fix issues
+15. ~~📊 **API cost tracking**~~ — **DONE** (Feb 15). Dashboard at `/admin/usage`.
+16. 🧪 **Real-world testing** — Share with MVP testers, monitor PostHog, fix issues
 16. 📖 **Reading progress** — Chapter/page tracking (key PRODUCT_VISION.md feature)
 17. 🗺️ **Additional roadmap items** — Review PRODUCT_VISION.md for next features
 

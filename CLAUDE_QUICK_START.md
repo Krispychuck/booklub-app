@@ -12,7 +12,7 @@ When starting a new session about BooKlub, read this first!
 **Branch:** `preview` (merge to `main` to deploy)
 **Branch Strategy:** Two branches only — `main` (production) and `preview` (development/testing)
 **Last Updated:** February 15, 2026
-**Status:** Production — All core features + Mind Map + Mobile responsive + PostHog analytics + UI polish (transitions, typography, rounded corners, logo sophistication) + Members bug fix
+**Status:** Production — All core features + Mind Map + Mobile responsive + PostHog analytics + UI polish (transitions, typography, rounded corners, logo sophistication) + Members bug fix + API cost tracking
 
 ---
 
@@ -47,6 +47,9 @@ When starting a new session about BooKlub, read this first!
 - `frontend/src/components/LoadingSpinner.css` — Book animation + button-spinner CSS
 - `backend/server.js` — Express app, route registration
 - `backend/routes/mindmaps.js` — Mind map generation (auto-creates table)
+- `backend/routes/admin.js` — API usage dashboard endpoint
+- `backend/config/pricing.js` — Model pricing constants
+- `backend/utils/logApiUsage.js` — Fire-and-forget API usage logger
 - `backend/seeds/schema.sql` — Production database column types
 
 ---
@@ -122,6 +125,7 @@ POST /api/users              { clerkId, email, name }
 PUT  /api/users/:userId/name { name }
 POST /api/mindmaps/:clubId/generate { userId }
 GET  /api/mindmaps/:clubId
+GET  /api/admin/usage
 ```
 
 ---
@@ -159,9 +163,10 @@ git push origin preview
 11. ~~🔲 Rounded corners~~ — **DONE** (Feb 14, MVP feedback). iOS/macOS-style border-radius.
 12. ~~🎬 Logo sophistication~~ — **DONE** (Feb 14, MVP feedback). CSS mask vignette + gold glow + rounded corners.
 13. ~~🐛 Members bug~~ — **DONE** (Feb 14, BUG-F007). Fixed Clerk ID vs DB ID in members/leave/delete endpoints.
-14. 🧪 **Real-world testing** — Share with MVP testers, monitor PostHog, fix issues
-15. 📖 **Reading progress** — Chapter/page tracking (key PRODUCT_VISION.md feature)
-16. 🗺️ **Additional roadmap items** — Review PRODUCT_VISION.md for next features
+14. ~~💰 API cost tracking~~ — **DONE** (Feb 15). `api_usage` table, pricing module, admin dashboard at `/admin/usage`.
+15. 🧪 **Real-world testing** — Share with MVP testers, monitor PostHog, fix issues. Verify cost tracking works in production.
+16. 📖 **Reading progress** — Chapter/page tracking (key PRODUCT_VISION.md feature)
+17. 🗺️ **Additional roadmap items** — Review PRODUCT_VISION.md for next features
 
 ---
 

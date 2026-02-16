@@ -4,9 +4,39 @@ Session-by-session history of what was built, fixed, and changed. Newest session
 
 ---
 
+## Session: February 15, 2026 (API Cost Tracking)
+
+**Branch:** `preview`
+
+### Feature — API Cost Tracking Dashboard
+- **Pricing module** — `backend/config/pricing.js` with Claude Sonnet 4 pricing ($3/MTok input, $15/MTok output). Single file to update when model or pricing changes.
+- **Usage logger** — `backend/utils/logApiUsage.js` logs every API call with token counts and pre-calculated costs. Fire-and-forget (errors never break user-facing requests). Auto-creates `api_usage` table on first call.
+- **Instrumented both API call sites** — Author responses (`messages.js`) and mind map generation (`mindmaps.js`) now log input/output tokens and costs. Also updated messages metadata to include `input_tokens`.
+- **Admin API endpoint** — `GET /api/admin/usage` returns totals, per-feature breakdown, daily costs (30 days), and recent 20 calls.
+- **Dashboard page** — `/admin/usage` with total cost headline, feature cards, daily bar chart (CSS-only), and recent calls table. Design system styling (gold accents, Georgia serif, Courier New for data).
+- **Nav link** — Subtle "Usage" link in header nav (signed-in users only).
+- **Database schema** — `api_usage` table added to `database/init.sql` for future deploys.
+
+### Files Added
+- `backend/config/pricing.js` — Model pricing constants
+- `backend/utils/logApiUsage.js` — Usage logger with auto-table-creation
+- `backend/routes/admin.js` — Admin usage API endpoint
+- `frontend/src/pages/AdminUsage.js` — Dashboard page component
+- `frontend/src/pages/AdminUsage.css` — Dashboard styles
+
+### Files Modified
+- `backend/routes/messages.js` — Added logApiUsage call, updated metadata
+- `backend/routes/mindmaps.js` — Added logApiUsage call
+- `backend/server.js` — Registered admin route
+- `frontend/src/App.js` — Added AdminUsage route + nav link
+- `frontend/src/App.css` — Added .nav-link-subtle style
+- `database/init.sql` — Added api_usage table schema
+
+---
+
 ## Session: February 14, 2026 (UI Polish — Transitions, Typography, Rounded Corners, Logo, Members Bug Fix)
 
-**Branch:** `claude/vigorous-lalande`
+**Branch:** `preview`
 
 ### UI/UX — Logo Sophistication (MVP Feedback)
 - **Rounded corners** — `border-radius: 6px` on logo image, gentle enough to preserve Art Nouveau corner flourishes.
