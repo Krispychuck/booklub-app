@@ -27,6 +27,9 @@ console.log('🧠 Mindmaps routes loaded');
 const adminRouter = require('./routes/admin');
 console.log('📊 Admin routes loaded');
 
+const anthropicUsageRouter = require('./routes/anthropicUsage');
+console.log('📊 Anthropic usage routes loaded');
+
 // Use routes
 app.use('/api/books', booksRouter);
 console.log('📚 Books routes registered');
@@ -45,6 +48,9 @@ console.log('🧠 Mindmaps routes registered');
 
 app.use('/api/admin', adminRouter);
 console.log('📊 Admin routes registered');
+
+app.use('/api/admin/anthropic-usage', anthropicUsageRouter);
+console.log('📊 Anthropic usage routes registered');
 
 // Direct test route for messages
 app.get('/api/messages-test', (req, res) => {

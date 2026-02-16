@@ -4,7 +4,7 @@ Session-by-session history of what was built, fixed, and changed. Newest session
 
 ---
 
-## Session: February 15, 2026 (API Cost Tracking)
+## Session: February 15, 2026 (API Cost Tracking + Anthropic Admin API)
 
 **Branch:** `preview`
 
@@ -17,17 +17,28 @@ Session-by-session history of what was built, fixed, and changed. Newest session
 - **Nav link** — Subtle "Usage" link in header nav (signed-in users only).
 - **Database schema** — `api_usage` table added to `database/init.sql` for future deploys.
 
+### Feature — Anthropic Admin API Integration
+- **Proxy endpoint** — `GET /api/admin/anthropic-usage` calls Anthropic's Cost API and Usage API to fetch account-wide historical data (last 31 days).
+- **Dual-section dashboard** — "Anthropic Account Usage" section shows total account spend, model breakdown, and daily cost chart from Anthropic's data. "BooKlub Tracked Usage" section shows per-call detail from local logging.
+- **Graceful degradation** — If `ANTHROPIC_ADMIN_API_KEY` env var not set, shows info banner prompting setup. If API errors, shows error banner. Local data always displays.
+- **Setup required** — User must generate Admin API key at Anthropic Console and add as `ANTHROPIC_ADMIN_API_KEY` env var on Render.
+
+### Bug Fix — Back Button Invisible
+- **Root cause** — `.admin-usage .back-button` had no `color` property, inherited white from parent context.
+- **Fix** — Added `color: #000` to the back button CSS rule.
+
 ### Files Added
 - `backend/config/pricing.js` — Model pricing constants
 - `backend/utils/logApiUsage.js` — Usage logger with auto-table-creation
-- `backend/routes/admin.js` — Admin usage API endpoint
+- `backend/routes/admin.js` — Admin usage API endpoint (local data)
+- `backend/routes/anthropicUsage.js` — Anthropic Admin API proxy endpoint
 - `frontend/src/pages/AdminUsage.js` — Dashboard page component
 - `frontend/src/pages/AdminUsage.css` — Dashboard styles
 
 ### Files Modified
 - `backend/routes/messages.js` — Added logApiUsage call, updated metadata
 - `backend/routes/mindmaps.js` — Added logApiUsage call
-- `backend/server.js` — Registered admin route
+- `backend/server.js` — Registered admin + anthropicUsage routes
 - `frontend/src/App.js` — Added AdminUsage route + nav link
 - `frontend/src/App.css` — Added .nav-link-subtle style
 - `database/init.sql` — Added api_usage table schema

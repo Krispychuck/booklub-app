@@ -1,7 +1,7 @@
 # BooKlub App - Current Status & Configuration
 
 **Last Updated:** February 15, 2026
-**Status:** Production — Core features + Mind Map + Mobile responsive + PostHog analytics + UI polish + API cost tracking
+**Status:** Production — Core features + Mind Map + Mobile responsive + PostHog analytics + UI polish + API cost tracking + Anthropic Admin API
 
 ---
 
@@ -46,6 +46,7 @@ NODE_VERSION=18
 ```
 DATABASE_URL=postgresql://[REDACTED - Neon connection string]
 ANTHROPIC_API_KEY=sk-ant-[REDACTED]
+ANTHROPIC_ADMIN_API_KEY=sk-ant-admin-[REDACTED]  # Optional: enables account-wide usage data on /admin/usage
 PORT=3001
 NODE_ENV=production
 ```
@@ -131,7 +132,8 @@ booklub-app/
 │   ├── utils/
 │   │   └── logApiUsage.js              ← Cost tracking logger
 │   ├── routes/
-│   │   ├── admin.js                    ← Usage dashboard API
+│   │   ├── admin.js                    ← Usage dashboard API (local data)
+│   │   ├── anthropicUsage.js           ← Anthropic Admin API proxy
 │   │   ├── books.js
 │   │   ├── clubs.js
 │   │   ├── messages.js
@@ -243,6 +245,8 @@ Note: Production DB uses **UUIDs** for most IDs, though `init.sql` shows SERIAL.
 38. **Cost tracking system** — Created `api_usage` table, pricing module, and fire-and-forget logger. Every Claude API call now records input/output tokens and pre-calculated cost.
 39. **Admin dashboard** — `/admin/usage` page with total cost headline, feature breakdown, daily bar chart, recent calls table. Design system styling.
 40. **Instrumented API calls** — Author responses and mind map generation both log to `api_usage`. Messages metadata now includes `input_tokens`.
+41. **Anthropic Admin API** — Proxy endpoint fetches account-wide historical usage via Anthropic's Cost + Usage APIs. Dashboard shows dual sections: Anthropic account data + local per-call data.
+42. **Back button fix** — Added `color: #000` to back button CSS (was invisible white on white).
 
 ---
 
