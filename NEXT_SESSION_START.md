@@ -55,7 +55,7 @@ Continue BooKlub development from previous session.
 - Loading states: Book-riffling animation on all views + branded startup screen
 - Mobile responsive (3 breakpoints: 768px, 480px, 375px)
 - PostHog analytics (deployed and tracking)
-- API cost tracking (local per-call logging + Anthropic Admin API for account-wide data at /admin/usage)
+- API cost tracking (per-feature, per-club detail at /admin/usage; account-wide costs viewable in Anthropic Console)
 - CSS transitions (0.3s ease on all interactive elements)
 - Typography hierarchy (type scale from Display 2rem to Micro 0.75rem)
 - Rounded corners (iOS/macOS-style: 16px modals, 12px cards, 8px buttons)

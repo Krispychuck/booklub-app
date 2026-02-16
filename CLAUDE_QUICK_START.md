@@ -47,8 +47,7 @@ When starting a new session about BooKlub, read this first!
 - `frontend/src/components/LoadingSpinner.css` — Book animation + button-spinner CSS
 - `backend/server.js` — Express app, route registration
 - `backend/routes/mindmaps.js` — Mind map generation (auto-creates table)
-- `backend/routes/admin.js` — API usage dashboard endpoint (local data)
-- `backend/routes/anthropicUsage.js` — Anthropic Admin API proxy (account-wide data)
+- `backend/routes/admin.js` — API usage dashboard endpoint
 - `backend/config/pricing.js` — Model pricing constants
 - `backend/utils/logApiUsage.js` — Fire-and-forget API usage logger
 - `backend/seeds/schema.sql` — Production database column types
@@ -127,7 +126,6 @@ PUT  /api/users/:userId/name { name }
 POST /api/mindmaps/:clubId/generate { userId }
 GET  /api/mindmaps/:clubId
 GET  /api/admin/usage
-GET  /api/admin/anthropic-usage
 ```
 
 ---
