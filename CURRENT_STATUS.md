@@ -270,8 +270,8 @@ Note: Production DB uses **UUIDs** for most IDs, though `init.sql` shows SERIAL.
 14. ~~🐛 **Members bug**~~ — **DONE** (Feb 14, BUG-F007)
 15. ~~📊 **API cost tracking**~~ — **DONE** (Feb 15). Dashboard at `/admin/usage`.
 16. 🧪 **Real-world testing** — Share with MVP testers, monitor PostHog, fix issues
-16. 📖 **Reading progress** — Chapter/page tracking (key PRODUCT_VISION.md feature)
-17. 🗺️ **Additional roadmap items** — Review PRODUCT_VISION.md for next features
+17. 📖 **Reading progress** — Chapter/page tracking (key PRODUCT_VISION.md feature)
+18. 🗺️ **Additional roadmap items** — Review PRODUCT_VISION.md for next features
 
 ---
 
