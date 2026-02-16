@@ -692,17 +692,6 @@ body {
   border: 2px solid #c8aa6e;
 }
 
-.nav-link-subtle {
-  font-size: 0.85rem;
-  opacity: 0.6;
-  border-color: #666;
-}
-
-.nav-link-subtle:hover {
-  opacity: 1;
-  border-color: #c8aa6e;
-}
-
 /* Clubs Grid */
 .clubs-grid {
   display: grid;

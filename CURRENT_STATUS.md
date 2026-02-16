@@ -1,6 +1,6 @@
 # BooKlub App - Current Status & Configuration
 
-**Last Updated:** February 15, 2026
+**Last Updated:** February 16, 2026
 **Status:** Production — Core features + Mind Map + Mobile responsive + PostHog analytics + UI polish + API cost tracking
 
 ---
@@ -176,7 +176,7 @@ Note: Production DB uses **UUIDs** for most IDs, though `init.sql` shows SERIAL.
 
 ---
 
-## Session History (Feb 5-6, Feb 14, 2026)
+## Session History (Feb 5-6, Feb 14-16, 2026)
 
 ### Mind Map Bugs Fixed
 1. **Backend route not registered** — `mindmaps.js` existed but wasn't wired in `server.js`
@@ -245,6 +245,10 @@ Note: Production DB uses **UUIDs** for most IDs, though `init.sql` shows SERIAL.
 40. **Instrumented API calls** — Author responses and mind map generation both log to `api_usage`. Messages metadata now includes `input_tokens`.
 41. **Back button fix** — Added `color: #000` to back button CSS (was invisible white on white).
 42. **Anthropic Admin API removed** — Built then removed; Anthropic Console already provides Usage/Cost dashboards natively.
+
+### Usage Page Polish (Feb 16, 2026)
+43. **Hidden Usage nav link** — Removed from header nav so MVP testers don't see it. Page still accessible via `/admin/usage` URL.
+44. **Dashboard readability** — Increased text sizes, darkened colors, added font-weight across total card, feature cards, and daily chart.
 
 ---
 
