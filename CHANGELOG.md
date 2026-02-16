@@ -16,6 +16,11 @@ Session-by-session history of what was built, fixed, and changed. Newest session
 - **Dashboard page** — `/admin/usage` with total cost headline, feature cards, daily bar chart (CSS-only), and recent calls table. Design system styling (gold accents, Georgia serif, Courier New for data).
 - **Nav link** — Subtle "Usage" link in header nav (signed-in users only).
 - **Database schema** — `api_usage` table added to `database/init.sql` for future deploys.
+- **Note:** Anthropic Admin API integration was built and then removed — Anthropic Console already provides Usage/Cost dashboards at `platform.claude.com`. The local per-feature/per-club tracking adds value beyond what Anthropic offers natively.
+
+### Bug Fix — Back Button Invisible
+- **Root cause** — `.admin-usage .back-button` had no `color` property, inherited white from parent context.
+- **Fix** — Added `color: #000` to the back button CSS rule.
 
 ### Files Added
 - `backend/config/pricing.js` — Model pricing constants

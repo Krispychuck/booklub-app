@@ -243,6 +243,8 @@ Note: Production DB uses **UUIDs** for most IDs, though `init.sql` shows SERIAL.
 38. **Cost tracking system** — Created `api_usage` table, pricing module, and fire-and-forget logger. Every Claude API call now records input/output tokens and pre-calculated cost.
 39. **Admin dashboard** — `/admin/usage` page with total cost headline, feature breakdown, daily bar chart, recent calls table. Design system styling.
 40. **Instrumented API calls** — Author responses and mind map generation both log to `api_usage`. Messages metadata now includes `input_tokens`.
+41. **Back button fix** — Added `color: #000` to back button CSS (was invisible white on white).
+42. **Anthropic Admin API removed** — Built then removed; Anthropic Console already provides Usage/Cost dashboards natively.
 
 ---
 
