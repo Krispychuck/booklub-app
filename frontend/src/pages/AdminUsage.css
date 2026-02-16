@@ -1,0 +1,297 @@
+/* Admin Usage Dashboard */
+.admin-usage {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 30px 20px;
+}
+
+.admin-usage .back-button {
+  background: transparent;
+  border: 2px solid #000;
+  border-radius: 8px;
+  padding: 8px 16px;
+  font-family: 'Georgia', serif;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-bottom: 20px;
+}
+
+.admin-usage .back-button:hover {
+  background: #000;
+  color: #fff;
+}
+
+/* Total Cost Card */
+.usage-total-card {
+  background: #000;
+  color: #fff;
+  border-radius: 12px;
+  padding: 30px;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.usage-total-label {
+  display: block;
+  font-family: 'Courier New', monospace;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: #c8aa6e;
+  margin-bottom: 8px;
+}
+
+.usage-total-amount {
+  display: block;
+  font-family: 'Georgia', serif;
+  font-size: 3rem;
+  font-weight: bold;
+  color: #c8aa6e;
+  margin-bottom: 12px;
+}
+
+.usage-total-details {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.usage-total-details span {
+  font-family: 'Courier New', monospace;
+  font-size: 0.75rem;
+  color: #888;
+  letter-spacing: 1px;
+}
+
+/* Section Headings */
+.usage-section {
+  margin-bottom: 30px;
+}
+
+.usage-section h2 {
+  font-family: 'Georgia', serif;
+  font-size: 1.35rem;
+  margin-bottom: 15px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #ddd;
+}
+
+/* Feature Cards */
+.usage-feature-cards {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.usage-feature-card {
+  flex: 1;
+  min-width: 200px;
+  border: 2px solid #000;
+  border-radius: 12px;
+  padding: 20px;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.usage-feature-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.feature-name {
+  display: block;
+  font-family: 'Courier New', monospace;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-bottom: 8px;
+  color: #666;
+}
+
+.feature-cost {
+  display: block;
+  font-family: 'Georgia', serif;
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.feature-meta {
+  display: block;
+  font-family: 'Courier New', monospace;
+  font-size: 0.7rem;
+  color: #888;
+  letter-spacing: 0.5px;
+}
+
+/* Daily Chart */
+.usage-daily-chart {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.daily-bar-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.daily-date {
+  font-family: 'Courier New', monospace;
+  font-size: 0.75rem;
+  color: #666;
+  width: 55px;
+  flex-shrink: 0;
+  text-align: right;
+}
+
+.daily-bar-container {
+  flex: 1;
+  height: 20px;
+  background: #f0f0f0;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.daily-bar {
+  height: 100%;
+  background: #c8aa6e;
+  border-radius: 6px;
+  transition: width 0.5s ease;
+}
+
+.daily-cost {
+  font-family: 'Courier New', monospace;
+  font-size: 0.75rem;
+  width: 65px;
+  flex-shrink: 0;
+  text-align: right;
+}
+
+.daily-calls {
+  font-family: 'Courier New', monospace;
+  font-size: 0.7rem;
+  color: #888;
+  width: 55px;
+  flex-shrink: 0;
+}
+
+/* Recent Calls Table */
+.usage-table-wrapper {
+  overflow-x: auto;
+  border-radius: 12px;
+  border: 1px solid #ddd;
+}
+
+.usage-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: 'Georgia', serif;
+  font-size: 0.85rem;
+}
+
+.usage-table th {
+  background: #000;
+  color: #fff;
+  padding: 10px 12px;
+  text-align: left;
+  font-family: 'Courier New', monospace;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.usage-table td {
+  padding: 10px 12px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.usage-table tbody tr:hover {
+  background: #fafafa;
+}
+
+.usage-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* Empty State */
+.usage-empty {
+  text-align: center;
+  padding: 40px 20px;
+  color: #888;
+  font-family: 'Georgia', serif;
+}
+
+.usage-empty p:first-child {
+  font-size: 1.2rem;
+  margin-bottom: 8px;
+  color: #333;
+}
+
+.usage-empty p:last-child {
+  font-size: 0.85rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .admin-usage {
+    padding: 20px 15px;
+  }
+
+  .usage-total-amount {
+    font-size: 2.2rem;
+  }
+
+  .usage-total-details {
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .usage-feature-cards {
+    flex-direction: column;
+  }
+
+  .usage-feature-card {
+    min-width: unset;
+  }
+
+  .daily-bar-row {
+    gap: 6px;
+  }
+
+  .daily-date {
+    width: 45px;
+    font-size: 0.65rem;
+  }
+
+  .daily-cost {
+    width: 55px;
+    font-size: 0.65rem;
+  }
+
+  .daily-calls {
+    display: none;
+  }
+
+  .usage-table {
+    font-size: 0.75rem;
+  }
+
+  .usage-table th,
+  .usage-table td {
+    padding: 8px 6px;
+  }
+}
+
+@media (max-width: 480px) {
+  .usage-total-amount {
+    font-size: 1.8rem;
+  }
+
+  .usage-section h2 {
+    font-size: 1.15rem;
+  }
+}

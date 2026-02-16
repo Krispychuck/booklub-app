@@ -24,6 +24,9 @@ console.log('👤 Users routes loaded');
 const mindmapsRouter = require('./routes/mindmaps');
 console.log('🧠 Mindmaps routes loaded');
 
+const adminRouter = require('./routes/admin');
+console.log('📊 Admin routes loaded');
+
 // Use routes
 app.use('/api/books', booksRouter);
 console.log('📚 Books routes registered');
@@ -39,6 +42,9 @@ console.log('👤 Users routes registered');
 
 app.use('/api/mindmaps', mindmapsRouter);
 console.log('🧠 Mindmaps routes registered');
+
+app.use('/api/admin', adminRouter);
+console.log('📊 Admin routes registered');
 
 // Direct test route for messages
 app.get('/api/messages-test', (req, res) => {
