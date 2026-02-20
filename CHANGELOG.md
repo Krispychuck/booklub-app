@@ -4,6 +4,39 @@ Session-by-session history of what was built, fixed, and changed. Newest session
 
 ---
 
+## Session: February 19, 2026 (Sprint 3 — Real-Time Chat)
+
+**Branch:** `charming-moore`
+**Commit:** `a53b7f0`
+
+### Real-Time Chat Polling (MVF-3)
+- **New API endpoint:** `GET /api/messages/club/:clubId/since/:lastMessageId` — returns only messages newer than the given ID. Efficient delta fetch instead of re-loading all messages.
+- **Frontend polling:** ClubChat.js now polls every 5 seconds for new messages from other club members.
+- **Smart scroll:** Auto-scrolls only if user is near the bottom (within 150px). Users reading earlier messages aren't disrupted.
+- **Force scroll on send:** User's own messages and AI responses always scroll to bottom.
+- **Polling pauses while sending:** Prevents duplicate messages during send operations.
+- **Silent failure:** Polling errors don't disrupt the UI.
+
+### Files Changed
+- `backend/routes/messages.js` — Added `/since/:lastMessageId` endpoint
+- `frontend/src/pages/ClubChat.js` — Added polling interval, smart scroll, messagesAreaRef
+
+---
+
+## Session: February 19, 2026 (Post-Deploy — Docs Update + Worktree Cleanup)
+
+**Branch:** `charming-moore`
+
+### Deployment
+- **Sprints 1+2 merged to main and deployed** to production via PR merge
+
+### Worktree Cleanup
+- **Removed rogue `vigorous-lalande` worktree** — A previous Claude Code session had auto-created a new worktree (default setting) which committed changes directly to `main`, bypassing our PR workflow and causing merge conflicts.
+- **Added worktree safety check to docs** — `CLAUDE_QUICK_START.md` now includes "DO NOT CREATE NEW WORKTREES" section with `git worktree list` check at session start.
+- **`NEXT_SESSION_START.md` now starts with worktree safety check** as the first action for any new session.
+
+---
+
 ## Session: February 19, 2026 (Sprint 2 — Chat Readability Overhaul)
 
 **Branch:** `charming-moore`

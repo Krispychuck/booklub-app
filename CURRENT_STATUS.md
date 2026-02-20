@@ -1,7 +1,7 @@
 # BooKlub App - Current Status & Configuration
 
 **Last Updated:** February 19, 2026
-**Status:** Production — Core features + Mind Map + Mobile responsive + PostHog analytics + AI Author context
+**Status:** Production — Core features + Mind Map + Mobile responsive + PostHog analytics + AI Author context + Chat readability overhaul
 
 ---
 
@@ -236,14 +236,18 @@ Note: Production DB uses **UUIDs** for most IDs, though `init.sql` shows SERIAL.
 37. **AI message redesign** — Parchment background + gold left accent bar (was full black bg). Paragraph splitting for long responses.
 38. **Typography bump** — 1.05rem / 1.7 line-height for message content. Georgia serif for input.
 
+### Sprint 3 — Real-Time Chat (Feb 19, 2026)
+39. **Polling endpoint** — `GET /api/messages/club/:clubId/since/:lastMessageId` for efficient delta fetches.
+40. **5-second polling** — Frontend polls for new messages, smart-scrolls only when near bottom, pauses during sends.
+
 ---
 
 ## Next Steps (Upcoming)
 
 See `DEVELOPMENT_ROADMAP.md` for full sprint plan. Current priorities:
 
-1. 🔧 **Deploy all changes** — Merge PR from `charming-moore` → `main` (includes PostHog + Sprint 1 + Sprint 2)
-3. 🔄 **Sprint 3: Real-time chat** — Polling-based refresh for simultaneous chatting
+1. ~~🔧 **Deploy Sprints 1+2**~~ — **DEPLOYED** (PR merged Feb 19, 2026)
+3. ~~🔄 **Sprint 3: Real-time chat**~~ — **DONE** (pending deploy)
 4. 🗂️ **Sprint 4: Topic Explorer** — Replace confusing mind map with simple topic list
 5. 👋 **Sprint 5: Onboarding** — Help new users understand what Booklub is
 6. 🔖 **Sprint 6: Reading progress & spoiler guard** — Spoiler-safe AI for mid-book readers

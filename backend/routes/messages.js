@@ -43,6 +43,35 @@ router.get('/club/:clubId', async (req, res) => {
   }
 });
 
+// GET new messages since a given message ID (for polling)
+router.get('/club/:clubId/since/:lastMessageId', async (req, res) => {
+  try {
+    const { clubId, lastMessageId } = req.params;
+
+    const result = await pool.query(
+      `SELECT
+        m.id,
+        m.club_id,
+        m.sender_type,
+        m.sender_user_id,
+        m.sender_ai_name,
+        m.content,
+        m.created_at,
+        u.name as sender_name
+      FROM messages m
+      LEFT JOIN users u ON m.sender_user_id = u.id
+      WHERE m.club_id = $1 AND m.id > $2
+      ORDER BY m.created_at ASC`,
+      [clubId, lastMessageId]
+    );
+
+    res.json(result.rows);
+  } catch (error) {
+    console.error('Error fetching new messages:', error);
+    res.status(500).json({ error: 'Failed to fetch new messages' });
+  }
+});
+
 // POST a new message
 router.post('/club/:clubId', async (req, res) => {
   try {

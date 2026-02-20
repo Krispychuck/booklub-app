@@ -11,7 +11,7 @@ When starting a new session about BooKlub, read this first!
 **Location:** `/Users/mrl/.claude-worktrees/booklub-app/charming-moore/`
 **Branch:** `charming-moore` (worktree — merge to `main` to deploy)
 **Last Updated:** February 19, 2026
-**Status:** Production — All core features + Mind Map + Mobile responsive + PostHog analytics + AI Author context upgrade
+**Status:** Production — All core features + Mind Map + Mobile responsive + PostHog analytics + AI Author context + Chat readability + Real-time polling
 
 ---
 
@@ -89,6 +89,25 @@ Can't use `git checkout main`. Use PR workflow:
 2. Create PR: https://github.com/Krispychuck/booklub-app/compare/main...charming-moore
 3. Merge PR → auto-deploys to Cloudflare Pages + Render
 
+### 6. DO NOT CREATE NEW WORKTREES (CRITICAL)
+**Claude Code has a default setting that creates new git worktrees for each session.** This setting MUST be disabled. The owner has disabled it, but if it gets re-enabled or a new session ignores this:
+
+**At the start of every session, run:**
+```bash
+git worktree list
+```
+If you see ANY worktree besides `main` and `charming-moore`, **remove it immediately:**
+```bash
+git worktree remove --force /path/to/rogue/worktree
+```
+
+**Why this matters:** A rogue worktree (`vigorous-lalande`) once committed changes directly to `main`, bypassing our PR workflow. This caused merge conflicts that took significant time to resolve. ALL work must happen on `charming-moore` only.
+
+**Never:**
+- Create a new branch or worktree
+- Commit directly to `main`
+- Use Claude Code's "use a worktree" option
+
 ### 7. Documentation Lives on `charming-moore` Only
 All Claude documentation files (`CLAUDE_QUICK_START.md`, `CHANGELOG.md`, `KNOWN_BUGS.md`, `CURRENT_STATUS.md`, `NEXT_SESSION_START.md`, `DESIGN_SYSTEM.md`, etc.) live on the `charming-moore` branch. They will get merged to `main` via PRs but **`charming-moore` is the source of truth** for docs. Do NOT worry about syncing docs back from `main` or resolving doc conflicts on `main`. The `main` branch is for deployment only — docs there may be stale and that's fine.
 
@@ -109,6 +128,7 @@ POST /api/clubs              { name, bookId, userId }
 POST /api/clubs/join         { inviteCode, userId }
 GET  /api/messages/club/:clubId
 POST /api/messages/club/:clubId    { content, senderUserId }
+GET  /api/messages/club/:clubId/since/:lastMessageId
 POST /api/messages/club/:clubId/ai-response
 GET  /api/users/clerk/:clerkId
 POST /api/users              { clerkId, email, name }
@@ -141,16 +161,17 @@ git push origin charming-moore
 
 See `DEVELOPMENT_ROADMAP.md` for full sprint plan with 7 sprints based on MVP tester feedback.
 
-**Sprint 1 (Critical Fixes):** COMPLETE
-- ~~MVF-6: Browser tab title fix~~ — **DONE** (commit `e75977a`)
-- ~~MVF-4: AI Author context upgrade~~ — **DONE** (commit `e75977a`)
-- BKL-1: Deploy — needs PR merge to `main`
+**Sprint 1 (Critical Fixes):** DEPLOYED
+- ~~MVF-6: Browser tab title fix~~ — **DONE**
+- ~~MVF-4: AI Author context upgrade~~ — **DONE**
 
-**Sprint 2 (Chat Readability):** COMPLETE
-- ~~MVF-1: Chat readability overhaul~~ — **DONE** (commit `c8d4466`)
+**Sprint 2 (Chat Readability):** DEPLOYED
+- ~~MVF-1: Chat readability overhaul~~ — **DONE**
 
-**Upcoming Sprints:**
-- Sprint 3: Real-time chat (polling-based refresh)
+**Sprint 3 (Real-Time Chat):** COMPLETE (pending deploy)
+- ~~MVF-3: Polling-based real-time chat~~ — **DONE** (commit `a53b7f0`)
+
+**Next up:**
 - Sprint 4: Topic Explorer (replace mind map)
 - Sprint 5: Onboarding & concept clarity
 - Sprint 6: Reading progress & spoiler guard

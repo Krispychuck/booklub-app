@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import './ClubChat.css';
 import MembersModal from '../components/MembersModal';
@@ -6,10 +6,12 @@ import MindMapVisualization from '../components/MindMapVisualization';
 import LoadingSpinner from '../components/LoadingSpinner';
 import { API_URL } from '../config';
 
+const POLL_INTERVAL = 5000; // Check for new messages every 5 seconds
+
 function ClubChat({ booklubUser }) {
   const { clubId } = useParams();
   const navigate = useNavigate();
-  
+
   const [club, setClub] = useState(null);
   const [book, setBook] = useState(null);
   const [messages, setMessages] = useState([]);
@@ -21,17 +23,37 @@ function ClubChat({ booklubUser }) {
   const [showMindMap, setShowMindMap] = useState(false);
 
   const messagesEndRef = useRef(null);
+  const messagesAreaRef = useRef(null);
+  const lastMessageIdRef = useRef(null);
 
-  // Scroll to bottom when messages change
-  const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
-  };
+  // Check if user is scrolled near the bottom (within 150px)
+  const isNearBottom = useCallback(() => {
+    const area = messagesAreaRef.current;
+    if (!area) return true;
+    return area.scrollHeight - area.scrollTop - area.clientHeight < 150;
+  }, []);
 
+  // Scroll to bottom (only if user is already near bottom)
+  const scrollToBottom = useCallback((force = false) => {
+    if (force || isNearBottom()) {
+      messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    }
+  }, [isNearBottom]);
+
+  // Track the latest message ID for efficient polling
   useEffect(() => {
-    scrollToBottom();
+    if (messages.length > 0) {
+      lastMessageIdRef.current = messages[messages.length - 1].id;
+    }
   }, [messages]);
 
-  // Fetch club details and messages
+  // Scroll on initial load and when user sends a message
+  useEffect(() => {
+    scrollToBottom(true);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  // Fetch club details and messages (initial load)
   useEffect(() => {
     if (!clubId || !booklubUser?.id) return;
 
@@ -65,6 +87,35 @@ function ClubChat({ booklubUser }) {
 
     fetchClubData();
   }, [clubId, booklubUser?.id]);
+
+  // Poll for new messages every 5 seconds
+  useEffect(() => {
+    if (!clubId || loading) return;
+
+    const pollForMessages = async () => {
+      // Don't poll while user is actively sending (avoids duplicates)
+      if (sending) return;
+
+      const lastId = lastMessageIdRef.current;
+      if (!lastId) return;
+
+      try {
+        const res = await fetch(`${API_URL}/api/messages/club/${clubId}/since/${lastId}`);
+        if (res.ok) {
+          const newMessages = await res.json();
+          if (newMessages.length > 0) {
+            setMessages(prev => [...prev, ...newMessages]);
+            scrollToBottom();
+          }
+        }
+      } catch (error) {
+        // Silently fail — polling errors shouldn't disrupt the UI
+      }
+    };
+
+    const intervalId = setInterval(pollForMessages, POLL_INTERVAL);
+    return () => clearInterval(intervalId);
+  }, [clubId, loading, sending, scrollToBottom]);
 
   // Delete a message
   const handleDeleteMessage = async (messageId) => {
@@ -105,6 +156,8 @@ function ClubChat({ booklubUser }) {
         savedMessage.sender_name = booklubUser?.name || 'You';
         setMessages(prev => [...prev, savedMessage]);
         setNewMessage('');
+        // Always scroll to bottom when user sends their own message
+        setTimeout(() => scrollToBottom(true), 100);
         
         // Only request AI response if askAuthor is true
         if (askAuthor) {
@@ -117,6 +170,7 @@ function ClubChat({ booklubUser }) {
             if (aiResponse.ok) {
               const aiMessage = await aiResponse.json();
               setMessages(prev => [...prev, aiMessage]);
+              setTimeout(() => scrollToBottom(true), 100);
             }
           } catch (aiError) {
             console.error('Error getting AI response:', aiError);
@@ -167,7 +221,7 @@ function ClubChat({ booklubUser }) {
       </div>
 
       {/* Messages Area */}
-      <div className="messages-area">
+      <div className="messages-area" ref={messagesAreaRef}>
         {messages.length === 0 ? (
           <div className="no-messages">
             <p>No messages yet. Start the conversation!</p>
