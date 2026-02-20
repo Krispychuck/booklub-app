@@ -196,7 +196,14 @@ function ClubChat({ booklubUser }) {
                   })}
                 </span>
               </div>
-              <div className="message-content">{message.content}</div>
+              <div className="message-content">
+                {message.sender_type === 'ai'
+                  ? message.content.split('\n\n').map((paragraph, i) => (
+                      <p key={i}>{paragraph}</p>
+                    ))
+                  : message.content
+                }
+              </div>
               <button 
                 className="delete-message-btn"
                 onClick={() => setDeleteModalMessage(message)}
