@@ -4,6 +4,27 @@ Session-by-session history of what was built, fixed, and changed. Newest session
 
 ---
 
+## Session: February 19, 2026 (Sprint 2 — Chat Readability Overhaul)
+
+**Branch:** `charming-moore`
+**Commit:** `c8d4466`
+
+### Chat Readability Redesign (MVF-1 — #1 MVP Complaint)
+- **Full-width layout** — Removed 900px max-width container and 80% message width. Chat now uses the entire screen width. Messages are full-width rows (Slack/Discord style) instead of floating bubbles.
+- **AI message styling** — Replaced full black background (hard to read) with warm parchment (#f8f5ef) and gold left accent bar (#c8aa6e). AI author names styled in italic gold.
+- **User message styling** — Clean, borderless, transparent background with subtle hover highlight.
+- **Paragraph splitting** — AI responses are now split on double-newlines into `<p>` tags with 12px spacing between paragraphs, creating visual breathing room in long responses.
+- **Bigger text** — Message content bumped to 1.05rem with 1.7 line-height (was 1rem/1.6).
+- **Input font** — Changed from Courier New monospace to Georgia serif to match body text.
+- **Delete button** — Repositioned to absolute top-right corner, appears on hover.
+- **Mobile** — All 3 breakpoints updated for new layout. Font sizes stay readable throughout.
+
+### Files Changed
+- `frontend/src/pages/ClubChat.css` — Complete rewrite of message styling, layout, and responsive breakpoints
+- `frontend/src/pages/ClubChat.js` — AI message content now renders as paragraphs via `.split('\n\n')`
+
+---
+
 ## Session: February 19, 2026 (Sprint 1 — MVP Feedback Roadmap + Critical Fixes)
 
 **Branch:** `charming-moore`

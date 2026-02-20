@@ -141,13 +141,15 @@ git push origin charming-moore
 
 See `DEVELOPMENT_ROADMAP.md` for full sprint plan with 7 sprints based on MVP tester feedback.
 
-**Current Sprint (1 — Critical Fixes & Quick Wins):**
+**Sprint 1 (Critical Fixes):** COMPLETE
 - ~~MVF-6: Browser tab title fix~~ — **DONE** (commit `e75977a`)
 - ~~MVF-4: AI Author context upgrade~~ — **DONE** (commit `e75977a`)
-- BKL-1: Deploy PostHog — Merge PR from `charming-moore` → `main`
+- BKL-1: Deploy — needs PR merge to `main`
+
+**Sprint 2 (Chat Readability):** COMPLETE
+- ~~MVF-1: Chat readability overhaul~~ — **DONE** (commit `c8d4466`)
 
 **Upcoming Sprints:**
-- Sprint 2: Chat readability overhaul (biggest MVP complaint)
 - Sprint 3: Real-time chat (polling-based refresh)
 - Sprint 4: Topic Explorer (replace mind map)
 - Sprint 5: Onboarding & concept clarity

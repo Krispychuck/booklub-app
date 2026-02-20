@@ -231,14 +231,18 @@ Note: Production DB uses **UUIDs** for most IDs, though `init.sql` shows SERIAL.
 34. **AI Author context upgrade** — System prompt now includes Booklub world context, multi-user awareness, member names, Group Comment understanding. Message history increased to 20.
 35. **Development roadmap** — Created DEVELOPMENT_ROADMAP.md with 7 MVP feedback items organized into 7 sprints
 
+### Sprint 2 — Chat Readability (Feb 19, 2026)
+36. **Full-width chat layout** — Removed 900px container + 80% message width. Slack/Discord-style full-width rows.
+37. **AI message redesign** — Parchment background + gold left accent bar (was full black bg). Paragraph splitting for long responses.
+38. **Typography bump** — 1.05rem / 1.7 line-height for message content. Georgia serif for input.
+
 ---
 
 ## Next Steps (Upcoming)
 
 See `DEVELOPMENT_ROADMAP.md` for full sprint plan. Current priorities:
 
-1. 🔧 **Deploy all changes** — Merge PR from `charming-moore` → `main` (includes PostHog + Sprint 1)
-2. 📖 **Sprint 2: Chat readability overhaul** — #1 MVP complaint (font size, width, density)
+1. 🔧 **Deploy all changes** — Merge PR from `charming-moore` → `main` (includes PostHog + Sprint 1 + Sprint 2)
 3. 🔄 **Sprint 3: Real-time chat** — Polling-based refresh for simultaneous chatting
 4. 🗂️ **Sprint 4: Topic Explorer** — Replace confusing mind map with simple topic list
 5. 👋 **Sprint 5: Onboarding** — Help new users understand what Booklub is

@@ -18,31 +18,29 @@ Continue BooKlub development from previous session.
 8. Read DESIGN_SYSTEM.md - Button styles and vintage gold aesthetic
 
 ## Current Sprint Status
-Sprint 1 (Critical Fixes) is COMPLETE on charming-moore. Needs merge to main to deploy.
+Sprints 1 and 2 are COMPLETE on charming-moore. Needs merge to main to deploy.
 
 Completed in Sprint 1 (commit e75977a):
 - MVF-6: Browser tab title → "Booklub"
 - MVF-4: AI Author system prompt upgrade (Booklub world context, multi-user awareness, member names)
 - Development roadmap created with 7 sprints
 
+Completed in Sprint 2 (commit c8d4466):
+- MVF-1: Chat readability overhaul — full-width layout, bigger fonts, AI paragraph splitting,
+  parchment + gold accent for AI messages, improved mobile experience
+
 ## Priority 1: Deploy Everything
-Merge PR from charming-moore → main to deploy Sprint 1 + PostHog analytics:
+Merge PR from charming-moore → main to deploy Sprints 1+2 + PostHog:
 1. Go to: https://github.com/Krispychuck/booklub-app/compare/main...charming-moore
-2. Create PR with title: "Sprint 1: AI author context, tab title fix, PostHog analytics"
+2. Create PR with title: "Sprints 1+2: AI author context, chat readability, PostHog"
 3. Merge the PR to deploy
-4. Test the AI author in a club chat — it should now address members by name
+4. Test the chat — should be dramatically more readable with gold-accented AI responses
 
-## Priority 2: Sprint 2 — Chat Readability Overhaul (BIGGEST MVP COMPLAINT)
-See DEVELOPMENT_ROADMAP.md MVF-1 for full details. Key changes:
-- Increase font size (especially mobile)
-- Widen chat to use more screen width (edge-to-edge like iMessage/WhatsApp)
-- Break up long AI responses into readable chunks
-- Improve spacing and contrast between human/AI messages
-- Typography hierarchy improvements (BKL-3) folded in
-- CSS transitions (BKL-2) folded in
-
-## Priority 3: Sprint 3 — Real-Time Chat
+## Priority 2: Sprint 3 — Real-Time Chat
 See DEVELOPMENT_ROADMAP.md MVF-3. Add polling (5-10 second interval) so members see each other's messages in real time without leaving and re-entering the chat.
+
+## Priority 3: Sprint 4 — Topic Explorer (Replace Mind Map)
+See DEVELOPMENT_ROADMAP.md MVF-2. Replace confusing D3.js mind map with a simple topic list + drill-in UI.
 
 ## Key Context
 - **Project:** Booklub - Social book club app with AI author chat
