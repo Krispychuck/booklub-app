@@ -9,6 +9,7 @@ import JoinClubModal from './components/JoinClubModal';
 import JoinSuccessModal from './components/JoinSuccessModal';
 import ClubChat from './pages/ClubChat';
 import DisplayNameModal from './components/DisplayNameModal';
+import AdminUsage from './pages/AdminUsage';
 import LoadingSpinner from './components/LoadingSpinner';
 import { API_URL } from './config';
 
@@ -147,7 +148,7 @@ function App() {
             <Link to="/" className="nav-link">Browse Books</Link>
             <SignedIn>
               <Link to="/my-clubs" className="nav-link">My Clubs</Link>
-              <button 
+              <button
                 onClick={() => setShowJoinModal(true)}
                 className="join-club-button"
               >
@@ -180,6 +181,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/my-clubs" element={<MyClubs booklubUser={booklubUser} />} />
             <Route path="/club/:clubId" element={<ClubChat booklubUser={booklubUser} />} />
+            <Route path="/admin/usage" element={<AdminUsage />} />
           </Routes>
         </main>
 

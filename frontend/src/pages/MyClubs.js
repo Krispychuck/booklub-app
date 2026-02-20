@@ -50,7 +50,7 @@ function MyClubs({ booklubUser }) {
   }
 
   return (
-    <div className="container">
+    <div className="container page-transition">
       <h1 className="my-clubs-heading">
         My Book Clubs
       </h1>

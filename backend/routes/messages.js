@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const pool = require('../db');
 const Anthropic = require('@anthropic-ai/sdk');
+const logApiUsage = require('../utils/logApiUsage');
 
 // Initialize Anthropic client
 const anthropic = new Anthropic({
@@ -152,20 +153,30 @@ ${authorPersonaPrompt}`;
     });
     
     const aiContent = response.content[0].text;
-    
+
+    // Log API usage for cost tracking
+    await logApiUsage({
+      feature: 'author_response',
+      clubId,
+      model: 'claude-sonnet-4-20250514',
+      inputTokens: response.usage?.input_tokens || 0,
+      outputTokens: response.usage?.output_tokens || 0,
+    });
+
     // Save AI response to database
     const savedMessage = await pool.query(
       `INSERT INTO messages (club_id, sender_type, sender_ai_name, content, metadata)
        VALUES ($1, $2, $3, $4, $5)
        RETURNING *`,
       [
-        clubId, 
-        'ai', 
-        authorName, 
+        clubId,
+        'ai',
+        authorName,
         aiContent,
         JSON.stringify({
           model: 'claude-sonnet-4-20250514',
-          tokens: response.usage?.output_tokens
+          input_tokens: response.usage?.input_tokens,
+          output_tokens: response.usage?.output_tokens
         })
       ]
     );

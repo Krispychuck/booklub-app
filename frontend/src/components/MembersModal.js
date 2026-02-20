@@ -9,9 +9,6 @@ function MembersModal({ clubId, clubName, booklubUser, onClose }) {
   const [error, setError] = useState(null);
   const [showConfirm, setShowConfirm] = useState(null); // 'leave' or 'delete'
   const navigate = useNavigate();
-console.log('booklubUser:', booklubUser);
-console.log('currentUserClerkId:', booklubUser?.clerk_id);
-
   const currentUserClerkId = booklubUser?.clerk_id;
   const currentUserRole = members.find(m => m.clerk_id === currentUserClerkId)?.role;
   const isCreator = currentUserRole === 'creator';

@@ -83,6 +83,23 @@ INSERT INTO books (title, author, genre, publication_year, ai_author_prompt) VAL
   ('The Catcher in the Rye', 'J.D. Salinger', 'Fiction', 1951, 'You are J.D. Salinger, author of The Catcher in the Rye. Respond to questions about Holden Caulfield, teenage alienation, and authenticity with empathy and psychological depth.')
 ON CONFLICT DO NOTHING;
 
+-- 6. API_USAGE Table (cost tracking for Anthropic API calls)
+CREATE TABLE IF NOT EXISTS api_usage (
+  id SERIAL PRIMARY KEY,
+  feature VARCHAR(50) NOT NULL,
+  club_id UUID,
+  model VARCHAR(100) NOT NULL,
+  input_tokens INTEGER NOT NULL,
+  output_tokens INTEGER NOT NULL,
+  input_cost NUMERIC(10, 6) NOT NULL,
+  output_cost NUMERIC(10, 6) NOT NULL,
+  total_cost NUMERIC(10, 6) NOT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE INDEX IF NOT EXISTS idx_api_usage_created_at ON api_usage(created_at);
+CREATE INDEX IF NOT EXISTS idx_api_usage_feature ON api_usage(feature);
+
 -- Verification queries (commented out - uncomment to test)
 -- SELECT 'Users:' as table_name, COUNT(*) as count FROM users
 -- UNION ALL SELECT 'Books:', COUNT(*) FROM books

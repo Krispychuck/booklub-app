@@ -67,7 +67,7 @@ function Home() {
   }
 
   return (
-    <>
+    <div className="page-transition">
       <SignedOut>
         <div className="auth-prompt">
           <SignInButton mode="modal">
@@ -115,7 +115,7 @@ function Home() {
           onClose={handleCloseSuccess}
         />
       )}
-    </>
+    </div>
   );
 }
 

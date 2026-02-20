@@ -1,6 +1,6 @@
 # BooKlub Design System
 
-**Last Updated:** February 5, 2026
+**Last Updated:** February 14, 2026
 
 ---
 
@@ -44,6 +44,7 @@ Use this style for main actions throughout the app. This is your signature butto
 .primary-button {
   background: transparent;
   border: 2px solid #c8aa6e;
+  border-radius: 8px;
   color: #ffffff; /* Use #000000 on white backgrounds */
   padding: 8px 20px;
   font-size: 11px;
@@ -90,6 +91,7 @@ Use this classic cinema style for less prominent but still important actions.
   background-color: #ffffff;
   color: #000000;
   border: 2px solid #000000;
+  border-radius: 8px;
   padding: 12px 20px;
   font-size: 14px;
   font-family: 'Georgia', serif;
@@ -133,6 +135,7 @@ Use for subtle actions that shouldn't compete with primary/secondary buttons.
 .tertiary-button {
   background: transparent;
   border: 1px solid currentColor;
+  border-radius: 6px;
   color: inherit;
   padding: 4px 14px;
   font-size: 0.7rem;
@@ -140,7 +143,7 @@ Use for subtle actions that shouldn't compete with primary/secondary buttons.
   text-transform: uppercase;
   letter-spacing: 1px;
   cursor: pointer;
-  transition: all 0.2s;
+  transition: all 0.3s ease;
 }
 
 .tertiary-button:hover {
@@ -173,26 +176,18 @@ Use for subtle actions that shouldn't compete with primary/secondary buttons.
 - Use for: Labels, timestamps, technical information, code-like elements
 - Often paired with uppercase and letter-spacing for cinematic title card effect
 
-### Type Hierarchy
+### Type Scale
 
-**Headings:**
-```css
-h1 {
-  font-size: 1.4rem;
-  font-weight: normal;
-  letter-spacing: 1px;
-  text-transform: uppercase; /* For major headings */
-}
+| Level    | Size      | Use Case                                      |
+|----------|-----------|-----------------------------------------------|
+| Display  | 2rem      | Page titles ("My Book Clubs")                 |
+| Heading  | 1.5rem    | Card titles, modal headers                    |
+| Subhead  | 1.35rem   | Book titles in cards                          |
+| Body     | 1rem      | Default text                                  |
+| Caption  | 0.85rem   | Labels, metadata, timestamps                  |
+| Micro    | 0.75rem   | Badges, button labels                         |
 
-h2 {
-  font-size: 1.1rem;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  font-family: 'Courier New', monospace;
-}
-```
-
-**Labels:**
+**Labels (monospace):**
 ```css
 .label {
   font-size: 0.8rem;
@@ -240,6 +235,7 @@ h2 {
 .modal {
   background: #fff;
   border: 3px solid #000;
+  border-radius: 16px;
   padding: 30px 40px;
   max-width: 400px;
 }
@@ -273,28 +269,24 @@ h2 {
 
 ### Transitions
 
-**Standard Duration:** 0.3s for most interactions
-**Quick Transitions:** 0.2s for subtle hover effects
-**Ease Function:** `ease` for natural feel
+**Standard Duration:** 0.3s ease — used on ALL interactive elements (buttons, inputs, links, cards).
 
-**Example:**
+### Page Transitions
 ```css
-.interactive-element {
-  transition: all 0.3s ease;
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
 }
+.page-transition { animation: fadeInUp 0.4s ease-out; }
 ```
 
-### Fade In
-```css
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
+### Modal Animations
+- Overlay fades in over 0.2s
+- Content slides up + scales from 0.97 over 0.3s
 
-.fade-in-element {
-  animation: fadeIn 0.3s ease;
-}
-```
+### Card Hover
+- Book cards: `translateY(-5px)` + soft shadow
+- Club cards: `translateY(-3px)` + soft shadow
 
 ---
 
@@ -325,6 +317,23 @@ Use consistent spacing throughout:
 **Primary Borders:** 2px solid black
 **Subtle Dividers:** 1px solid #222 (on dark) or #ddd (on light)
 **Focus States:** 2px solid #c8aa6e
+
+### Logo Treatment
+
+The logo uses three CSS techniques for a sophisticated, blended appearance:
+- **Border radius:** `6px` — softens edges without clipping ornate corner flourishes
+- **Mask vignette:** `mask-image: radial-gradient(ellipse 95% 90% at center, black 70%, transparent 100%)` — feathers edges into the black header
+- **Gold glow:** `box-shadow: 0 0 12px rgba(200, 170, 110, 0.15)` on wrapper — warm halo, intensifies on hover
+
+### Border Radius (iOS/macOS-inspired)
+
+| Element     | Radius | Examples                                      |
+|-------------|--------|-----------------------------------------------|
+| Modals      | 16px   | Create club, join club, delete confirm        |
+| Cards       | 12px   | Book cards, club cards, auth prompt, detail panel |
+| Containers  | 10px   | Book info sections, confirm dialogs           |
+| Buttons     | 8px    | All buttons and inputs                        |
+| Small       | 6px    | Delete message button, close buttons          |
 
 ---
 

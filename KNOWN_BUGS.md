@@ -12,6 +12,17 @@ No open bugs at this time.
 
 ## FIXED Bugs
 
+### BUG-F007: "Could not load members" — Members modal always empty
+- **Status:** FIXED (Feb 14, 2026)
+- **Severity:** High (core feature was broken)
+- **Reported:** February 14, 2026 (MVP feedback)
+- **Symptom:** Clicking "Members" button in club chat showed "Could not load members" error.
+- **Root Cause:** In `backend/routes/clubs.js`, the members query joined `club_members.user_id` (INTEGER) to `users.clerk_id` (VARCHAR). An integer can never match a string, so the JOIN always returned zero rows and PostgreSQL threw a type mismatch error (500 response).
+- **Additional bugs found:** The "Leave Club" and "Delete Club" endpoints had the same pattern — they received Clerk IDs from the frontend but passed them directly as `user_id` (integer) in SQL queries.
+- **Fix:** (1) Changed members JOIN to `users.id`, added `clerk_id` to SELECT for frontend current-user detection. (2) Added Clerk ID → internal ID lookup to leave and delete endpoints. (3) Removed debug console.logs from MembersModal.
+- **Pattern:** Same Clerk ID vs Database ID confusion as BUG-F006 — see `CLAUDE_QUICK_START.md` section "1. Clerk ID vs Database ID".
+- **Files:** `backend/routes/clubs.js` (3 endpoints), `frontend/src/components/MembersModal.js` (cleanup)
+
 ### BUG-F006: Join Club "User not found" error
 - **Status:** FIXED (Feb 6, 2026) — Commit `eeec1c1`
 - **Severity:** High (core feature was broken)
