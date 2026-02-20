@@ -4,6 +4,20 @@ Session-by-session history of what was built, fixed, and changed. Newest session
 
 ---
 
+## Session: February 19, 2026 (Post-Deploy — Docs Update + Worktree Cleanup)
+
+**Branch:** `charming-moore`
+
+### Deployment
+- **Sprints 1+2 merged to main and deployed** to production via PR merge
+
+### Worktree Cleanup
+- **Removed rogue `vigorous-lalande` worktree** — A previous Claude Code session had auto-created a new worktree (default setting) which committed changes directly to `main`, bypassing our PR workflow and causing merge conflicts.
+- **Added worktree safety check to docs** — `CLAUDE_QUICK_START.md` now includes "DO NOT CREATE NEW WORKTREES" section with `git worktree list` check at session start.
+- **`NEXT_SESSION_START.md` now starts with worktree safety check** as the first action for any new session.
+
+---
+
 ## Session: February 19, 2026 (Sprint 2 — Chat Readability Overhaul)
 
 **Branch:** `charming-moore`

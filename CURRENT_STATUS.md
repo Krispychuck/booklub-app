@@ -1,7 +1,7 @@
 # BooKlub App - Current Status & Configuration
 
 **Last Updated:** February 19, 2026
-**Status:** Production — Core features + Mind Map + Mobile responsive + PostHog analytics + AI Author context
+**Status:** Production — Core features + Mind Map + Mobile responsive + PostHog analytics + AI Author context + Chat readability overhaul
 
 ---
 
@@ -242,7 +242,7 @@ Note: Production DB uses **UUIDs** for most IDs, though `init.sql` shows SERIAL.
 
 See `DEVELOPMENT_ROADMAP.md` for full sprint plan. Current priorities:
 
-1. 🔧 **Deploy all changes** — Merge PR from `charming-moore` → `main` (includes PostHog + Sprint 1 + Sprint 2)
+1. ~~🔧 **Deploy Sprints 1+2**~~ — **DEPLOYED** (PR merged Feb 19, 2026)
 3. 🔄 **Sprint 3: Real-time chat** — Polling-based refresh for simultaneous chatting
 4. 🗂️ **Sprint 4: Topic Explorer** — Replace confusing mind map with simple topic list
 5. 👋 **Sprint 5: Onboarding** — Help new users understand what Booklub is

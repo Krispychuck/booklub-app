@@ -7,40 +7,52 @@ Copy/paste this to start your next Claude session:
 ```
 Continue BooKlub development from previous session.
 
-## First Steps
-1. Read CLAUDE_QUICK_START.md - Critical context, known bugs, patterns, AND the mandatory documentation protocol at the bottom
-2. Read DEVELOPMENT_ROADMAP.md - Sprint plan with MVP feedback items (THIS IS THE NEW PRIORITY DOC)
-3. Read PRODUCT_VISION.md - North star press release describing full product vision + what's built vs. roadmap
+## CRITICAL: Worktree Safety Check (DO THIS FIRST)
+Claude Code has a default setting that creates new git worktrees per session.
+This MUST be disabled. A rogue worktree once caused major merge conflicts.
+
+Run this immediately:
+  git worktree list
+
+You should see ONLY these two:
+  /Users/mrl/booklub-app                                   [main]
+  /Users/mrl/.claude-worktrees/booklub-app/charming-moore  [charming-moore]
+
+If you see ANY other worktree, remove it immediately:
+  git worktree remove --force /path/to/rogue/worktree
+
+NEVER create a new branch or worktree. ALL work happens on charming-moore.
+
+## Read These Docs
+1. Read CLAUDE_QUICK_START.md - Critical context, known bugs, patterns, AND the mandatory documentation protocol
+2. Read DEVELOPMENT_ROADMAP.md - Sprint plan with MVP feedback items (PRIORITY DOC)
+3. Read PRODUCT_VISION.md - North star press release
 4. Read KNOWN_BUGS.md - All open bugs with root cause and fix instructions
-5. Read CHANGELOG.md - Session-by-session history of what changed
+5. Read CHANGELOG.md - Session-by-session history
 6. Read CURRENT_STATUS.md - Full configuration, database schema, deployment
 7. Read ARCHITECTURE.md - System architecture and data flows
 8. Read DESIGN_SYSTEM.md - Button styles and vintage gold aesthetic
 
 ## Current Sprint Status
-Sprints 1 and 2 are COMPLETE on charming-moore. Needs merge to main to deploy.
+Sprints 1 and 2 are DEPLOYED to production.
 
-Completed in Sprint 1 (commit e75977a):
+Sprint 1 (deployed):
 - MVF-6: Browser tab title → "Booklub"
 - MVF-4: AI Author system prompt upgrade (Booklub world context, multi-user awareness, member names)
 - Development roadmap created with 7 sprints
 
-Completed in Sprint 2 (commit c8d4466):
-- MVF-1: Chat readability overhaul — full-width layout, bigger fonts, AI paragraph splitting,
-  parchment + gold accent for AI messages, improved mobile experience
+Sprint 2 (deployed):
+- MVF-1: Chat readability overhaul — full-width Slack-style layout, bigger fonts,
+  AI paragraph splitting, parchment + gold accent for AI messages
 
-## Priority 1: Deploy Everything
-Merge PR from charming-moore → main to deploy Sprints 1+2 + PostHog:
-1. Go to: https://github.com/Krispychuck/booklub-app/compare/main...charming-moore
-2. Create PR with title: "Sprints 1+2: AI author context, chat readability, PostHog"
-3. Merge the PR to deploy
-4. Test the chat — should be dramatically more readable with gold-accented AI responses
-
-## Priority 2: Sprint 3 — Real-Time Chat
+## Priority 1: Sprint 3 — Real-Time Chat
 See DEVELOPMENT_ROADMAP.md MVF-3. Add polling (5-10 second interval) so members see each other's messages in real time without leaving and re-entering the chat.
 
-## Priority 3: Sprint 4 — Topic Explorer (Replace Mind Map)
+## Priority 2: Sprint 4 — Topic Explorer (Replace Mind Map)
 See DEVELOPMENT_ROADMAP.md MVF-2. Replace confusing D3.js mind map with a simple topic list + drill-in UI.
+
+## Priority 3: Sprint 5 — Onboarding & Concept Clarity
+See DEVELOPMENT_ROADMAP.md MVF-5. Welcome/explainer experience for new users.
 
 ## Key Context
 - **Project:** Booklub - Social book club app with AI author chat
@@ -59,19 +71,21 @@ See DEVELOPMENT_ROADMAP.md MVF-2. Replace confusing D3.js mind map with a simple
 - User authentication (Clerk)
 - Club creation + Join Club
 - Chat messaging (group + AI author with Booklub context awareness)
+- Chat readability: full-width layout, parchment AI messages, paragraph splitting
 - Mind Map visualization (D3.js radial tree) — to be replaced by Topic Explorer in Sprint 4
 - Gold design system on all primary buttons + header nav
 - Custom domain: booklub.krispychuck.com
 - Logo: Booklub-marquee2.png (Art Nouveau parchment style)
 - Loading states: Book-riffling animation on all views + branded startup screen
 - Mobile responsive (3 breakpoints: 768px, 480px, 375px)
-- PostHog analytics (on charming-moore, pending deploy)
+- PostHog analytics (deployed)
+- CSS transitions, rounded corners, typography hierarchy
 
-## What's Broken
+## What's Not Working / Known Issues
 - No known functional bugs (see KNOWN_BUGS.md)
-- MVP testers report chat readability issues (Sprint 2 will address)
-- No real-time message refresh (Sprint 3 will address)
+- No real-time message refresh — members must leave/rejoin chat to see others' messages (Sprint 3)
 - Mind map confuses users (Sprint 4 will replace with Topic Explorer)
+- New users confused about what Booklub is (Sprint 5 onboarding)
 
 ## IMPORTANT: Documentation Protocol
 After every git push, you MUST update these 5 docs:
