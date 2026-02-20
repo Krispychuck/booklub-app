@@ -4,6 +4,32 @@ Session-by-session history of what was built, fixed, and changed. Newest session
 
 ---
 
+## Session: February 19, 2026 (Sprint 1 — MVP Feedback Roadmap + Critical Fixes)
+
+**Branch:** `charming-moore`
+**Commit:** `e75977a`
+
+### Roadmap
+- **Created `DEVELOPMENT_ROADMAP.md`** — Comprehensive sprint plan based on MVP tester feedback. 7 feedback items (MVF-1 through MVF-8) plus existing backlog items organized into 7 sprints. Includes Reading Progress & Spoiler Guard (BKL-4) and Admin Tool & Author Identity Studio (BKL-5, deferred).
+
+### Bug Fixes / Quick Wins
+- **MVF-6: Browser tab title** — Changed from "BooKlub by Krispychuck" to "Booklub". Updated `index.html` (title + meta description) and `manifest.json` (short_name + name).
+
+### AI Author Upgrade (MVF-4)
+- **Booklub world context** — AI author system prompt now includes a full context wrapper explaining what Booklub is, the AI's role in the book club, and how to interact with multiple members.
+- **Multi-user awareness** — Club member names are fetched from the database and included in the system prompt. User messages are prefixed with `[MemberName]:` so the AI knows who's talking and can address them by name.
+- **Group Comment awareness** — System prompt explains that some messages are human-to-human "Group Comments" not directed at the AI, preventing confusion.
+- **Increased context** — Message history window increased from 10 to 20 recent messages for better conversation awareness.
+- **Layered prompt architecture** — Per-book `ai_author_prompt` from the database is now wrapped inside a Booklub context layer, keeping book-specific persona details while adding app-wide awareness.
+
+### Files Changed
+- `frontend/public/index.html` — Title and meta description updated
+- `frontend/public/manifest.json` — short_name and name updated
+- `backend/routes/messages.js` — AI author endpoint completely rewritten: member lookup, named messages, layered system prompt
+- `DEVELOPMENT_ROADMAP.md` — **NEW** — Full sprint plan with MVP feedback
+
+---
+
 ## Session: February 6, 2026 (PostHog Analytics)
 
 **Branch:** `charming-moore`

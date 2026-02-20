@@ -1,7 +1,7 @@
 # BooKlub App - Current Status & Configuration
 
-**Last Updated:** February 6, 2026
-**Status:** Production — Core features + Mind Map + Mobile responsive + PostHog analytics
+**Last Updated:** February 19, 2026
+**Status:** Production — Core features + Mind Map + Mobile responsive + PostHog analytics + AI Author context
 
 ---
 
@@ -140,6 +140,7 @@ booklub-app/
 ├── CLAUDE_QUICK_START.md        ← Start here (critical context)
 ├── CURRENT_STATUS.md            ← This file
 ├── DESIGN_SYSTEM.md             ← Button styles, colors, typography
+├── DEVELOPMENT_ROADMAP.md       ← Sprint plan with MVP feedback
 ├── KNOWN_BUGS.md                ← All bugs with root cause/fix
 ├── NEXT_SESSION_START.md        ← Copy/paste for new sessions
 └── PRODUCT_VISION.md            ← North star press release
@@ -225,21 +226,24 @@ Note: Production DB uses **UUIDs** for most IDs, though `init.sql` shows SERIAL.
 ### PostHog Analytics (Feb 6, 2026)
 32. **PostHog integration** — Lightweight page view tracking + user identification. Dashboard: https://us.posthog.com. Autocapture off, manual pageview per route change, users identified by BooKlub name/email on sign-in.
 
+### Sprint 1 — MVP Feedback (Feb 19, 2026)
+33. **Browser tab title** — Changed from "BooKlub by Krispychuck" to "Booklub"
+34. **AI Author context upgrade** — System prompt now includes Booklub world context, multi-user awareness, member names, Group Comment understanding. Message history increased to 20.
+35. **Development roadmap** — Created DEVELOPMENT_ROADMAP.md with 7 MVP feedback items organized into 7 sprints
+
 ---
 
 ## Next Steps (Upcoming)
 
-1. ~~🐛 **Fix "Join Club" bug**~~ — **DONE** (commit `eeec1c1`)
-2. ~~🌐 **Custom domain**~~ — **DONE** (https://booklub.krispychuck.com)
-3. ~~🎨 **Logo/wordmark**~~ — **DONE** (commit `b2d7550`)
-4. ~~⏳ **Loading states**~~ — **DONE** (book-riffling animation)
-5. ~~🎨 **Logo update**~~ — **DONE** (Booklub-marquee2.png — Art Nouveau parchment style)
-6. ~~📱 **Mobile responsiveness**~~ — **DONE** (commit `9bfd16b`). All 10 issues addressed across 6 files with 3 breakpoints.
-7. ~~📊 **PostHog analytics**~~ — **DONE** (commit `0b643c4`). Lightweight page views + user identification.
-8. ~~🔧 **Deploy mobile**~~ — **DONE** (user merged PR mid-session)
-9. ✨ **CSS transitions** — Add `transition: all 0.3s ease` on all interactive elements; fade-in on page loads
-10. 📝 **Typography hierarchy** — Improve heading/body/caption sizing and spacing
-11. 🔧 **Deploy PostHog** — Merge PR from `charming-moore` → `main`
+See `DEVELOPMENT_ROADMAP.md` for full sprint plan. Current priorities:
+
+1. 🔧 **Deploy all changes** — Merge PR from `charming-moore` → `main` (includes PostHog + Sprint 1)
+2. 📖 **Sprint 2: Chat readability overhaul** — #1 MVP complaint (font size, width, density)
+3. 🔄 **Sprint 3: Real-time chat** — Polling-based refresh for simultaneous chatting
+4. 🗂️ **Sprint 4: Topic Explorer** — Replace confusing mind map with simple topic list
+5. 👋 **Sprint 5: Onboarding** — Help new users understand what Booklub is
+6. 🔖 **Sprint 6: Reading progress & spoiler guard** — Spoiler-safe AI for mid-book readers
+7. 🎨 **Sprint 7: AI-generated book covers**
 
 ---
 

@@ -10,8 +10,8 @@ When starting a new session about BooKlub, read this first!
 **Owner:** Non-technical user (handle everything via Claude)
 **Location:** `/Users/mrl/.claude-worktrees/booklub-app/charming-moore/`
 **Branch:** `charming-moore` (worktree — merge to `main` to deploy)
-**Last Updated:** February 6, 2026
-**Status:** Production — All core features + Mind Map + Mobile responsive + PostHog analytics
+**Last Updated:** February 19, 2026
+**Status:** Production — All core features + Mind Map + Mobile responsive + PostHog analytics + AI Author context upgrade
 
 ---
 
@@ -45,8 +45,10 @@ When starting a new session about BooKlub, read this first!
 - `frontend/src/components/LoadingSpinner.js` — Reusable book-riffling loader (gold animated book)
 - `frontend/src/components/LoadingSpinner.css` — Book animation + button-spinner CSS
 - `backend/server.js` — Express app, route registration
+- `backend/routes/messages.js` — Chat + AI author responses (system prompt with Booklub context)
 - `backend/routes/mindmaps.js` — Mind map generation (auto-creates table)
 - `backend/seeds/schema.sql` — Production database column types
+- `DEVELOPMENT_ROADMAP.md` — Sprint plan with MVP feedback items
 
 ---
 
@@ -137,16 +139,20 @@ git push origin charming-moore
 
 ## Next Steps (Upcoming)
 
-1. ~~🐛 Fix "Join Club" bug~~ — **DONE** (commit `eeec1c1`)
-2. ~~🌐 Custom domain~~ — **DONE** (https://booklub.krispychuck.com)
-3. ~~🎨 Logo/wordmark for header + favicon~~ — **DONE** (commit `b2d7550`)
-4. ~~⏳ Loading states~~ — **DONE** (book-riffling animation across all views)
-5. ~~🎨 Logo update~~ — **DONE** (`Booklub-marquee2.png` — Art Nouveau parchment style)
-6. ~~📱 Mobile responsiveness~~ — **DONE** (commit `9bfd16b`). Deployed and confirmed working on phones.
-7. ~~📊 PostHog analytics~~ — **DONE** (commit `0b643c4`). On charming-moore, pending deploy.
-8. 🔧 **Deploy PostHog** — Merge PR from `charming-moore` → `main`
-9. ✨ **CSS transitions and fade-in animations** — Add `transition: all 0.3s ease` on all interactive elements; fade-in on page loads
-10. 📝 **Better typography hierarchy** — Improve heading/body/caption sizing and spacing
+See `DEVELOPMENT_ROADMAP.md` for full sprint plan with 7 sprints based on MVP tester feedback.
+
+**Current Sprint (1 — Critical Fixes & Quick Wins):**
+- ~~MVF-6: Browser tab title fix~~ — **DONE** (commit `e75977a`)
+- ~~MVF-4: AI Author context upgrade~~ — **DONE** (commit `e75977a`)
+- BKL-1: Deploy PostHog — Merge PR from `charming-moore` → `main`
+
+**Upcoming Sprints:**
+- Sprint 2: Chat readability overhaul (biggest MVP complaint)
+- Sprint 3: Real-time chat (polling-based refresh)
+- Sprint 4: Topic Explorer (replace mind map)
+- Sprint 5: Onboarding & concept clarity
+- Sprint 6: Reading progress & spoiler guard
+- Sprint 7: AI-generated book covers
 
 ---
 
