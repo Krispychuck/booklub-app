@@ -11,7 +11,7 @@ When starting a new session about BooKlub, read this first!
 **Location:** `/Users/mrl/.claude-worktrees/booklub-app/charming-moore/`
 **Branch:** `charming-moore` (worktree — merge to `main` to deploy)
 **Last Updated:** February 19, 2026
-**Status:** Production — All core features + Mind Map + Mobile responsive + PostHog analytics + AI Author context + Chat readability overhaul
+**Status:** Production — All core features + Mind Map + Mobile responsive + PostHog analytics + AI Author context + Chat readability + Real-time polling
 
 ---
 
@@ -128,6 +128,7 @@ POST /api/clubs              { name, bookId, userId }
 POST /api/clubs/join         { inviteCode, userId }
 GET  /api/messages/club/:clubId
 POST /api/messages/club/:clubId    { content, senderUserId }
+GET  /api/messages/club/:clubId/since/:lastMessageId
 POST /api/messages/club/:clubId/ai-response
 GET  /api/users/clerk/:clerkId
 POST /api/users              { clerkId, email, name }
@@ -167,8 +168,10 @@ See `DEVELOPMENT_ROADMAP.md` for full sprint plan with 7 sprints based on MVP te
 **Sprint 2 (Chat Readability):** DEPLOYED
 - ~~MVF-1: Chat readability overhaul~~ — **DONE**
 
+**Sprint 3 (Real-Time Chat):** COMPLETE (pending deploy)
+- ~~MVF-3: Polling-based real-time chat~~ — **DONE** (commit `a53b7f0`)
+
 **Next up:**
-- Sprint 3: Real-time chat (polling-based refresh)
 - Sprint 4: Topic Explorer (replace mind map)
 - Sprint 5: Onboarding & concept clarity
 - Sprint 6: Reading progress & spoiler guard

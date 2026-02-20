@@ -34,19 +34,18 @@ NEVER create a new branch or worktree. ALL work happens on charming-moore.
 8. Read DESIGN_SYSTEM.md - Button styles and vintage gold aesthetic
 
 ## Current Sprint Status
-Sprints 1 and 2 are DEPLOYED to production.
+Sprints 1, 2, and 3 are COMPLETE. Sprints 1+2 deployed. Sprint 3 on charming-moore pending deploy.
 
-Sprint 1 (deployed):
-- MVF-6: Browser tab title → "Booklub"
-- MVF-4: AI Author system prompt upgrade (Booklub world context, multi-user awareness, member names)
-- Development roadmap created with 7 sprints
+Sprint 1 (deployed): Tab title fix + AI Author context upgrade
+Sprint 2 (deployed): Chat readability overhaul (full-width, parchment AI, paragraph splitting)
+Sprint 3 (pending deploy): Real-time chat polling (5-second interval, smart scroll, delta fetch)
 
-Sprint 2 (deployed):
-- MVF-1: Chat readability overhaul — full-width Slack-style layout, bigger fonts,
-  AI paragraph splitting, parchment + gold accent for AI messages
-
-## Priority 1: Sprint 3 — Real-Time Chat
-See DEVELOPMENT_ROADMAP.md MVF-3. Add polling (5-10 second interval) so members see each other's messages in real time without leaving and re-entering the chat.
+## Priority 1: Deploy Sprint 3
+Merge PR from charming-moore → main:
+1. Go to: https://github.com/Krispychuck/booklub-app/compare/main...charming-moore
+2. Create PR with title: "Sprint 3: Real-time chat polling"
+3. Merge to deploy
+4. Test with two browsers/accounts — messages from one should appear in the other within 5 seconds
 
 ## Priority 2: Sprint 4 — Topic Explorer (Replace Mind Map)
 See DEVELOPMENT_ROADMAP.md MVF-2. Replace confusing D3.js mind map with a simple topic list + drill-in UI.
@@ -83,7 +82,7 @@ See DEVELOPMENT_ROADMAP.md MVF-5. Welcome/explainer experience for new users.
 
 ## What's Not Working / Known Issues
 - No known functional bugs (see KNOWN_BUGS.md)
-- No real-time message refresh — members must leave/rejoin chat to see others' messages (Sprint 3)
+- Real-time chat built but not yet deployed (Sprint 3 on charming-moore)
 - Mind map confuses users (Sprint 4 will replace with Topic Explorer)
 - New users confused about what Booklub is (Sprint 5 onboarding)
 
