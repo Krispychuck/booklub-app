@@ -8,11 +8,10 @@ When starting a new session about BooKlub, read this first!
 
 **App Name:** BooKlub - Social Book Club Platform
 **Owner:** Non-technical user (handle everything via Claude)
-**Location:** `/Users/mrl/booklub-app/.claude/worktrees/vigorous-lalande`
-**Branch:** `preview` (merge to `main` to deploy)
-**Branch Strategy:** Two branches only — `main` (production) and `preview` (development/testing)
-**Last Updated:** February 16, 2026
-**Status:** Production — All core features + Mind Map + Mobile responsive + PostHog analytics + UI polish (transitions, typography, rounded corners, logo sophistication) + Members bug fix + API cost tracking
+**Location:** `/Users/mrl/.claude-worktrees/booklub-app/charming-moore/`
+**Branch:** `charming-moore` (worktree — merge to `main` to deploy)
+**Last Updated:** February 19, 2026
+**Status:** Production — All core features + Mind Map + Mobile responsive + PostHog analytics + AI Author context upgrade
 
 ---
 
@@ -46,11 +45,10 @@ When starting a new session about BooKlub, read this first!
 - `frontend/src/components/LoadingSpinner.js` — Reusable book-riffling loader (gold animated book)
 - `frontend/src/components/LoadingSpinner.css` — Book animation + button-spinner CSS
 - `backend/server.js` — Express app, route registration
+- `backend/routes/messages.js` — Chat + AI author responses (system prompt with Booklub context)
 - `backend/routes/mindmaps.js` — Mind map generation (auto-creates table)
-- `backend/routes/admin.js` — API usage dashboard endpoint
-- `backend/config/pricing.js` — Model pricing constants
-- `backend/utils/logApiUsage.js` — Fire-and-forget API usage logger
 - `backend/seeds/schema.sql` — Production database column types
+- `DEVELOPMENT_ROADMAP.md` — Sprint plan with MVP feedback items
 
 ---
 
@@ -63,11 +61,7 @@ When starting a new session about BooKlub, read this first!
 
 **App.js already resolves this:** `booklubUser` state contains the DB user with `.id` (integer) and `.clerk_id` (string). Components that receive `booklubUser` or `booklubUser.id` already have the correct DB ID — they should NOT re-lookup via `/api/users/clerk/`.
 
-**Previously fixed (BUG-F006):** `JoinClubModal.js` and `MyClubs.js` used to do unnecessary Clerk lookups. Fixed in commit `eeec1c1` — both now use the DB ID directly.
-
-**Previously fixed (BUG-F007):** `clubs.js` members endpoint joined `club_members.user_id` (int) to `users.clerk_id` (string). Leave/delete club endpoints also passed Clerk IDs where internal IDs were expected. Fixed by correcting the JOIN and adding Clerk→DB ID lookups.
-
-If you see any backend endpoint comparing a Clerk ID string to an integer `user_id` column, that's this same bug pattern — add a Clerk→DB ID lookup first.
+**Previously fixed (BUG-F006):** `JoinClubModal.js` and `MyClubs.js` used to do unnecessary Clerk lookups. Fixed in commit `eeec1c1` — both now use the DB ID directly. If you see any other component doing a Clerk lookup when it already has `booklubUser` or `userId` as a prop, that's the same bug pattern — fix it the same way.
 
 ### 2. Database ID Types (Gotcha!)
 Production Neon DB uses **mixed types**:
@@ -91,12 +85,12 @@ Always check `backend/seeds/schema.sql` for actual production column types.
 
 ### 5. Worktree Git Workflow
 Can't use `git checkout main`. Use PR workflow:
-1. Commit and push to `preview`
-2. Create PR: https://github.com/Krispychuck/booklub-app/compare/main...preview
+1. Commit and push to `charming-moore`
+2. Create PR: https://github.com/Krispychuck/booklub-app/compare/main...charming-moore
 3. Merge PR → auto-deploys to Cloudflare Pages + Render
 
-### 7. Documentation Lives on `preview` Only
-All Claude documentation files (`CLAUDE_QUICK_START.md`, `CHANGELOG.md`, `KNOWN_BUGS.md`, `CURRENT_STATUS.md`, `NEXT_SESSION_START.md`, `DESIGN_SYSTEM.md`, etc.) live on the `preview` branch. They will get merged to `main` via PRs but **`preview` is the source of truth** for docs. Do NOT worry about syncing docs back from `main` or resolving doc conflicts on `main`. The `main` branch is for deployment only — docs there may be stale and that's fine.
+### 7. Documentation Lives on `charming-moore` Only
+All Claude documentation files (`CLAUDE_QUICK_START.md`, `CHANGELOG.md`, `KNOWN_BUGS.md`, `CURRENT_STATUS.md`, `NEXT_SESSION_START.md`, `DESIGN_SYSTEM.md`, etc.) live on the `charming-moore` branch. They will get merged to `main` via PRs but **`charming-moore` is the source of truth** for docs. Do NOT worry about syncing docs back from `main` or resolving doc conflicts on `main`. The `main` branch is for deployment only — docs there may be stale and that's fine.
 
 ### 6. Design System
 - **Primary (gold):** `border: 2px solid #c8aa6e`, transparent bg, fills gold on hover
@@ -111,12 +105,8 @@ All Claude documentation files (`CLAUDE_QUICK_START.md`, `CHANGELOG.md`, `KNOWN_
 GET  /api/health
 GET  /api/books
 GET  /api/clubs?userId=<dbId>
-GET  /api/clubs/:id?userId=<dbId>
 POST /api/clubs              { name, bookId, userId }
 POST /api/clubs/join         { inviteCode, userId }
-GET  /api/clubs/:clubId/members
-DELETE /api/clubs/:clubId/members/:clerkId
-DELETE /api/clubs/:clubId    { clerkId }
 GET  /api/messages/club/:clubId
 POST /api/messages/club/:clubId    { content, senderUserId }
 POST /api/messages/club/:clubId/ai-response
@@ -125,7 +115,6 @@ POST /api/users              { clerkId, email, name }
 PUT  /api/users/:userId/name { name }
 POST /api/mindmaps/:clubId/generate { userId }
 GET  /api/mindmaps/:clubId
-GET  /api/admin/usage
 ```
 
 ---
@@ -138,8 +127,8 @@ git add <files>
 git commit -m "Message
 
 Co-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>"
-git push origin preview
-# Then merge PR at: https://github.com/Krispychuck/booklub-app/compare/main...preview
+git push origin charming-moore
+# Then merge PR at GitHub
 ```
 
 ### Check Logs
@@ -150,23 +139,20 @@ git push origin preview
 
 ## Next Steps (Upcoming)
 
-1. ~~🐛 Fix "Join Club" bug~~ — **DONE** (commit `eeec1c1`)
-2. ~~🌐 Custom domain~~ — **DONE** (https://booklub.krispychuck.com)
-3. ~~🎨 Logo/wordmark for header + favicon~~ — **DONE** (commit `b2d7550`)
-4. ~~⏳ Loading states~~ — **DONE** (book-riffling animation across all views)
-5. ~~🎨 Logo update~~ — **DONE** (`Booklub-marquee2.png` — Art Nouveau parchment style)
-6. ~~📱 Mobile responsiveness~~ — **DONE** (commit `9bfd16b`)
-7. ~~📊 PostHog analytics~~ — **DONE** (commit `0b643c4`, deployed)
-8. ~~🔧 Deploy PostHog~~ — **DONE** (merged to main)
-9. ~~✨ CSS transitions~~ — **DONE** (Feb 14). Standardized 0.3s ease, page fade-in, modal animations, card hover lifts.
-10. ~~📝 Typography hierarchy~~ — **DONE** (Feb 14). Type scale from 2rem to 0.75rem, responsive scaling.
-11. ~~🔲 Rounded corners~~ — **DONE** (Feb 14, MVP feedback). iOS/macOS-style border-radius.
-12. ~~🎬 Logo sophistication~~ — **DONE** (Feb 14, MVP feedback). CSS mask vignette + gold glow + rounded corners.
-13. ~~🐛 Members bug~~ — **DONE** (Feb 14, BUG-F007). Fixed Clerk ID vs DB ID in members/leave/delete endpoints.
-14. ~~💰 API cost tracking~~ — **DONE** (Feb 15). `api_usage` table, pricing module, admin dashboard at `/admin/usage`.
-15. 🧪 **Real-world testing** — Share with MVP testers, monitor PostHog, fix issues. Verify cost tracking works in production.
-16. 📖 **Reading progress** — Chapter/page tracking (key PRODUCT_VISION.md feature)
-17. 🗺️ **Additional roadmap items** — Review PRODUCT_VISION.md for next features
+See `DEVELOPMENT_ROADMAP.md` for full sprint plan with 7 sprints based on MVP tester feedback.
+
+**Current Sprint (1 — Critical Fixes & Quick Wins):**
+- ~~MVF-6: Browser tab title fix~~ — **DONE** (commit `e75977a`)
+- ~~MVF-4: AI Author context upgrade~~ — **DONE** (commit `e75977a`)
+- BKL-1: Deploy PostHog — Merge PR from `charming-moore` → `main`
+
+**Upcoming Sprints:**
+- Sprint 2: Chat readability overhaul (biggest MVP complaint)
+- Sprint 3: Real-time chat (polling-based refresh)
+- Sprint 4: Topic Explorer (replace mind map)
+- Sprint 5: Onboarding & concept clarity
+- Sprint 6: Reading progress & spoiler guard
+- Sprint 7: AI-generated book covers
 
 ---
 

@@ -9,32 +9,46 @@ Continue BooKlub development from previous session.
 
 ## First Steps
 1. Read CLAUDE_QUICK_START.md - Critical context, known bugs, patterns, AND the mandatory documentation protocol at the bottom
-2. Read PRODUCT_VISION.md - North star press release describing full product vision + what's built vs. roadmap
-3. Read KNOWN_BUGS.md - All open bugs with root cause and fix instructions
-4. Read CHANGELOG.md - Session-by-session history of what changed
-5. Read CURRENT_STATUS.md - Full configuration, database schema, deployment
-6. Read ARCHITECTURE.md - System architecture and data flows
-7. Read DESIGN_SYSTEM.md - Button styles, typography, border-radius, and vintage gold aesthetic
+2. Read DEVELOPMENT_ROADMAP.md - Sprint plan with MVP feedback items (THIS IS THE NEW PRIORITY DOC)
+3. Read PRODUCT_VISION.md - North star press release describing full product vision + what's built vs. roadmap
+4. Read KNOWN_BUGS.md - All open bugs with root cause and fix instructions
+5. Read CHANGELOG.md - Session-by-session history of what changed
+6. Read CURRENT_STATUS.md - Full configuration, database schema, deployment
+7. Read ARCHITECTURE.md - System architecture and data flows
+8. Read DESIGN_SYSTEM.md - Button styles and vintage gold aesthetic
 
-## Priority 1: Real-World Testing with MVP Testers
-- Share the link with testers and collect feedback
-- Monitor PostHog dashboard (https://us.posthog.com) for usage patterns and drop-off points
-- Verify API cost tracking is logging correctly at /admin/usage after real author chats and mind maps
-- Fix any issues testers encounter
+## Current Sprint Status
+Sprint 1 (Critical Fixes) is COMPLETE on charming-moore. Needs merge to main to deploy.
 
-## Priority 2: Reading Progress & Engagement Features
-- Chapter/page tracking so club members can see where everyone is in the book
-- This is a key feature from PRODUCT_VISION.md that hasn't been built yet
+Completed in Sprint 1 (commit e75977a):
+- MVF-6: Browser tab title → "Booklub"
+- MVF-4: AI Author system prompt upgrade (Booklub world context, multi-user awareness, member names)
+- Development roadmap created with 7 sprints
 
-## Priority 3: Additional PRODUCT_VISION.md Roadmap Items
-- Review PRODUCT_VISION.md for next features to implement
-- Consider: reading streaks, club activity feed, book recommendations
+## Priority 1: Deploy Everything
+Merge PR from charming-moore → main to deploy Sprint 1 + PostHog analytics:
+1. Go to: https://github.com/Krispychuck/booklub-app/compare/main...charming-moore
+2. Create PR with title: "Sprint 1: AI author context, tab title fix, PostHog analytics"
+3. Merge the PR to deploy
+4. Test the AI author in a club chat — it should now address members by name
+
+## Priority 2: Sprint 2 — Chat Readability Overhaul (BIGGEST MVP COMPLAINT)
+See DEVELOPMENT_ROADMAP.md MVF-1 for full details. Key changes:
+- Increase font size (especially mobile)
+- Widen chat to use more screen width (edge-to-edge like iMessage/WhatsApp)
+- Break up long AI responses into readable chunks
+- Improve spacing and contrast between human/AI messages
+- Typography hierarchy improvements (BKL-3) folded in
+- CSS transitions (BKL-2) folded in
+
+## Priority 3: Sprint 3 — Real-Time Chat
+See DEVELOPMENT_ROADMAP.md MVF-3. Add polling (5-10 second interval) so members see each other's messages in real time without leaving and re-entering the chat.
 
 ## Key Context
-- **Project:** BooKlub - Social book club app with AI author chat
-- **Working Directory:** /Users/mrl/booklub-app/.claude/worktrees/vigorous-lalande
-- **Branch Strategy:** Two branches only — `main` (production) and `preview` (development/testing)
-- **Branch:** `preview` (use PR workflow to deploy to main)
+- **Project:** Booklub - Social book club app with AI author chat
+- **Working Directory:** /Users/mrl/.claude-worktrees/booklub-app/charming-moore/
+- **Desktop shortcut:** ~/Desktop/booklub-dev (symlink to working directory)
+- **Branch:** charming-moore (use PR workflow to deploy to main)
 - **User:** Non-technical, handle all git operations
 - **No gh CLI** — use GitHub web links for PRs
 - **Analytics:** PostHog (https://us.posthog.com) — page views + user identification
@@ -46,22 +60,20 @@ Continue BooKlub development from previous session.
 ## What's Working
 - User authentication (Clerk)
 - Club creation + Join Club
-- Chat messaging (group + AI author)
-- Mind Map visualization (D3.js radial tree)
-- Members modal (view members, leave club, delete club)
+- Chat messaging (group + AI author with Booklub context awareness)
+- Mind Map visualization (D3.js radial tree) — to be replaced by Topic Explorer in Sprint 4
 - Gold design system on all primary buttons + header nav
 - Custom domain: booklub.krispychuck.com
-- Logo: Booklub-marquee2.png (Art Nouveau parchment style, CSS vignette + gold glow)
+- Logo: Booklub-marquee2.png (Art Nouveau parchment style)
 - Loading states: Book-riffling animation on all views + branded startup screen
 - Mobile responsive (3 breakpoints: 768px, 480px, 375px)
-- PostHog analytics (deployed and tracking)
-- API cost tracking (per-feature, per-club detail at /admin/usage; account-wide costs viewable in Anthropic Console)
-- CSS transitions (0.3s ease on all interactive elements)
-- Typography hierarchy (type scale from Display 2rem to Micro 0.75rem)
-- Rounded corners (iOS/macOS-style: 16px modals, 12px cards, 8px buttons)
+- PostHog analytics (on charming-moore, pending deploy)
 
 ## What's Broken
 - No known functional bugs (see KNOWN_BUGS.md)
+- MVP testers report chat readability issues (Sprint 2 will address)
+- No real-time message refresh (Sprint 3 will address)
+- Mind map confuses users (Sprint 4 will replace with Topic Explorer)
 
 ## IMPORTANT: Documentation Protocol
 After every git push, you MUST update these 5 docs:
@@ -77,4 +89,4 @@ The project owner relies on these docs for continuity between sessions.
 
 ---
 
-**Last Updated:** February 16, 2026
+**Last Updated:** February 19, 2026

@@ -1,6 +1,6 @@
 # BooKlub Architecture Diagram
 
-**Last Updated:** February 5, 2026
+**Last Updated:** February 6, 2026
 
 ---
 
@@ -45,6 +45,7 @@
 │  │  • React 18                                                            │ │
 │  │  • React Router DOM (navigation)                                      │ │
 │  │  • D3.js (mind map visualization)                                     │ │
+│  │  • posthog-js (analytics — page views + user ID)                     │ │
 │  │  • @clerk/clerk-react (authentication UI)                             │ │
 │  └────────────────────────────────────────────────────────────────────────┘ │
 └─────────────────────────────────────────────────────────────────────────────┘
@@ -316,6 +317,18 @@ User in club chat → clicks "Map Discussion"
   → User can zoom, pan, explore themes
 ```
 
+### 6. Analytics Tracking (PostHog)
+```
+User visits any page
+  → PageViewTracker detects route change (useLocation)
+  → posthog.capture('$pageview') fires
+  → PostHog receives: URL, timestamp, anonymous ID
+  → If user is signed in:
+      posthog.identify() links anonymous ID to booklubUser name/email
+  → Owner checks https://us.posthog.com dashboard
+  → Sees: "Sarah visited / → /my-clubs → /club/3 today"
+```
+
 ---
 
 ## Key Architectural Decisions
@@ -393,7 +406,23 @@ User in club chat → clicks "Map Discussion"
 - Attributes insights to participants
 - Better than rule-based parsing
 
-### 8. **Button Design System - Vintage Gold as Primary**
+### 8. **PostHog Analytics — Lightweight MVP Tracking**
+**Decision:** Use PostHog for tracking MVP tester behavior
+**Rationale:**
+- Free tier (1M events/month — MVP will use ~1,000)
+- Identifies users by name (integrates with Clerk sign-in)
+- Auto-tracks page views without heavy instrumentation
+- Simple dashboard for checking who's using the app
+**Implementation:**
+- `posthog.init()` in App.js with `autocapture: false` (lightweight)
+- `PageViewTracker` component fires `$pageview` on every React Router route change
+- `posthog.identify()` called when `booklubUser` is set (links page views to real names)
+- `posthog.reset()` on sign out
+- Dashboard: https://us.posthog.com
+**What it tracks:** Page views per route, user identification (name + email)
+**What it does NOT track:** Clicks, form fields, session recordings, heatmaps
+
+### 9. **Button Design System - Vintage Gold as Primary**
 **Decision:** Use black/gold/white buttons as primary action style throughout app
 **Rationale:**
 - Gold (`#c8aa6e`) evokes vintage cinema, film reels, and Hollywood's golden age
@@ -514,6 +543,7 @@ Production Live ✅
 | **Database** | PostgreSQL | Neon | Free tier |
 | **AI** | Claude 3.5 Sonnet | Anthropic | Pay-per-use |
 | **Visualization** | D3.js | Open source | Free |
+| **Analytics** | PostHog | PostHog Cloud (US) | Free (1M events/mo) |
 | **Version Control** | Git | GitHub | Free |
 
 ---
@@ -536,7 +566,7 @@ booklub-app/
 │   │   │   ├── MindMapVisualization.js
 │   │   │   └── MindMapVisualization.css
 │   │   ├── config.js        # API URL config
-│   │   ├── App.js           # Main app + Clerk setup
+│   │   ├── App.js           # Main app + Clerk + PostHog setup
 │   │   └── index.js         # Entry point
 │   ├── public/              # Static assets
 │   └── package.json         # Dependencies
@@ -554,11 +584,14 @@ booklub-app/
 ├── database/
 │   └── init.sql             # Schema definition
 │
-└── docs/                    # Documentation
-    ├── ARCHITECTURE.md      # This file
-    ├── CURRENT_STATUS.md    # Configuration details
-    ├── CLAUDE_QUICK_START.md # Quick reference
-    └── DEVELOPMENT_ROADMAP.md # Feature tracking
+├── ARCHITECTURE.md          # This file
+├── CHANGELOG.md             # Session-by-session history
+├── CLAUDE_QUICK_START.md    # Quick reference
+├── CURRENT_STATUS.md        # Configuration details
+├── DESIGN_SYSTEM.md         # Button styles, colors, typography
+├── KNOWN_BUGS.md            # All bugs with root cause/fix
+├── NEXT_SESSION_START.md    # Copy/paste for new sessions
+└── PRODUCT_VISION.md        # North star press release
 ```
 
 ---

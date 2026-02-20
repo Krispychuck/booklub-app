@@ -4,103 +4,29 @@ Session-by-session history of what was built, fixed, and changed. Newest session
 
 ---
 
-## Session: February 16, 2026 (Usage Page Polish)
+## Session: February 19, 2026 (Sprint 1 — MVP Feedback Roadmap + Critical Fixes)
 
-**Branch:** `preview`
+**Branch:** `charming-moore`
+**Commit:** `e75977a`
 
-### UI Fix — Hide Usage Nav Link
-- **Change** — Removed "Usage" nav link from header so MVP testers don't see it. Page still accessible via direct URL `/admin/usage`.
-- **Cleanup** — Removed unused `.nav-link-subtle` CSS from `App.css`.
+### Roadmap
+- **Created `DEVELOPMENT_ROADMAP.md`** — Comprehensive sprint plan based on MVP tester feedback. 7 feedback items (MVF-1 through MVF-8) plus existing backlog items organized into 7 sprints. Includes Reading Progress & Spoiler Guard (BKL-4) and Admin Tool & Author Identity Studio (BKL-5, deferred).
 
-### UI Fix — Dashboard Text Readability
-- **Total card** — Bumped label and metadata text from `0.75rem` to `0.85rem`, lightened metadata from `#888` to `#bbb` for better contrast on black.
-- **Feature cards** — Darkened label from `#666` to `#444`, darkened metadata from `#888` to `#555`, bumped sizes from `0.7-0.75rem` to `0.8-0.85rem`.
-- **Daily chart** — Darkened dates from `#666` to `#444`, added `font-weight: 600` to cost values, bumped all text sizes, darkened call counts from `#888` to `#555`.
+### Bug Fixes / Quick Wins
+- **MVF-6: Browser tab title** — Changed from "BooKlub by Krispychuck" to "Booklub". Updated `index.html` (title + meta description) and `manifest.json` (short_name + name).
 
-### Files Modified
-- `frontend/src/App.js` — Removed Usage nav link
-- `frontend/src/App.css` — Removed `.nav-link-subtle` styles
-- `frontend/src/pages/AdminUsage.css` — Readability improvements across all sections
-
----
-
-## Session: February 15, 2026 (API Cost Tracking)
-
-**Branch:** `preview`
-
-### Feature — API Cost Tracking Dashboard
-- **Pricing module** — `backend/config/pricing.js` with Claude Sonnet 4 pricing ($3/MTok input, $15/MTok output). Single file to update when model or pricing changes.
-- **Usage logger** — `backend/utils/logApiUsage.js` logs every API call with token counts and pre-calculated costs. Fire-and-forget (errors never break user-facing requests). Auto-creates `api_usage` table on first call.
-- **Instrumented both API call sites** — Author responses (`messages.js`) and mind map generation (`mindmaps.js`) now log input/output tokens and costs. Also updated messages metadata to include `input_tokens`.
-- **Admin API endpoint** — `GET /api/admin/usage` returns totals, per-feature breakdown, daily costs (30 days), and recent 20 calls.
-- **Dashboard page** — `/admin/usage` with total cost headline, feature cards, daily bar chart (CSS-only), and recent calls table. Design system styling (gold accents, Georgia serif, Courier New for data).
-- **Nav link** — Subtle "Usage" link in header nav (signed-in users only).
-- **Database schema** — `api_usage` table added to `database/init.sql` for future deploys.
-- **Note:** Anthropic Admin API integration was built and then removed — Anthropic Console already provides Usage/Cost dashboards at `platform.claude.com`. The local per-feature/per-club tracking adds value beyond what Anthropic offers natively.
-
-### Bug Fix — Back Button Invisible
-- **Root cause** — `.admin-usage .back-button` had no `color` property, inherited white from parent context.
-- **Fix** — Added `color: #000` to the back button CSS rule.
-
-### Files Added
-- `backend/config/pricing.js` — Model pricing constants
-- `backend/utils/logApiUsage.js` — Usage logger with auto-table-creation
-- `backend/routes/admin.js` — Admin usage API endpoint
-- `frontend/src/pages/AdminUsage.js` — Dashboard page component
-- `frontend/src/pages/AdminUsage.css` — Dashboard styles
-
-### Files Modified
-- `backend/routes/messages.js` — Added logApiUsage call, updated metadata
-- `backend/routes/mindmaps.js` — Added logApiUsage call
-- `backend/server.js` — Registered admin route
-- `frontend/src/App.js` — Added AdminUsage route + nav link
-- `frontend/src/App.css` — Added .nav-link-subtle style
-- `database/init.sql` — Added api_usage table schema
-
----
-
-## Session: February 14, 2026 (UI Polish — Transitions, Typography, Rounded Corners, Logo, Members Bug Fix)
-
-**Branch:** `preview`
-
-### UI/UX — Logo Sophistication (MVP Feedback)
-- **Rounded corners** — `border-radius: 6px` on logo image, gentle enough to preserve Art Nouveau corner flourishes.
-- **Edge blending** — CSS `mask-image` radial gradient creates a soft vignette, feathering logo edges into the black header instead of hard cutoff.
-- **Gold glow** — Subtle warm `box-shadow` halo on the logo link, intensifies on hover with smooth 0.3s transition.
-- **Loading screen** — Matching treatment applied to the loading screen logo for consistency.
-
-### Bug Fix — "Could not load members" (MVP Feedback)
-- **Root cause** — Members query joined `club_members.user_id` (integer) to `users.clerk_id` (string) — always returned zero rows.
-- **Fix** — Changed JOIN to `users.id` (integer), added `clerk_id` to SELECT for frontend current-user detection.
-- **Leave club fix** — Endpoint passed Clerk ID directly as `user_id`. Now looks up internal ID first.
-- **Delete club fix** — Same Clerk ID → internal ID lookup added.
-- **Cleanup** — Removed debug `console.log` statements from MembersModal.
-
-### UI/UX — CSS Transitions & Animations
-- **Standardized transitions** — Every button, link, and input now uses `transition: all 0.3s ease`. Consistent timing throughout.
-- **Page fade-in** — All three pages animate in with `fadeInUp` (12px translate + opacity, 0.4s) on route navigation.
-- **Modal open animations** — All modals animate with overlay fade (0.2s) and content slide-up + scale (0.3s).
-- **Card hover lift** — Book cards (-5px) and club cards (-3px) lift on hover with soft box shadows.
-- **Input focus gold** — All text inputs highlight with gold (`#c8aa6e`) border on focus.
-
-### UI/UX — Typography Hierarchy
-- **Type scale** — Display (2rem), Heading (1.5rem), Subhead (1.15rem), Body (1rem), Caption (0.85rem), Micro (0.75rem).
-- **Metadata** — Year, genre, invite codes, member roles now use Courier New monospace.
-- **Responsive type scaling** — All headings scale proportionally across 3 breakpoints.
-
-### UI/UX — Rounded Corners (MVP Feedback)
-- **Cards:** `border-radius: 12px`, **Buttons:** `8px`, **Inputs:** `8px`, **Modals:** `16px`.
-- **Softened shadows** — Hard offset (`5px 5px 0px`) → soft blur (`0 8px 20px rgba(0,0,0,0.15)`).
+### AI Author Upgrade (MVF-4)
+- **Booklub world context** — AI author system prompt now includes a full context wrapper explaining what Booklub is, the AI's role in the book club, and how to interact with multiple members.
+- **Multi-user awareness** — Club member names are fetched from the database and included in the system prompt. User messages are prefixed with `[MemberName]:` so the AI knows who's talking and can address them by name.
+- **Group Comment awareness** — System prompt explains that some messages are human-to-human "Group Comments" not directed at the AI, preventing confusion.
+- **Increased context** — Message history window increased from 10 to 20 recent messages for better conversation awareness.
+- **Layered prompt architecture** — Per-book `ai_author_prompt` from the database is now wrapped inside a Booklub context layer, keeping book-specific persona details while adding app-wide awareness.
 
 ### Files Changed
-- `frontend/src/App.css` — Transitions, animations, typography, rounded corners
-- `frontend/src/pages/ClubChat.css` — Transitions, rounded corners on messages/buttons/modals/inputs
-- `frontend/src/components/CreateClubModal.css` — Modal animation, rounded corners
-- `frontend/src/components/MindMapVisualization.css` — Rounded corners on modal, detail panel, buttons
-- `frontend/src/components/ClubCreatedModal.css` — Rounded corners
-- `frontend/src/pages/Home.js` — Added `page-transition` wrapper
-- `frontend/src/pages/MyClubs.js` — Added `page-transition` class
-- `frontend/src/pages/ClubChat.js` — Added `page-transition` class
+- `frontend/public/index.html` — Title and meta description updated
+- `frontend/public/manifest.json` — short_name and name updated
+- `backend/routes/messages.js` — AI author endpoint completely rewritten: member lookup, named messages, layered system prompt
+- `DEVELOPMENT_ROADMAP.md` — **NEW** — Full sprint plan with MVP feedback
 
 ---
 
