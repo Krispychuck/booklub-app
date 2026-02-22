@@ -145,7 +145,6 @@ function App() {
           </Link>
           
           <nav className="main-nav">
-            <Link to="/" className="nav-link">Browse Books</Link>
             <SignedIn>
               <Link to="/my-clubs" className="nav-link">My Clubs</Link>
               <button
@@ -155,6 +154,7 @@ function App() {
                 Join Club
               </button>
             </SignedIn>
+            <Link to="/" className="nav-link">Browse Books</Link>
           </nav>
 
           <div className="header-actions">

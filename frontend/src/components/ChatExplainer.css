@@ -1,0 +1,126 @@
+/* ============================================================
+   Chat Explainer — Sprint 5 Onboarding
+   First-visit tooltip explaining Group Comment vs Ask Author
+   ============================================================ */
+
+.chat-explainer {
+  background: #f8f5ef;
+  border: 1px solid #e0dcd4;
+  border-left: 3px solid #c8aa6e;
+  border-radius: 0 10px 10px 0;
+  padding: 14px 18px;
+  margin: 0 0 12px;
+  animation: explainerSlideDown 0.3s ease;
+}
+
+@keyframes explainerSlideDown {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.chat-explainer-content {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.chat-explainer-title {
+  margin: 0;
+  font-family: 'Courier New', monospace;
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: #8a7340;
+}
+
+.chat-explainer-items {
+  display: flex;
+  gap: 20px;
+}
+
+.chat-explainer-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+}
+
+.chat-explainer-label {
+  font-family: 'Courier New', monospace;
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-weight: bold;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.chat-explainer-label--group {
+  background: #fff;
+  color: #000;
+  border: 1px solid #000;
+}
+
+.chat-explainer-label--author {
+  background: transparent;
+  color: #8a7340;
+  border: 1px solid #c8aa6e;
+}
+
+.chat-explainer-desc {
+  font-family: 'Georgia', serif;
+  font-size: 0.8rem;
+  color: #666;
+  line-height: 1.3;
+}
+
+.chat-explainer-dismiss {
+  align-self: flex-end;
+  background: transparent;
+  border: 1px solid #c8aa6e;
+  border-radius: 6px;
+  color: #8a7340;
+  padding: 5px 14px;
+  font-family: 'Courier New', monospace;
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-height: 32px;
+}
+
+.chat-explainer-dismiss:hover {
+  background: #c8aa6e;
+  color: #000;
+}
+
+/* ==================== MOBILE RESPONSIVE ==================== */
+
+@media (max-width: 768px) {
+  .chat-explainer {
+    padding: 12px 14px;
+  }
+
+  .chat-explainer-items {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .chat-explainer-dismiss {
+    min-height: 44px;
+    padding: 8px 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .chat-explainer {
+    padding: 10px 12px;
+  }
+
+  .chat-explainer-desc {
+    font-size: 0.75rem;
+  }
+}

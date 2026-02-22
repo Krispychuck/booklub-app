@@ -3,6 +3,8 @@ import { useParams, useNavigate } from 'react-router-dom';
 import './ClubChat.css';
 import MembersModal from '../components/MembersModal';
 import TopicExplorer from '../components/TopicExplorer';
+import ChatExplainer from '../components/ChatExplainer';
+import ReadingProgressBar from '../components/ReadingProgressBar';
 import LoadingSpinner from '../components/LoadingSpinner';
 import { API_URL } from '../config';
 
@@ -219,6 +221,16 @@ function ClubChat({ booklubUser }) {
           Members
         </button>
       </div>
+
+      {/* Chat Explainer — first-visit tooltip */}
+      <ChatExplainer bookAuthor={book?.author} />
+
+      {/* Reading Progress Bar — Sprint 6 */}
+      <ReadingProgressBar
+        clubId={clubId}
+        userId={booklubUser?.id}
+        bookTitle={book?.title}
+      />
 
       {/* Messages Area */}
       <div className="messages-area" ref={messagesAreaRef}>

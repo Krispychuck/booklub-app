@@ -1,0 +1,344 @@
+/* ============================================================
+   Reading Progress Bar — Sprint 6
+   Compact bar in chat header area, expands to show slider + club progress
+   ============================================================ */
+
+/* ==================== Compact toggle bar ==================== */
+
+.reading-progress-bar {
+  border-bottom: 1px solid #e0e0e0;
+  background: #fff;
+  flex-shrink: 0;
+}
+
+.reading-progress-toggle {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 8px 24px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.reading-progress-toggle:hover {
+  background: #fafafa;
+}
+
+.reading-progress-track {
+  flex: 1;
+  height: 6px;
+  background: #e8e8e8;
+  border-radius: 3px;
+  overflow: hidden;
+  max-width: 200px;
+}
+
+.reading-progress-fill {
+  height: 100%;
+  background: #c8aa6e;
+  border-radius: 3px;
+  transition: width 0.3s ease;
+  min-width: 0;
+}
+
+.reading-progress-label {
+  font-family: 'Courier New', monospace;
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #888;
+  white-space: nowrap;
+}
+
+.reading-progress-chevron {
+  font-size: 0.75rem;
+  color: #bbb;
+  transition: transform 0.2s ease;
+}
+
+.reading-progress-chevron--open {
+  transform: rotate(180deg);
+  color: #c8aa6e;
+}
+
+/* ==================== Expanded panel ==================== */
+
+.reading-progress-panel {
+  padding: 16px 24px 20px;
+  border-top: 1px solid #f0f0f0;
+  animation: progressPanelIn 0.2s ease;
+}
+
+@keyframes progressPanelIn {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.reading-progress-panel-header {
+  margin-bottom: 14px;
+}
+
+.reading-progress-panel-header h4 {
+  margin: 0;
+  font-family: 'Courier New', monospace;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: #c8aa6e;
+}
+
+.reading-progress-book {
+  margin: 4px 0 0;
+  font-family: 'Georgia', serif;
+  font-size: 0.8rem;
+  color: #999;
+  font-style: italic;
+}
+
+/* ==================== My progress section ==================== */
+
+.reading-progress-my-section {
+  margin-bottom: 18px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.reading-progress-slider-label {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  font-family: 'Georgia', serif;
+  font-size: 0.85rem;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.reading-progress-slider-label strong {
+  font-size: 1rem;
+  color: #c8aa6e;
+}
+
+.reading-progress-stage {
+  font-family: 'Courier New', monospace;
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #aaa;
+  margin-left: auto;
+}
+
+/* Custom range slider */
+.reading-progress-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 8px;
+  border-radius: 4px;
+  background: #e8e8e8;
+  outline: none;
+  margin: 6px 0;
+}
+
+.reading-progress-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #c8aa6e;
+  border: 2px solid #fff;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+  cursor: pointer;
+  transition: transform 0.15s ease;
+}
+
+.reading-progress-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.15);
+}
+
+.reading-progress-slider::-moz-range-thumb {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #c8aa6e;
+  border: 2px solid #fff;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+  cursor: pointer;
+}
+
+.reading-progress-slider-marks {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 2px;
+  margin-bottom: 12px;
+}
+
+.reading-progress-slider-marks span {
+  font-family: 'Courier New', monospace;
+  font-size: 0.55rem;
+  color: #ccc;
+  text-transform: uppercase;
+}
+
+.reading-progress-save-btn {
+  background: transparent;
+  border: 2px solid #c8aa6e;
+  border-radius: 8px;
+  color: #c8aa6e;
+  padding: 8px 20px;
+  font-family: 'Courier New', monospace;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 100%;
+}
+
+.reading-progress-save-btn:hover:not(:disabled) {
+  background: #c8aa6e;
+  color: #000;
+}
+
+.reading-progress-save-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* ==================== Members section ==================== */
+
+.reading-progress-members-section {
+  margin-top: 2px;
+}
+
+.reading-progress-members-heading {
+  margin: 0 0 10px;
+  font-family: 'Courier New', monospace;
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: #999;
+}
+
+.reading-progress-member {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.reading-progress-member-name {
+  font-family: 'Georgia', serif;
+  font-size: 0.82rem;
+  color: #444;
+  min-width: 80px;
+  flex-shrink: 0;
+}
+
+.reading-progress-member-track {
+  flex: 1;
+  height: 5px;
+  background: #e8e8e8;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.reading-progress-member-fill {
+  height: 100%;
+  background: #c8aa6e;
+  border-radius: 3px;
+  transition: width 0.3s ease;
+}
+
+.reading-progress-member-pct {
+  font-family: 'Courier New', monospace;
+  font-size: 0.65rem;
+  color: #888;
+  min-width: 32px;
+  text-align: right;
+}
+
+.reading-progress-empty {
+  font-family: 'Georgia', serif;
+  font-size: 0.85rem;
+  color: #999;
+  font-style: italic;
+  text-align: center;
+  padding: 10px 0;
+}
+
+/* ==================== MOBILE RESPONSIVE ==================== */
+
+@media (max-width: 768px) {
+  .reading-progress-toggle {
+    padding: 8px 16px;
+  }
+
+  .reading-progress-panel {
+    padding: 14px 16px 18px;
+  }
+
+  .reading-progress-track {
+    max-width: 160px;
+  }
+}
+
+@media (max-width: 480px) {
+  .reading-progress-toggle {
+    padding: 6px 12px;
+    gap: 8px;
+  }
+
+  .reading-progress-track {
+    max-width: 120px;
+  }
+
+  .reading-progress-panel {
+    padding: 12px 12px 16px;
+  }
+
+  .reading-progress-slider-label {
+    flex-wrap: wrap;
+    font-size: 0.82rem;
+  }
+
+  .reading-progress-stage {
+    flex: 1 1 100%;
+    margin-left: 0;
+    margin-top: 2px;
+  }
+
+  .reading-progress-slider::-webkit-slider-thumb {
+    width: 28px;
+    height: 28px;
+  }
+
+  .reading-progress-slider::-moz-range-thumb {
+    width: 28px;
+    height: 28px;
+  }
+
+  .reading-progress-member-name {
+    min-width: 60px;
+    font-size: 0.78rem;
+  }
+
+  .reading-progress-save-btn {
+    padding: 12px 20px;
+    min-height: 44px;
+    font-size: 0.75rem;
+  }
+}
+
+@media (max-width: 375px) {
+  .reading-progress-track {
+    max-width: 90px;
+  }
+
+  .reading-progress-label {
+    font-size: 0.6rem;
+  }
+}

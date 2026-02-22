@@ -123,6 +123,37 @@ router.post('/club/:clubId/ai-response', async (req, res) => {
     );
     const memberNames = membersResult.rows.map(m => m.name).filter(Boolean);
 
+    // Get reading progress for spoiler guard (Sprint 6)
+    let spoilerGuardSection = '';
+    try {
+      const progressResult = await pool.query(
+        `SELECT rp.progress_value, rp.progress_label, u.name
+         FROM reading_progress rp
+         JOIN users u ON rp.user_id = u.id
+         WHERE rp.club_id = $1`,
+        [clubId]
+      );
+      if (progressResult.rows.length > 0) {
+        const progressLines = progressResult.rows.map(p => {
+          const label = p.progress_label ? ` (${p.progress_label})` : '';
+          return `  - ${p.name}: ${p.progress_value}% through the book${label}`;
+        });
+        spoilerGuardSection = `\n=== SPOILER GUARD (CRITICAL) ===
+The following club members have shared how far they are in the book:
+${progressLines.join('\n')}
+
+IMPORTANT RULES:
+- NEVER discuss plot events, character developments, twists, or revelations that happen BEYOND where a member has read.
+- If a member asks about something later in the book, gently deflect: "I don't want to spoil anything — keep reading and we can discuss that when you get there!"
+- If members are at different points, be careful to only discuss content that ALL participating members have reached.
+- You may discuss general themes and craft in a spoiler-free way regardless of progress.
+- If a member has not set their progress, assume they may not have finished and err on the side of caution.
+`;
+      }
+    } catch (progressError) {
+      console.error('Error fetching reading progress for AI prompt:', progressError.message);
+    }
+
     // Get recent messages for context (last 20 — increased from 10 for better multi-user awareness)
     const messagesResult = await pool.query(
       `SELECT m.sender_type, m.sender_ai_name, m.content, u.name as sender_name
@@ -171,7 +202,8 @@ You are participating in Booklub, a social book club app where readers form priv
 - Feel free to ask members questions about their interpretations or what drew them to the work.
 
 === AUTHOR PERSONA ===
-${authorPersonaPrompt}`;
+${authorPersonaPrompt}
+${spoilerGuardSection}`;
 
     // Call Claude API
     const response = await anthropic.messages.create({
