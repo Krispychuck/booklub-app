@@ -34,24 +34,26 @@ NEVER create a new branch or worktree. ALL work happens on charming-moore.
 8. Read DESIGN_SYSTEM.md - Button styles and vintage gold aesthetic
 
 ## Current Sprint Status
-Sprints 1, 2, and 3 are COMPLETE. Sprints 1+2 deployed. Sprint 3 on charming-moore pending deploy.
+Sprints 1-4 are COMPLETE. Sprints 1+2 deployed. Sprints 3+4 on charming-moore pending deploy.
 
 Sprint 1 (deployed): Tab title fix + AI Author context upgrade
 Sprint 2 (deployed): Chat readability overhaul (full-width, parchment AI, paragraph splitting)
 Sprint 3 (pending deploy): Real-time chat polling (5-second interval, smart scroll, delta fetch)
+Sprint 4 (pending deploy): Topic Explorer (replaced D3.js mind map with mobile-first topic list)
 
-## Priority 1: Deploy Sprint 3
+## Priority 1: Deploy Sprints 3+4
 Merge PR from charming-moore → main:
 1. Go to: https://github.com/Krispychuck/booklub-app/compare/main...charming-moore
-2. Create PR with title: "Sprint 3: Real-time chat polling"
+2. Create PR with title: "Sprint 3+4: Real-time chat polling + Topic Explorer"
 3. Merge to deploy
-4. Test with two browsers/accounts — messages from one should appear in the other within 5 seconds
+4. Test real-time chat: two browsers/accounts — messages should appear within 5 seconds
+5. Test Topic Explorer: open a club chat, click "Topics" button, verify topic analysis loads
 
-## Priority 2: Sprint 4 — Topic Explorer (Replace Mind Map)
-See DEVELOPMENT_ROADMAP.md MVF-2. Replace confusing D3.js mind map with a simple topic list + drill-in UI.
-
-## Priority 3: Sprint 5 — Onboarding & Concept Clarity
+## Priority 2: Sprint 5 — Onboarding & Concept Clarity
 See DEVELOPMENT_ROADMAP.md MVF-5. Welcome/explainer experience for new users.
+
+## Priority 3: Sprint 6 — Reading Progress & Spoiler Guard
+See DEVELOPMENT_ROADMAP.md BKL-4. Track reading progress, AI respects spoiler boundaries.
 
 ## Key Context
 - **Project:** Booklub - Social book club app with AI author chat
@@ -71,7 +73,7 @@ See DEVELOPMENT_ROADMAP.md MVF-5. Welcome/explainer experience for new users.
 - Club creation + Join Club
 - Chat messaging (group + AI author with Booklub context awareness)
 - Chat readability: full-width layout, parchment AI messages, paragraph splitting
-- Mind Map visualization (D3.js radial tree) — to be replaced by Topic Explorer in Sprint 4
+- Topic Explorer (AI-powered topic analysis with expandable cards, key quotes, type badges)
 - Gold design system on all primary buttons + header nav
 - Custom domain: booklub.krispychuck.com
 - Logo: Booklub-marquee2.png (Art Nouveau parchment style)
@@ -82,9 +84,9 @@ See DEVELOPMENT_ROADMAP.md MVF-5. Welcome/explainer experience for new users.
 
 ## What's Not Working / Known Issues
 - No known functional bugs (see KNOWN_BUGS.md)
-- Real-time chat built but not yet deployed (Sprint 3 on charming-moore)
-- Mind map confuses users (Sprint 4 will replace with Topic Explorer)
+- Real-time chat + Topic Explorer built but not yet deployed (on charming-moore)
 - New users confused about what Booklub is (Sprint 5 onboarding)
+- Old MindMapVisualization.js/css still on disk but no longer imported (dead code, can clean up)
 
 ## IMPORTANT: Documentation Protocol
 After every git push, you MUST update these 5 docs:

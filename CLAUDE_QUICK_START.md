@@ -11,7 +11,7 @@ When starting a new session about BooKlub, read this first!
 **Location:** `/Users/mrl/.claude-worktrees/booklub-app/charming-moore/`
 **Branch:** `charming-moore` (worktree — merge to `main` to deploy)
 **Last Updated:** February 19, 2026
-**Status:** Production — All core features + Mind Map + Mobile responsive + PostHog analytics + AI Author context + Chat readability + Real-time polling
+**Status:** Production — All core features + Topic Explorer + Mobile responsive + PostHog analytics + AI Author context + Chat readability + Real-time polling
 
 ---
 
@@ -46,7 +46,8 @@ When starting a new session about BooKlub, read this first!
 - `frontend/src/components/LoadingSpinner.css` — Book animation + button-spinner CSS
 - `backend/server.js` — Express app, route registration
 - `backend/routes/messages.js` — Chat + AI author responses (system prompt with Booklub context)
-- `backend/routes/mindmaps.js` — Mind map generation (auto-creates table)
+- `frontend/src/components/TopicExplorer.js` — Topic Explorer (replaced MindMapVisualization)
+- `backend/routes/mindmaps.js` — Topic analysis generation (auto-creates table, reuses mind_maps table)
 - `backend/seeds/schema.sql` — Production database column types
 - `DEVELOPMENT_ROADMAP.md` — Sprint plan with MVP feedback items
 
@@ -171,8 +172,10 @@ See `DEVELOPMENT_ROADMAP.md` for full sprint plan with 7 sprints based on MVP te
 **Sprint 3 (Real-Time Chat):** COMPLETE (pending deploy)
 - ~~MVF-3: Polling-based real-time chat~~ — **DONE** (commit `a53b7f0`)
 
+**Sprint 4 (Topic Explorer):** COMPLETE (pending deploy)
+- ~~MVF-2: Replace mind map with Topic Explorer~~ — **DONE** (commit `a1e7568`)
+
 **Next up:**
-- Sprint 4: Topic Explorer (replace mind map)
 - Sprint 5: Onboarding & concept clarity
 - Sprint 6: Reading progress & spoiler guard
 - Sprint 7: AI-generated book covers
