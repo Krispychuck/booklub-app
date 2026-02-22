@@ -1,0 +1,584 @@
+/* ============================================================
+   Topic Explorer — Sprint 4 replacement for Mind Map
+   Mobile-first, vintage gold design system
+   ============================================================ */
+
+/* Full-screen overlay */
+.topic-explorer-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.75);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  animation: topicFadeIn 0.3s ease;
+}
+
+@keyframes topicFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Modal container */
+.topic-explorer-modal {
+  width: 94vw;
+  max-width: 600px;
+  height: 90vh;
+  height: 90dvh;
+  background: #fff;
+  border: 2px solid #000;
+  border-radius: 16px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  animation: topicSlideUp 0.3s ease;
+}
+
+@keyframes topicSlideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ==================== Header ==================== */
+
+.topic-explorer-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 24px;
+  border-bottom: 2px solid #000;
+  background: #fff;
+  flex-shrink: 0;
+}
+
+.topic-explorer-title h2 {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: normal;
+  color: #000;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-family: 'Courier New', monospace;
+}
+
+.topic-explorer-title p {
+  margin: 4px 0 0;
+  font-size: 0.85rem;
+  color: #888;
+  font-style: italic;
+  font-family: 'Georgia', serif;
+}
+
+.topic-explorer-close-btn {
+  background: transparent;
+  border: 2px solid #000;
+  border-radius: 8px;
+  color: #000;
+  padding: 8px 18px;
+  font-family: 'Georgia', serif;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+}
+
+.topic-explorer-close-btn:hover {
+  background: #f0f0f0;
+}
+
+/* ==================== Body (scrollable) ==================== */
+
+.topic-explorer-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px 20px;
+  background: #fafafa;
+}
+
+/* ==================== Loading ==================== */
+
+.topic-explorer-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 200px;
+}
+
+/* ==================== Error ==================== */
+
+.topic-explorer-error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 200px;
+  text-align: center;
+}
+
+.topic-explorer-error p {
+  color: #b47878;
+  font-family: 'Georgia', serif;
+  margin-bottom: 16px;
+  font-size: 0.95rem;
+}
+
+.topic-explorer-error button {
+  background: transparent;
+  border: 2px solid #000;
+  border-radius: 8px;
+  color: #000;
+  padding: 10px 24px;
+  font-family: 'Georgia', serif;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.topic-explorer-error button:hover {
+  background: #f0f0f0;
+}
+
+/* ==================== Summary bar ==================== */
+
+.topic-explorer-summary {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 0 14px;
+  margin-bottom: 8px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.topic-explorer-count {
+  font-family: 'Courier New', monospace;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: #c8aa6e;
+  font-weight: bold;
+}
+
+.topic-explorer-separator {
+  color: #ccc;
+  font-size: 0.9rem;
+}
+
+.topic-explorer-messages-analyzed {
+  font-family: 'Georgia', serif;
+  font-size: 0.8rem;
+  color: #999;
+  font-style: italic;
+}
+
+/* ==================== Topic list ==================== */
+
+.topic-explorer-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* ==================== Topic card ==================== */
+
+.topic-card {
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.topic-card:hover {
+  border-color: #ccc;
+}
+
+.topic-card--expanded {
+  border-color: #c8aa6e;
+  box-shadow: 0 2px 12px rgba(200, 170, 110, 0.12);
+}
+
+/* Topic header (clickable) */
+.topic-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 14px 16px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  transition: background 0.2s ease;
+  gap: 12px;
+}
+
+.topic-card-header:hover {
+  background: #fafafa;
+}
+
+.topic-card--expanded .topic-card-header {
+  background: #faf8f4;
+  border-bottom: 1px solid #f0ece4;
+}
+
+.topic-card-left {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  flex: 1;
+  min-width: 0;
+}
+
+/* Type icon */
+.topic-card-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+  flex-shrink: 0;
+  font-weight: bold;
+}
+
+.topic-card-icon--theme {
+  background: rgba(200, 170, 110, 0.15);
+  color: #a08540;
+}
+
+.topic-card-icon--character {
+  background: rgba(140, 180, 140, 0.15);
+  color: #5a8a5a;
+}
+
+.topic-card-icon--plot {
+  background: rgba(130, 165, 200, 0.15);
+  color: #4a7a9a;
+}
+
+.topic-card-icon--symbolism {
+  background: rgba(170, 140, 200, 0.15);
+  color: #7a5aa0;
+}
+
+.topic-card-icon--personal {
+  background: rgba(200, 140, 140, 0.15);
+  color: #a05a5a;
+}
+
+.topic-card-icon--question {
+  background: rgba(200, 180, 100, 0.15);
+  color: #8a7a30;
+  font-family: 'Georgia', serif;
+  font-style: italic;
+}
+
+/* Topic info */
+.topic-card-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.topic-card-name {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #222;
+  font-family: 'Georgia', serif;
+  line-height: 1.35;
+}
+
+.topic-card-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 4px;
+  flex-wrap: wrap;
+}
+
+.topic-card-type {
+  font-family: 'Courier New', monospace;
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 2px 7px;
+  border-radius: 3px;
+  font-weight: bold;
+}
+
+.topic-card-type--theme {
+  background: rgba(200, 170, 110, 0.15);
+  color: #8a7340;
+}
+
+.topic-card-type--character {
+  background: rgba(140, 180, 140, 0.15);
+  color: #5a8a5a;
+}
+
+.topic-card-type--plot {
+  background: rgba(130, 165, 200, 0.15);
+  color: #4a7a9a;
+}
+
+.topic-card-type--symbolism {
+  background: rgba(170, 140, 200, 0.15);
+  color: #7a5aa0;
+}
+
+.topic-card-type--personal {
+  background: rgba(200, 140, 140, 0.15);
+  color: #a05a5a;
+}
+
+.topic-card-type--question {
+  background: rgba(200, 180, 100, 0.15);
+  color: #8a7a30;
+}
+
+.topic-card-participants {
+  font-family: 'Georgia', serif;
+  font-size: 0.75rem;
+  color: #999;
+  font-style: italic;
+}
+
+/* Chevron */
+.topic-card-chevron {
+  font-size: 1.3rem;
+  color: #bbb;
+  flex-shrink: 0;
+  transition: transform 0.3s ease, color 0.3s ease;
+  line-height: 1;
+}
+
+.topic-card-chevron--open {
+  transform: rotate(90deg);
+  color: #c8aa6e;
+}
+
+/* ==================== Expanded detail ==================== */
+
+.topic-card-detail {
+  padding: 16px 16px 18px;
+  animation: topicDetailFadeIn 0.25s ease;
+}
+
+@keyframes topicDetailFadeIn {
+  from { opacity: 0; transform: translateY(-6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Summary text */
+.topic-card-summary {
+  margin: 0 0 16px;
+  font-family: 'Georgia', serif;
+  font-size: 0.92rem;
+  line-height: 1.65;
+  color: #444;
+}
+
+/* Quotes section */
+.topic-card-quotes {
+  margin-bottom: 12px;
+}
+
+.topic-card-quotes-label {
+  margin: 0 0 10px;
+  font-family: 'Courier New', monospace;
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: #999;
+}
+
+.topic-card-quote {
+  margin-bottom: 12px;
+  padding: 10px 14px;
+  background: #faf8f4;
+  border-left: 3px solid #c8aa6e;
+  border-radius: 0 8px 8px 0;
+}
+
+.topic-card-quote-text {
+  font-family: 'Georgia', serif;
+  font-size: 0.88rem;
+  line-height: 1.55;
+  color: #333;
+  font-style: italic;
+}
+
+.topic-card-quote-speaker {
+  margin-top: 6px;
+  font-family: 'Courier New', monospace;
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #8a7340;
+}
+
+/* Message count */
+.topic-card-message-count {
+  font-family: 'Courier New', monospace;
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #bbb;
+  margin-top: 8px;
+  padding-top: 10px;
+  border-top: 1px solid #f0f0f0;
+}
+
+/* ==================== Empty state ==================== */
+
+.topic-explorer-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 200px;
+  text-align: center;
+}
+
+.topic-explorer-empty p {
+  font-family: 'Georgia', serif;
+  font-size: 0.95rem;
+  color: #888;
+  margin: 4px 0;
+  line-height: 1.5;
+}
+
+/* ==================== Footer ==================== */
+
+.topic-explorer-footer {
+  padding: 10px 24px;
+  background: #fff;
+  border-top: 1px solid #e0e0e0;
+  color: #bbb;
+  font-size: 0.7rem;
+  font-family: 'Courier New', monospace;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+/* ==================== MOBILE RESPONSIVE ==================== */
+
+@media (max-width: 768px) {
+  .topic-explorer-modal {
+    width: 100vw;
+    height: 100vh;
+    height: 100dvh;
+    border-radius: 0;
+    border: none;
+    max-width: none;
+  }
+
+  .topic-explorer-header {
+    padding: 14px 16px;
+  }
+
+  .topic-explorer-title h2 {
+    font-size: 0.95rem;
+    letter-spacing: 1.5px;
+  }
+
+  .topic-explorer-close-btn {
+    padding: 10px 16px;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+  }
+
+  .topic-explorer-body {
+    padding: 14px 16px;
+  }
+
+  .topic-card-header {
+    padding: 12px 14px;
+  }
+
+  .topic-card-detail {
+    padding: 14px 14px 16px;
+  }
+
+  .topic-explorer-footer {
+    padding: 8px 16px;
+    font-size: 0.6rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .topic-explorer-header {
+    padding: 12px 14px;
+  }
+
+  .topic-explorer-title h2 {
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+  }
+
+  .topic-explorer-title p {
+    font-size: 0.75rem;
+  }
+
+  .topic-explorer-body {
+    padding: 12px 12px;
+  }
+
+  .topic-card-icon {
+    width: 28px;
+    height: 28px;
+    font-size: 0.8rem;
+  }
+
+  .topic-card-name {
+    font-size: 0.92rem;
+  }
+
+  .topic-card-header {
+    padding: 11px 12px;
+    gap: 8px;
+  }
+
+  .topic-card-left {
+    gap: 10px;
+  }
+
+  .topic-card-detail {
+    padding: 12px 12px 14px;
+  }
+
+  .topic-card-quote {
+    padding: 8px 12px;
+  }
+
+  .topic-card-summary {
+    font-size: 0.88rem;
+  }
+
+  .topic-explorer-footer {
+    padding: 6px 12px;
+    font-size: 0.55rem;
+    letter-spacing: 1px;
+  }
+}
+
+@media (max-width: 375px) {
+  .topic-explorer-title p {
+    display: none;
+  }
+
+  .topic-card-participants {
+    display: none;
+  }
+}

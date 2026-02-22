@@ -8,7 +8,7 @@ const anthropic = new Anthropic({
   apiKey: process.env.ANTHROPIC_API_KEY,
 });
 
-// Ensure mind_maps table exists
+// Ensure mind_maps table exists (reused for topic data — map_data is flexible JSONB)
 let tableReady = false;
 async function ensureMindMapsTable() {
   if (tableReady) return;
@@ -34,21 +34,22 @@ async function ensureMindMapsTable() {
   }
 }
 
-// Generate mind map for a club's discussion
+// Generate topic analysis for a club's discussion (Sprint 4: replaces mind map)
 router.post('/:clubId/generate', async (req, res) => {
   const clubId = req.params.clubId;
   const userId = req.body.userId;
 
-  console.log('=== Mind Map Generation Request ===');
+  console.log('=== Topic Explorer Generation Request ===');
   console.log('Club ID:', clubId);
   console.log('User ID:', userId);
 
   try {
     // Ensure table exists before any DB operations
     await ensureMindMapsTable();
+
     // 1. Fetch all messages for this club
     const messagesResult = await pool.query(
-      `SELECT 
+      `SELECT
         m.id,
         m.content,
         m.sender_type,
@@ -69,53 +70,78 @@ router.post('/:clubId/generate', async (req, res) => {
       return res.status(400).json({ error: 'No messages to analyze' });
     }
 
+    // 2. Get book info for richer analysis
+    const clubResult = await pool.query(
+      `SELECT bc.name as club_name, b.title, b.author
+       FROM book_clubs bc
+       JOIN books b ON bc.book_id = b.id
+       WHERE bc.id = $1`,
+      [clubId]
+    );
+
+    const clubInfo = clubResult.rows[0];
+
     // 3. Format messages for Claude
     const conversationText = messages.map((msg) => {
-      const sender = msg.sender_type === 'ai' 
-        ? msg.sender_ai_name 
+      const sender = msg.sender_type === 'ai'
+        ? msg.sender_ai_name
         : msg.user_name;
       return `[Message ${msg.id}] ${sender}: ${msg.content}`;
     }).join('\n\n');
 
-    console.log('Sending to Claude API...');
+    console.log('Sending to Claude API for topic analysis...');
 
-    // 4. Send to Claude for analysis
-    const systemPrompt = `You are analyzing a book club discussion to create a mind map visualization.
+    // 4. Send to Claude for topic extraction
+    const systemPrompt = `You are analyzing a book club discussion about "${clubInfo?.title || 'a book'}" by ${clubInfo?.author || 'an author'} to extract discussion topics.
 
-Given a series of messages from a book club discussion, identify:
-1. The central theme or question being discussed
-2. Major topics/subtopics that branch from the central theme
-3. Supporting arguments, counterpoints, and revelations
-4. Which participants contributed to each node
+Given a series of messages from a book club conversation, identify the main topics and themes being discussed. For each topic, provide:
+1. A clear, concise topic name
+2. A brief summary of what was discussed about this topic
+3. The type of discussion (theme, character, plot, symbolism, personal, question)
+4. Key quotes from the conversation that relate to this topic (include message IDs)
+5. Which participants contributed to the discussion of this topic
 
 Return your analysis as JSON with this exact structure:
 
 {
-  "centralTheme": "One sentence describing the main discussion theme",
-  "nodes": [
+  "bookTitle": "The book being discussed",
+  "bookAuthor": "The author",
+  "topicCount": 5,
+  "topics": [
     {
-      "id": "unique_id",
-      "label": "Topic name (max 50 chars)",
-      "type": "theme|supporting|counterpoint|revelation|question",
-      "participants": ["Alice", "F. Scott Fitzgerald"],
-      "messageIds": [1, 3, 5],
-      "children": []
+      "id": "topic_1",
+      "name": "Topic name (clear and concise, max 60 chars)",
+      "type": "theme|character|plot|symbolism|personal|question",
+      "summary": "2-3 sentence summary of what was discussed about this topic",
+      "participants": ["Alice", "Bob"],
+      "quotes": [
+        {
+          "text": "The exact or closely paraphrased quote from the message",
+          "speaker": "Alice",
+          "messageId": "uuid-here"
+        }
+      ],
+      "messageCount": 3
     }
   ]
 }
 
 Rules:
-- Maximum 3 levels deep
-- Aim for 5-8 main nodes, each with 2-4 children
-- If discussion is very short (<10 messages), return fewer nodes
+- Identify 3-8 topics depending on conversation length
+- For short conversations (<10 messages), return 2-4 topics
+- For longer conversations, return 5-8 topics
+- Order topics by how much they were discussed (most discussed first)
 - Use actual participant names from the messages
-- Keep labels concise but meaningful
+- Include 1-3 key quotes per topic (the most insightful or representative ones)
+- Keep topic names clear and readable — these will be displayed as a list
 - Type definitions:
-  - "theme": Major discussion topic
-  - "supporting": Evidence or agreement
-  - "counterpoint": Disagreement or alternative view
-  - "revelation": New insight or discovery
-  - "question": Open question raised
+  - "theme": Major thematic discussion (e.g., "The American Dream")
+  - "character": Discussion about a specific character
+  - "plot": Discussion about plot events or structure
+  - "symbolism": Discussion about symbols, metaphors, literary devices
+  - "personal": Personal reflections or connections to real life
+  - "question": Open questions the group raised but didn't fully resolve
+- Include the message IDs from the original messages in quotes so we can link back
 
 Only return valid JSON, no additional text.`;
 
@@ -126,7 +152,7 @@ Only return valid JSON, no additional text.`;
       messages: [
         {
           role: 'user',
-          content: `Analyze this book club discussion and create a mind map:\n\n${conversationText}`
+          content: `Analyze this book club discussion and extract the main topics:\n\n${conversationText}`
         }
       ]
     });
@@ -135,57 +161,55 @@ Only return valid JSON, no additional text.`;
 
     // Log API usage for cost tracking
     await logApiUsage({
-      feature: 'mind_map',
+      feature: 'topic_explorer',
       clubId,
       model: 'claude-sonnet-4-20250514',
       inputTokens: claudeResponse.usage?.input_tokens || 0,
       outputTokens: claudeResponse.usage?.output_tokens || 0,
     });
 
-// 5. Parse Claude's response (strip markdown code fences if present)
+    // 5. Parse Claude's response (strip markdown code fences if present)
     let responseText = claudeResponse.content[0].text;
-    
-    // Remove markdown code fences if present
     responseText = responseText.replace(/```json\n?/g, '').replace(/```\n?/g, '').trim();
-    
-    const mindMapData = JSON.parse(responseText);
-    console.log('Parsed mind map data');
 
-    // 6. Save to database
+    const topicData = JSON.parse(responseText);
+    console.log('Parsed topic data:', topicData.topics?.length, 'topics');
+
+    // 6. Save to database (reusing mind_maps table — map_data is JSONB so it's flexible)
     const insertResult = await pool.query(
       `INSERT INTO mind_maps (club_id, message_count, map_data, created_by)
        VALUES ($1, $2, $3, $4)
        RETURNING *`,
-      [clubId, messages.length, JSON.stringify(mindMapData), userId]
+      [clubId, messages.length, JSON.stringify(topicData), userId]
     );
 
-    const savedMindMap = insertResult.rows[0];
-    console.log('Saved to database, ID:', savedMindMap.id);
+    const saved = insertResult.rows[0];
+    console.log('Saved to database, ID:', saved.id);
 
     res.json({
-      id: savedMindMap.id,
-      clubId: savedMindMap.club_id,
-      generatedAt: savedMindMap.generated_at,
-      messageCount: savedMindMap.message_count,
-      mapData: savedMindMap.map_data
+      id: saved.id,
+      clubId: saved.club_id,
+      generatedAt: saved.generated_at,
+      messageCount: saved.message_count,
+      topicData: saved.map_data
     });
 
   } catch (error) {
-    console.error('Error generating mind map:', error);
-    res.status(500).json({ 
-      error: 'Failed to generate mind map',
-      details: error.message 
+    console.error('Error generating topics:', error);
+    res.status(500).json({
+      error: 'Failed to generate topics',
+      details: error.message
     });
   }
 });
 
-// Get existing mind maps for a club
+// Get existing topic analyses for a club
 router.get('/:clubId', async (req, res) => {
   const clubId = req.params.clubId;
 
   try {
     const result = await pool.query(
-      `SELECT 
+      `SELECT
         mm.*,
         u.name as creator_name
       FROM mind_maps mm
@@ -198,8 +222,8 @@ router.get('/:clubId', async (req, res) => {
     res.json(result.rows);
 
   } catch (error) {
-    console.error('Error fetching mind maps:', error);
-    res.status(500).json({ error: 'Failed to fetch mind maps' });
+    console.error('Error fetching topics:', error);
+    res.status(500).json({ error: 'Failed to fetch topics' });
   }
 });
 
