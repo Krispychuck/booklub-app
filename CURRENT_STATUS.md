@@ -1,7 +1,7 @@
 # BooKlub App - Current Status & Configuration
 
 **Last Updated:** February 19, 2026
-**Status:** Production — Core features + Mind Map + Mobile responsive + PostHog analytics + AI Author context + Chat readability overhaul
+**Status:** Production — Core features + Topic Explorer + Mobile responsive + PostHog analytics + AI Author context + Chat readability + Real-time polling
 
 ---
 
@@ -13,7 +13,7 @@ BooKlub is a social book club application that allows users to:
 - Join clubs using invite codes
 - Chat with other club members
 - Get AI-powered responses from book "authors"
-- Generate Mind Map visualizations of club discussions
+- Explore discussion topics via AI-powered Topic Explorer
 
 ---
 
@@ -77,10 +77,10 @@ PORT=3001
 - ✅ Join clubs via invite codes
 - ✅ Club chat messaging
 - ✅ AI author responses (Anthropic Claude)
-- ✅ Mind Map discussion visualization (D3.js radial tree)
-  - Click-to-expand truncated messages in detail panel
-  - Interactive zoom/pan
-  - Node detail panel with related messages
+- ✅ Topic Explorer (AI-powered discussion analysis)
+  - Expandable topic cards with summaries and key quotes
+  - Topic types: theme, character, plot, symbolism, personal, question
+  - Mobile-first design, replaces old D3.js mind map
 - ✅ Delete messages in chat
 - ✅ Leave/delete club functionality
 - ✅ Members modal
@@ -91,7 +91,7 @@ PORT=3001
 ## Design System
 
 **Primary buttons (gold):** `#c8aa6e` border, transparent background, fills gold on hover.
-Applied to: Ask Author, Map Discussion, Start a Club, Create Club, Join Club, Browse Books, Display Name Save.
+Applied to: Ask Author, Topics, Start a Club, Create Club, Join Club, Browse Books, Display Name Save.
 
 **Secondary buttons (black/white):** Black border on white background.
 Applied to: Group Comment, Back, Members, Cancel.
@@ -117,8 +117,9 @@ booklub-app/
 │   │   │   ├── MembersModal.js
 │   │   │   ├── DisplayNameModal.js
 │   │   │   ├── LoadingSpinner.js / .css    ← Book-riffling animation
-│   │   │   ├── MindMapVisualization.js
-│   │   │   └── MindMapVisualization.css
+│   │   │   ├── TopicExplorer.js / .css   ← Sprint 4 (replaces MindMap)
+│   │   │   ├── MindMapVisualization.js  ← Dead code (no longer imported)
+│   │   │   └── MindMapVisualization.css ← Dead code (no longer imported)
 │   │   ├── config.js
 │   │   ├── App.js / App.css
 │   │   └── index.js
@@ -240,6 +241,12 @@ Note: Production DB uses **UUIDs** for most IDs, though `init.sql` shows SERIAL.
 39. **Polling endpoint** — `GET /api/messages/club/:clubId/since/:lastMessageId` for efficient delta fetches.
 40. **5-second polling** — Frontend polls for new messages, smart-scrolls only when near bottom, pauses during sends.
 
+### Sprint 4 — Topic Explorer (Feb 19, 2026)
+41. **Topic Explorer** — Replaced D3.js mind map with mobile-first topic list. AI extracts discussion topics with summaries, key quotes, type badges, and participant info.
+42. **Backend refactored** — `mindmaps.js` AI prompt rewritten for flat topic list format. Includes book context. Reuses `mind_maps` table.
+43. **Bundle reduced** — ~19KB smaller (D3 no longer imported).
+44. **Button renamed** — "Map Discussion" → "Topics" in chat header.
+
 ---
 
 ## Next Steps (Upcoming)
@@ -248,7 +255,7 @@ See `DEVELOPMENT_ROADMAP.md` for full sprint plan. Current priorities:
 
 1. ~~🔧 **Deploy Sprints 1+2**~~ — **DEPLOYED** (PR merged Feb 19, 2026)
 3. ~~🔄 **Sprint 3: Real-time chat**~~ — **DONE** (pending deploy)
-4. 🗂️ **Sprint 4: Topic Explorer** — Replace confusing mind map with simple topic list
+4. ~~🗂️ **Sprint 4: Topic Explorer**~~ — **DONE** (pending deploy)
 5. 👋 **Sprint 5: Onboarding** — Help new users understand what Booklub is
 6. 🔖 **Sprint 6: Reading progress & spoiler guard** — Spoiler-safe AI for mid-book readers
 7. 🎨 **Sprint 7: AI-generated book covers**

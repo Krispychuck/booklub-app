@@ -4,6 +4,28 @@ Session-by-session history of what was built, fixed, and changed. Newest session
 
 ---
 
+## Session: February 19, 2026 (Sprint 4 — Topic Explorer)
+
+**Branch:** `charming-moore`
+**Commit:** `a1e7568`
+
+### Topic Explorer — Replaces Mind Map (MVF-2)
+- **New component:** `TopicExplorer.js` — Replaces the confusing D3.js radial mind map with a simple, mobile-first topic list. AI analyzes the club conversation and extracts discussion topics displayed as an expandable list.
+- **Topic cards:** Each topic shows name, type badge (theme/character/plot/symbolism/personal/question), participants, and a chevron to expand. Tapping a topic reveals a summary, key quotes with gold accent bars, and message count.
+- **Backend refactored:** `mindmaps.js` AI prompt completely rewritten to return flat topic list format instead of nested mind map tree. Now includes book context (title/author) for richer analysis. Reuses existing `mind_maps` database table (JSONB is flexible).
+- **Button renamed:** "Map Discussion" → "Topics" in ClubChat header.
+- **Bundle size reduced:** ~19KB smaller (D3.js is no longer imported). Old `MindMapVisualization.js` still on disk but not imported — dead code.
+- **Mobile-first CSS:** 4 breakpoints (768/480/375px), 44px touch targets, full-screen modal on mobile, clean white-on-parchment aesthetic matching the design system.
+- **Cost tracking:** API usage logged as `topic_explorer` feature (was `mind_map`).
+
+### Files Changed
+- `backend/routes/mindmaps.js` — Complete rewrite of AI prompt for topic extraction
+- `frontend/src/components/TopicExplorer.js` — New component (replaces MindMapVisualization)
+- `frontend/src/components/TopicExplorer.css` — New styles, mobile-first
+- `frontend/src/pages/ClubChat.js` — Swapped MindMapVisualization import for TopicExplorer, renamed state
+
+---
+
 ## Session: February 19, 2026 (Sprint 3 — Real-Time Chat)
 
 **Branch:** `charming-moore`
