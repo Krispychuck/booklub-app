@@ -4,6 +4,52 @@ Session-by-session history of what was built, fixed, and changed. Newest session
 
 ---
 
+## Session: February 21, 2026 (Mega-Sprint — Sprints 5, 6, 8)
+
+**Branch:** `charming-moore`
+**Commit:** `7fccdad`
+
+### Nav Menu Reorder
+- **Reordered top nav:** My Clubs → Join Club → Browse Books (was Browse Books → My Clubs → Join Club). Puts the most-used actions first.
+- **File:** `frontend/src/App.js`
+
+### Sprint 5: Onboarding & Concept Clarity (MVF-5)
+- **New component:** `WelcomeBanner.js` — 3-step explainer banner on Home page: "Pick a book → Invite friends → Ask the author". Appears for signed-out users (always) and signed-in users (first visit only, dismissible via localStorage `booklub_welcome_dismissed`). Black background, gold accents, numbered steps.
+- **New component:** `ChatExplainer.js` — First-visit tooltip above chat messages area explaining the difference between "Group Comment" and "Ask Author" buttons. Dismissible via localStorage `booklub_chat_explainer_dismissed`. Parchment background with gold left accent bar.
+- **Files:** `WelcomeBanner.js`, `WelcomeBanner.css`, `ChatExplainer.js`, `ChatExplainer.css`, `Home.js`, `ClubChat.js`
+
+### Sprint 6: Reading Progress & Spoiler Guard (BKL-4)
+- **New backend route:** `readingProgress.js` — Auto-creates `reading_progress` table with `UNIQUE(user_id, club_id)`. Three endpoints: GET all members' progress, GET specific user's progress, POST upsert progress (0-100%).
+- **New frontend component:** `ReadingProgressBar.js` — Compact progress bar between chat header and messages. Expandable panel with slider (0-100%, 5% increments) to set your reading progress, plus visual display of all club members' progress. Gold design system.
+- **AI Spoiler Guard:** Updated `messages.js` AI author system prompt to query `reading_progress` table and inject a `SPOILER GUARD (CRITICAL)` section telling the AI to never discuss content beyond where members have read.
+- **Files:** `backend/routes/readingProgress.js` (new), `backend/server.js` (route registration), `backend/routes/messages.js` (spoiler guard), `frontend/src/components/ReadingProgressBar.js` (new), `frontend/src/components/ReadingProgressBar.css` (new), `frontend/src/pages/ClubChat.js` (wired component)
+
+### Sprint 8: Book Recommendations in Topic Explorer
+- **Backend enhancement:** Updated `mindmaps.js` AI prompt to also return 3-5 book recommendations based on the themes and topics the club has been discussing. Each recommendation includes title, author, and a personalized reason connecting to the conversation.
+- **Frontend enhancement:** Added "Based on Your Discussion" recommendations section at the bottom of the Topic Explorer modal. Numbered cards with parchment background, gold accent numbers, and italic reasons.
+- **Files:** `backend/routes/mindmaps.js` (prompt update), `frontend/src/components/TopicExplorer.js` (recommendations section), `frontend/src/components/TopicExplorer.css` (recommendations styles)
+
+### Business Case & Author Studio Documents
+- **New document:** `BUSINESS_CASE.md` — Full financial model with market sizing, 3-tier revenue model ($29/$79/$199 author subscriptions), AI cost breakdown ($0.012/interaction), 3-scenario sensitivity analysis (conservative/base/optimistic), 20-row breakeven table, key risks & assumptions, growth strategy, and metrics to track.
+- **New document:** `AUTHOR_IDENTITY_STUDIO.md` — System architecture for the Author Identity Studio product with database schema, embed snippet architecture (like Stripe), ASCII wireframes for 7 pages, API endpoint reference, 4-phase implementation plan, integration strategy with existing Booklub, and design system notes.
+
+### Files Changed
+- `frontend/src/App.js` — Nav reorder
+- `frontend/src/pages/Home.js` — WelcomeBanner import
+- `frontend/src/pages/ClubChat.js` — ChatExplainer + ReadingProgressBar imports
+- `frontend/src/components/WelcomeBanner.js` + `.css` — New
+- `frontend/src/components/ChatExplainer.js` + `.css` — New
+- `frontend/src/components/ReadingProgressBar.js` + `.css` — New
+- `frontend/src/components/TopicExplorer.js` + `.css` — Recommendations section
+- `backend/routes/readingProgress.js` — New
+- `backend/routes/messages.js` — Spoiler guard
+- `backend/routes/mindmaps.js` — Book recommendations prompt
+- `backend/server.js` — readingProgress route registration
+- `BUSINESS_CASE.md` — New
+- `AUTHOR_IDENTITY_STUDIO.md` — New
+
+---
+
 ## Session: February 19, 2026 (Sprint 4 — Topic Explorer)
 
 **Branch:** `charming-moore`

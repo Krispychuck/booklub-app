@@ -1,7 +1,7 @@
 # BooKlub App - Current Status & Configuration
 
-**Last Updated:** February 19, 2026
-**Status:** Production — Core features + Topic Explorer + Mobile responsive + PostHog analytics + AI Author context + Chat readability + Real-time polling
+**Last Updated:** February 21, 2026
+**Status:** Production — Core features + Topic Explorer + Onboarding + Reading Progress + Spoiler Guard + Book Recommendations + Mobile responsive + PostHog analytics + AI Author context + Chat readability + Real-time polling
 
 ---
 
@@ -85,6 +85,10 @@ PORT=3001
 - ✅ Leave/delete club functionality
 - ✅ Members modal
 - ✅ Display name setup
+- ✅ Onboarding banners (WelcomeBanner + ChatExplainer)
+- ✅ Reading progress tracking (0-100% slider, club members' progress)
+- ✅ AI spoiler guard (respects members' reading progress)
+- ✅ Book recommendations (AI-powered, in Topic Explorer)
 
 ---
 
@@ -116,6 +120,9 @@ booklub-app/
 │   │   │   ├── JoinClubModal.js
 │   │   │   ├── MembersModal.js
 │   │   │   ├── DisplayNameModal.js
+│   │   │   ├── WelcomeBanner.js / .css        ← Sprint 5 (onboarding)
+│   │   │   ├── ChatExplainer.js / .css        ← Sprint 5 (onboarding)
+│   │   │   ├── ReadingProgressBar.js / .css   ← Sprint 6 (reading progress)
 │   │   │   ├── LoadingSpinner.js / .css    ← Book-riffling animation
 │   │   │   ├── TopicExplorer.js / .css   ← Sprint 4 (replaces MindMap)
 │   │   │   ├── MindMapVisualization.js  ← Dead code (no longer imported)
@@ -130,7 +137,8 @@ booklub-app/
 │   │   ├── clubs.js
 │   │   ├── messages.js
 │   │   ├── users.js
-│   │   └── mindmaps.js
+│   │   ├── mindmaps.js
+│   │   └── readingProgress.js               ← Sprint 6
 │   ├── db.js
 │   ├── server.js
 │   └── package.json
@@ -249,6 +257,20 @@ Note: Production DB uses **UUIDs** for most IDs, though `init.sql` shows SERIAL.
 
 ---
 
+### Mega-Sprint (Feb 21, 2026)
+45. **Nav menu reorder** — My Clubs → Join Club → Browse Books (was Browse → My Clubs → Join)
+46. **Sprint 5: WelcomeBanner** — 3-step onboarding explainer on Home page (dismissible, localStorage)
+47. **Sprint 5: ChatExplainer** — First-visit tooltip explaining Group Comment vs Ask Author buttons
+48. **Sprint 6: Reading progress API** — `readingProgress.js` with auto-creating table, 3 endpoints
+49. **Sprint 6: ReadingProgressBar** — Compact bar + expandable panel with slider (0-100%), club members' progress
+50. **Sprint 6: AI Spoiler Guard** — System prompt queries reading_progress, enforces spoiler boundaries
+51. **Sprint 8: Book Recommendations** — AI prompt in mindmaps.js returns 3-5 book recommendations based on discussion
+52. **Sprint 8: Recommendations UI** — Numbered cards at bottom of Topic Explorer modal
+53. **Business case document** — `BUSINESS_CASE.md` with financial sensitivity model, 3 scenarios, breakeven analysis
+54. **Author Studio architecture** — `AUTHOR_IDENTITY_STUDIO.md` with embed snippet design, wireframes, API spec
+
+---
+
 ## Next Steps (Upcoming)
 
 See `DEVELOPMENT_ROADMAP.md` for full sprint plan. Current priorities:
@@ -256,9 +278,11 @@ See `DEVELOPMENT_ROADMAP.md` for full sprint plan. Current priorities:
 1. ~~🔧 **Deploy Sprints 1+2**~~ — **DEPLOYED** (PR merged Feb 19, 2026)
 3. ~~🔄 **Sprint 3: Real-time chat**~~ — **DONE** (pending deploy)
 4. ~~🗂️ **Sprint 4: Topic Explorer**~~ — **DONE** (pending deploy)
-5. 👋 **Sprint 5: Onboarding** — Help new users understand what Booklub is
-6. 🔖 **Sprint 6: Reading progress & spoiler guard** — Spoiler-safe AI for mid-book readers
-7. 🎨 **Sprint 7: AI-generated book covers**
+5. ~~👋 **Sprint 5: Onboarding**~~ — **DONE** (pending deploy)
+6. ~~🔖 **Sprint 6: Reading progress & spoiler guard**~~ — **DONE** (pending deploy)
+7. 🎨 **Sprint 7: AI-generated book covers** — DEFERRED
+8. ~~📚 **Sprint 8: Book recommendations**~~ — **DONE** (pending deploy)
+9. 🚀 **Deploy all pending sprints** — Merge charming-moore → main via PR
 
 ---
 
