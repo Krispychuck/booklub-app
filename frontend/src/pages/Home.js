@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { SignedIn, SignedOut, SignInButton, useUser } from '@clerk/clerk-react';
 import CreateClubModal from '../components/CreateClubModal';
 import ClubCreatedModal from '../components/ClubCreatedModal';
+import WelcomeBanner from '../components/WelcomeBanner';
 import LoadingSpinner from '../components/LoadingSpinner';
 import { API_URL } from '../config';
 
@@ -68,13 +69,18 @@ function Home() {
 
   return (
     <div className="page-transition">
+      {/* Welcome Banner — explains what Booklub is */}
       <SignedOut>
+        <WelcomeBanner isSignedIn={false} />
         <div className="auth-prompt">
           <SignInButton mode="modal">
             <p className="auth-prompt-text">Sign in to create book clubs and start discussions</p>
           </SignInButton>
         </div>
       </SignedOut>
+      <SignedIn>
+        <WelcomeBanner isSignedIn={true} />
+      </SignedIn>
 
       <div className="books-grid">
         {books.map((book) => (

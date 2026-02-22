@@ -25,7 +25,7 @@ NEVER create a new branch or worktree. ALL work happens on charming-moore.
 
 ## Read These Docs
 1. Read CLAUDE_QUICK_START.md - Critical context, known bugs, patterns, AND the mandatory documentation protocol
-2. Read DEVELOPMENT_ROADMAP.md - Sprint plan with MVP feedback items (PRIORITY DOC)
+2. Read DEVELOPMENT_ROADMAP.md - Sprint plan with MVP feedback items
 3. Read PRODUCT_VISION.md - North star press release
 4. Read KNOWN_BUGS.md - All open bugs with root cause and fix instructions
 5. Read CHANGELOG.md - Session-by-session history
@@ -34,26 +34,41 @@ NEVER create a new branch or worktree. ALL work happens on charming-moore.
 8. Read DESIGN_SYSTEM.md - Button styles and vintage gold aesthetic
 
 ## Current Sprint Status
-Sprints 1-4 are COMPLETE. Sprints 1+2 deployed. Sprints 3+4 on charming-moore pending deploy.
+Sprints 1-8 are COMPLETE (Sprint 7 skipped/deferred). Sprints 1+2 deployed. Sprints 3-8 on charming-moore pending deploy.
 
 Sprint 1 (deployed): Tab title fix + AI Author context upgrade
 Sprint 2 (deployed): Chat readability overhaul (full-width, parchment AI, paragraph splitting)
 Sprint 3 (pending deploy): Real-time chat polling (5-second interval, smart scroll, delta fetch)
 Sprint 4 (pending deploy): Topic Explorer (replaced D3.js mind map with mobile-first topic list)
+Sprint 5 (pending deploy): Onboarding (WelcomeBanner + ChatExplainer) + Nav reorder
+Sprint 6 (pending deploy): Reading progress (0-100% slider) + AI spoiler guard
+Sprint 7: DEFERRED (AI-generated book covers — not priority)
+Sprint 8 (pending deploy): Book recommendations in Topic Explorer
 
-## Priority 1: Deploy Sprints 3+4
+## Priority 1: Deploy Sprints 3-8
 Merge PR from charming-moore → main:
 1. Go to: https://github.com/Krispychuck/booklub-app/compare/main...charming-moore
-2. Create PR with title: "Sprint 3+4: Real-time chat polling + Topic Explorer"
+2. Create PR with title: "Sprints 3-8: Real-time chat, Topic Explorer, Onboarding, Reading Progress, Book Recommendations"
 3. Merge to deploy
-4. Test real-time chat: two browsers/accounts — messages should appear within 5 seconds
-5. Test Topic Explorer: open a club chat, click "Topics" button, verify topic analysis loads
+4. Test checklist:
+   - Real-time chat: two browsers — messages should appear within 5 seconds
+   - Topic Explorer: click "Topics" → verify topic list + book recommendations at bottom
+   - Onboarding: sign out → verify WelcomeBanner on Home. Sign in → verify ChatExplainer in first chat visit
+   - Reading Progress: in chat, click progress bar → set slider → verify it saves
+   - Spoiler Guard: set progress to 50%, ask AI about ending → should deflect
 
-## Priority 2: Sprint 5 — Onboarding & Concept Clarity
-See DEVELOPMENT_ROADMAP.md MVF-5. Welcome/explainer experience for new users.
+## Strategic Documents (Completed)
+- BUSINESS_CASE.md — Full financial model, 3-tier pricing, breakeven analysis, key risks
+- AUTHOR_IDENTITY_STUDIO.md — Architecture for Author Identity Studio (embed snippets, persona builder, wireframes)
 
-## Priority 3: Sprint 6 — Reading Progress & Spoiler Guard
-See DEVELOPMENT_ROADMAP.md BKL-4. Track reading progress, AI respects spoiler boundaries.
+## Priority 2: Review Strategic Documents
+Read BUSINESS_CASE.md and AUTHOR_IDENTITY_STUDIO.md to discuss next product steps.
+
+## Priority 3: Sprint 7 (When Ready)
+AI-generated book covers using CSS typography. See DEVELOPMENT_ROADMAP.md.
+
+## Priority 4: Author Identity Studio Phase 1 (When Ready)
+See AUTHOR_IDENTITY_STUDIO.md Phase 1 (MVP): author registration, persona builder, sandbox test chat.
 
 ## Key Context
 - **Project:** Booklub - Social book club app with AI author chat
@@ -74,6 +89,10 @@ See DEVELOPMENT_ROADMAP.md BKL-4. Track reading progress, AI respects spoiler bo
 - Chat messaging (group + AI author with Booklub context awareness)
 - Chat readability: full-width layout, parchment AI messages, paragraph splitting
 - Topic Explorer (AI-powered topic analysis with expandable cards, key quotes, type badges)
+- Book recommendations (AI-powered, based on discussion themes, in Topic Explorer)
+- Onboarding: WelcomeBanner (Home) + ChatExplainer (Chat)
+- Reading progress: 0-100% slider, club members' progress display
+- AI spoiler guard: respects reading progress boundaries
 - Gold design system on all primary buttons + header nav
 - Custom domain: booklub.krispychuck.com
 - Logo: Booklub-marquee2.png (Art Nouveau parchment style)
@@ -84,8 +103,7 @@ See DEVELOPMENT_ROADMAP.md BKL-4. Track reading progress, AI respects spoiler bo
 
 ## What's Not Working / Known Issues
 - No known functional bugs (see KNOWN_BUGS.md)
-- Real-time chat + Topic Explorer built but not yet deployed (on charming-moore)
-- New users confused about what Booklub is (Sprint 5 onboarding)
+- Sprints 3-8 built but not yet deployed (on charming-moore)
 - Old MindMapVisualization.js/css still on disk but no longer imported (dead code, can clean up)
 
 ## IMPORTANT: Documentation Protocol
@@ -102,4 +120,4 @@ The project owner relies on these docs for continuity between sessions.
 
 ---
 
-**Last Updated:** February 19, 2026
+**Last Updated:** February 21, 2026

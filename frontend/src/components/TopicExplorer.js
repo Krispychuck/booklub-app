@@ -184,6 +184,28 @@ function TopicExplorer({ clubId, userId, bookTitle, bookAuthor, onClose }) {
                 })}
               </div>
 
+              {/* Book Recommendations — Sprint 8 */}
+              {topicData.recommendations && topicData.recommendations.length > 0 && (
+                <div className="topic-explorer-recommendations">
+                  <h3 className="topic-recs-heading">Based on Your Discussion</h3>
+                  <p className="topic-recs-subtitle">
+                    Books you might enjoy next
+                  </p>
+                  <div className="topic-recs-list">
+                    {topicData.recommendations.map((rec, index) => (
+                      <div key={index} className="topic-rec-card">
+                        <div className="topic-rec-number">{index + 1}</div>
+                        <div className="topic-rec-info">
+                          <div className="topic-rec-title">{rec.title}</div>
+                          <div className="topic-rec-author">by {rec.author}</div>
+                          <div className="topic-rec-reason">{rec.reason}</div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
               {/* Empty state */}
               {(!topicData.topics || topicData.topics.length === 0) && (
                 <div className="topic-explorer-empty">

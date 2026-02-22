@@ -101,6 +101,8 @@ Given a series of messages from a book club conversation, identify the main topi
 4. Key quotes from the conversation that relate to this topic (include message IDs)
 5. Which participants contributed to the discussion of this topic
 
+ALSO: Based on the themes and topics discussed in this conversation, recommend 3-5 books that the club members might enjoy. These should be books related to the themes, style, or subject matter they've been discussing.
+
 Return your analysis as JSON with this exact structure:
 
 {
@@ -123,6 +125,13 @@ Return your analysis as JSON with this exact structure:
       ],
       "messageCount": 3
     }
+  ],
+  "recommendations": [
+    {
+      "title": "Book title",
+      "author": "Author name",
+      "reason": "A 1-2 sentence explanation of why this book connects to what the club has been discussing"
+    }
   ]
 }
 
@@ -142,6 +151,11 @@ Rules:
   - "personal": Personal reflections or connections to real life
   - "question": Open questions the group raised but didn't fully resolve
 - Include the message IDs from the original messages in quotes so we can link back
+- For recommendations:
+  - Recommend 3-5 books that relate to the THEMES and INTERESTS shown in the discussion
+  - Do NOT recommend the book currently being discussed
+  - Include a mix of well-known and lesser-known titles
+  - The "reason" should directly connect to specific topics or interests from THIS conversation
 
 Only return valid JSON, no additional text.`;
 

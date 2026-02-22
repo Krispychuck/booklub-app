@@ -10,8 +10,8 @@ When starting a new session about BooKlub, read this first!
 **Owner:** Non-technical user (handle everything via Claude)
 **Location:** `/Users/mrl/.claude-worktrees/booklub-app/charming-moore/`
 **Branch:** `charming-moore` (worktree — merge to `main` to deploy)
-**Last Updated:** February 19, 2026
-**Status:** Production — All core features + Topic Explorer + Mobile responsive + PostHog analytics + AI Author context + Chat readability + Real-time polling
+**Last Updated:** February 21, 2026
+**Status:** Production — All core features + Topic Explorer + Onboarding + Reading Progress + Spoiler Guard + Book Recommendations + Mobile responsive + PostHog analytics + AI Author context + Chat readability + Real-time polling
 
 ---
 
@@ -46,8 +46,12 @@ When starting a new session about BooKlub, read this first!
 - `frontend/src/components/LoadingSpinner.css` — Book animation + button-spinner CSS
 - `backend/server.js` — Express app, route registration
 - `backend/routes/messages.js` — Chat + AI author responses (system prompt with Booklub context)
-- `frontend/src/components/TopicExplorer.js` — Topic Explorer (replaced MindMapVisualization)
-- `backend/routes/mindmaps.js` — Topic analysis generation (auto-creates table, reuses mind_maps table)
+- `frontend/src/components/TopicExplorer.js` — Topic Explorer + Book Recommendations (replaced MindMapVisualization)
+- `frontend/src/components/ReadingProgressBar.js` — Reading progress slider + club members' progress display
+- `frontend/src/components/WelcomeBanner.js` — Home page onboarding explainer
+- `frontend/src/components/ChatExplainer.js` — Chat buttons first-visit tooltip
+- `backend/routes/mindmaps.js` — Topic analysis + book recommendations generation (auto-creates table, reuses mind_maps table)
+- `backend/routes/readingProgress.js` — Reading progress CRUD (auto-creates table)
 - `backend/seeds/schema.sql` — Production database column types
 - `DEVELOPMENT_ROADMAP.md` — Sprint plan with MVP feedback items
 
@@ -175,10 +179,20 @@ See `DEVELOPMENT_ROADMAP.md` for full sprint plan with 7 sprints based on MVP te
 **Sprint 4 (Topic Explorer):** COMPLETE (pending deploy)
 - ~~MVF-2: Replace mind map with Topic Explorer~~ — **DONE** (commit `a1e7568`)
 
+**Mega-Sprint (Sprints 5, 6, 8):** COMPLETE (pending deploy)
+- ~~Sprint 5: Onboarding + Nav reorder~~ — **DONE** (commit `7fccdad`)
+- ~~Sprint 6: Reading progress & spoiler guard~~ — **DONE** (commit `7fccdad`)
+- ~~Sprint 8: Book recommendations in Topic Explorer~~ — **DONE** (commit `7fccdad`)
+- Sprint 7: AI-generated book covers — DEFERRED (not priority)
+
+**Strategic Documents:** COMPLETE
+- `BUSINESS_CASE.md` — Financial model with 3-scenario sensitivity analysis
+- `AUTHOR_IDENTITY_STUDIO.md` — Architecture for Author Identity Studio product
+
 **Next up:**
-- Sprint 5: Onboarding & concept clarity
-- Sprint 6: Reading progress & spoiler guard
-- Sprint 7: AI-generated book covers
+- Deploy Sprints 3-8 (merge charming-moore → main via PR)
+- Sprint 7: AI-generated book covers (when ready)
+- Author Identity Studio Phase 1 (when ready to build)
 
 ---
 
